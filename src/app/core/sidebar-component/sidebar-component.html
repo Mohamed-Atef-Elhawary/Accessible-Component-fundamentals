@@ -1,0 +1,17 @@
+<nav aria-label="main navigation">
+  <ul class="flex flex-col gap-4">
+    @for (link of navigationLinks; track $index) {
+      <li class="">
+        <a
+          [routerLink]="link.key"
+          routerLinkActive="active  bg-slate-200"
+          class="flex gap-2 text-slate-700 hover:text-slate-900 not-[.active]:hover:bg-slate-100 hover:scale-102 duration-200 px-2 py-1.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-200"
+        >
+          <lucide-icon [name]="link.icon" aria-hidden="true"></lucide-icon>
+
+          <span>{{ link.value }}</span>
+        </a>
+      </li>
+    }
+  </ul>
+</nav>

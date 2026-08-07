@@ -1,1 +1,8 @@
-<app-navbar-component></app-navbar-component> <router-outlet></router-outlet>
+<div class="flex h-auto min-h-screen">
+  <aside class="w-[250px] pt-5 px-2 border-slate-600 border-r border-t">
+    <app-sidebar-component />
+  </aside>
+  <main class="grow pt-5 px-2">
+    <router-outlet />
+  </main>
+</div>

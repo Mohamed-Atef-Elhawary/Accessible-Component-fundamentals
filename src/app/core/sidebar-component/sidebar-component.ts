@@ -6,7 +6,7 @@ import {
   ListCollapse,
   AppWindow,
   LayoutPanelTop,
-  Sparkles,
+  MessageCircleMore,
   LucideIconData,
 } from 'lucide-angular';
 
@@ -41,7 +41,7 @@ export class SidebarComponent {
     {
       key: 'chat',
       value: 'Chats',
-      icon: Sparkles,
+      icon: MessageCircleMore,
     },
   ];
 }

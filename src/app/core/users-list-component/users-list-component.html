@@ -1,0 +1,24 @@
+<table>
+  <thead>
+    <tr>
+      <th>USER</th>
+      <th>EMAIL</th>
+      <th>ROLE</th>
+      <th>ACTIONS</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (user of users(); track $index) {
+      <tr>
+        <td>
+          <span> {{ user.name }}</span>
+          <span>{{ user.inital }}</span>
+        </td>
+        <td>
+          {{ user.email }}
+        </td>
+        <td>{{ user.role }}</td>
+      </tr>
+    }
+  </tbody>
+</table>

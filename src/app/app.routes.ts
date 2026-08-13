@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { UsersListComponent } from './core/users-list-component/users-list-component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -33,4 +34,6 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./playground/ai-integration/ai-integration').then((c) => c.AiIntegration),
   },
+
+  { path: 'list', component: UsersListComponent },
 ];

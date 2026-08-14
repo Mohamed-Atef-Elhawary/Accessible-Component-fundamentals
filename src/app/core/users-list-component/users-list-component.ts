@@ -9,6 +9,10 @@ import { User } from '../../interfaces/user';
   styleUrl: './users-list-component.css',
 })
 export class UsersListComponent {
+  tableHeadrs: string[] = ['Person', 'Email', 'Role', 'Actions'];
   constructor(private userService: UserService) {}
   users = computed<User[]>(() => this.userService.users());
+  getAvatarColor(name: string): string {
+    return this.userService.getAvatarColor(name);
+  }
 }

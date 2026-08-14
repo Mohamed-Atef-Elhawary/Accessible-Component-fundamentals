@@ -1,23 +1,35 @@
-<table>
+<table class="border-2 border-gray-200 bg-white w-full">
   <thead>
     <tr>
-      <th>USER</th>
-      <th>EMAIL</th>
-      <th>ROLE</th>
-      <th>ACTIONS</th>
+      <th class="p-2 text-left">Person</th>
+      <th class="p-2 text-left hidden lg:table-cell">Email</th>
+      <th class="p-2 text-left hidden lg:table-cell">Role</th>
+      <th class="p-2 text-left">Actions</th>
     </tr>
   </thead>
   <tbody>
     @for (user of users(); track $index) {
-      <tr>
-        <td>
-          <span> {{ user.name }}</span>
-          <span>{{ user.inital }}</span>
+      <tr class="border border-gray-200">
+        <td class="p-2">
+          <div class="flex items-center gap-1">
+            <span
+              [style]="{ 'background-color': getAvatarColor(user.name) }"
+              class="w-7 h-7 rounded-full hidden sm:flex items-center justify-center"
+              >{{ user.inital }}</span
+            >
+            <span> {{ user.name }}</span>
+          </div>
         </td>
-        <td>
+        <td class="p-2 hidden lg:table-cell">
           {{ user.email }}
         </td>
-        <td>{{ user.role }}</td>
+        <td class="p-2 hidden lg:table-cell">{{ user.role }}</td>
+        <td class="p-2">
+          <div class="flex gap-1">
+            <button class="bg-sky-100 py-1 px-4 rounded">Edit</button>
+            <button class="bg-red-600 py-1 px-4 rounded text-white">Delete</button>
+          </div>
+        </td>
       </tr>
     }
   </tbody>

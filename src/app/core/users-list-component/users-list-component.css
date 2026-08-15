@@ -1,0 +1,63 @@
+@media (min-width: 768px) {
+  .slow-down {
+    transition: all;
+    animation: move-bown;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+  @keyframes move-bown {
+    from {
+      height: 0;
+    }
+    to {
+      height: 80px;
+    }
+  }
+
+  .slow-up {
+    transition: all;
+    animation: move-up;
+    animation-duration: 1s;
+    /* animation-fill-mode: forwards; */
+  }
+  @keyframes move-up {
+    from {
+      height: 80px;
+    }
+    to {
+      height: 0px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .slow-down {
+    transition: all;
+    animation: move-bown-sm;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+  @keyframes move-bown-sm {
+    from {
+      height: 0;
+    }
+    to {
+      height: 200px;
+    }
+  }
+
+  .slow-up {
+    transition: all;
+    animation: move-up-sm;
+    animation-duration: 1s;
+    /* animation-fill-mode: forwards; */
+  }
+  @keyframes move-up-sm {
+    from {
+      height: 200px;
+    }
+    to {
+      height: 0px;
+    }
+  }
+}

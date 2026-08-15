@@ -4,7 +4,7 @@
       <th class="p-2 text-left">Person</th>
       <th class="p-2 text-left hidden lg:table-cell">Email</th>
       <th class="p-2 text-left hidden lg:table-cell">Role</th>
-      <th class="p-2 text-left">Actions</th>
+      <th class="p-2 text-right">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -12,22 +12,55 @@
       <tr class="border border-gray-200">
         <td class="p-2">
           <div class="flex items-center gap-1">
+            <div class="lg:hidden">
+              <span (click)="user.isExpanded.set(true)" [class.hidden]="user.isExpanded()">
+                <lucide-icon [name]="chevronRight" class="cursor-pointer"></lucide-icon>
+              </span>
+
+              <span (click)="applyShrink(user)" [class.hidden]="!user.isExpanded()">
+                <lucide-icon [name]="chevronDown" class="cursor-pointer"></lucide-icon>
+              </span>
+            </div>
             <span
               [style]="{ 'background-color': getAvatarColor(user.name) }"
-              class="w-7 h-7 rounded-full hidden sm:flex items-center justify-center"
+              class="w-7 h-7 rounded-full flex items-center justify-center text-dark font-semibold"
               >{{ user.inital }}</span
             >
-            <span> {{ user.name }}</span>
+            <span class="text-dark font-semibold"> {{ user.name }}</span>
           </div>
         </td>
-        <td class="p-2 hidden lg:table-cell">
+        <td class="p-2 hidden lg:table-cell text-dark font-semibold">
           {{ user.email }}
         </td>
-        <td class="p-2 hidden lg:table-cell">{{ user.role }}</td>
+        <td class="p-2 hidden lg:table-cell text-dark font-semibold">{{ user.role }}</td>
         <td class="p-2">
-          <div class="flex gap-1">
-            <button class="bg-sky-100 py-1 px-4 rounded">Edit</button>
-            <button class="bg-red-600 py-1 px-4 rounded text-white">Delete</button>
+          <div class="flex gap-2 flex-col md:flex-row justify-end">
+            <button class="border border-gray-300 cursor-pointer py-1 px-4 rounded font-semibold">
+              Edit
+            </button>
+            <button class="bg-red-600 cursor-pointer py-1 px-4 rounded font-semibold text-white">
+              Delete
+            </button>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="lg:hidden">
+        <td>
+          <div
+            [class]="{ 'slow-down': user.isExpanded(), 'slow-up': user.isShrinked() }"
+            class="overflow-hidden h-0"
+          >
+            <div class="flex gap-5 flex-col md:flex-row">
+              <div class="mt-2 p-2 flex flex-col gap-y-[2px]">
+                <span class="text-gray-700 font-medium text-sm">Email</span>
+                <span class="text-dark font-semibold">{{ user.email }}</span>
+              </div>
+              <div class="mt-2 p-2 flex flex-col gap-y-[2px]">
+                <span class="text-gray-700 font-medium text-sm">Role</span>
+                <span class="text-dark font-semibold">{{ user.role }}</span>
+              </div>
+            </div>
           </div>
         </td>
       </tr>

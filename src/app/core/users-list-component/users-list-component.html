@@ -1,30 +1,44 @@
 <table class="border-2 border-gray-200 bg-white w-full">
   <thead>
     <tr>
-      <th class="p-2 text-left">Person</th>
-      <th class="p-2 text-left hidden lg:table-cell">Email</th>
-      <th class="p-2 text-left hidden lg:table-cell">Role</th>
-      <th class="p-2 text-right">Actions</th>
+      <th scope="col" class="p-2 text-left">Person</th>
+      <th scope="col" class="p-2 text-left hidden lg:table-cell">Email</th>
+      <th scope="col" class="p-2 text-left hidden lg:table-cell">Role</th>
+      <th scope="col" class="p-2 text-right">Actions</th>
     </tr>
   </thead>
   <tbody>
-    @for (user of users(); track $index) {
+    @for (user of users(); track user.id) {
       <tr class="border border-gray-200">
         <td class="p-2">
           <div class="flex items-center gap-1">
-            <div class="lg:hidden">
-              <span (click)="user.isExpanded.set(true)" [class.hidden]="user.isExpanded()">
-                <lucide-icon [name]="chevronRight" class="cursor-pointer"></lucide-icon>
-              </span>
+            <button
+              class="lg:hidden"
+              type="button"
+              [aria-expanded]="getUsersExpandState(user).isExpanded()"
+              [aria-label]="'Show details for ' + user.name"
+              [attr.aria-controls]="'userDetails-' + user.id"
+              (click)="
+                !getUsersExpandState(user).isExpanded() ? applyExpand(user) : applyShrink(user)
+              "
+            >
+              <lucide-icon
+                [class.hidden]="getUsersExpandState(user).isExpanded()"
+                [name]="chevronRight"
+                class="cursor-pointer"
+              ></lucide-icon>
 
-              <span (click)="applyShrink(user)" [class.hidden]="!user.isExpanded()">
-                <lucide-icon [name]="chevronDown" class="cursor-pointer"></lucide-icon>
-              </span>
-            </div>
+              <lucide-icon
+                [class.hidden]="!getUsersExpandState(user).isExpanded()"
+                [name]="chevronDown"
+                class="cursor-pointer"
+              ></lucide-icon>
+            </button>
+
             <span
               [style]="{ 'background-color': getAvatarColor(user.name) }"
-              class="w-7 h-7 rounded-full flex items-center justify-center text-dark font-semibold"
-              >{{ user.inital }}</span
+              class="w-7 h-7 rounded-full flex items-center justify-center text-white font-semibold"
+              >{{ user.initial }}</span
             >
             <span class="text-dark font-semibold"> {{ user.name }}</span>
           </div>
@@ -35,20 +49,31 @@
         <td class="p-2 hidden lg:table-cell text-dark font-semibold">{{ user.role }}</td>
         <td class="p-2">
           <div class="flex gap-2 flex-col md:flex-row justify-end">
-            <button class="border border-gray-300 cursor-pointer py-1 px-4 rounded font-semibold">
+            <button
+              (click)="editUserData.emit(user)"
+              [aria-label]="'Edit ' + user.name"
+              class="border border-btnporder cursor-pointer py-1 px-4 rounded font-semibold"
+            >
               Edit
             </button>
-            <button class="bg-red-600 cursor-pointer py-1 px-4 rounded font-semibold text-white">
+            <button
+              (click)="ondelete(user.id)"
+              [aria-label]="'Delete ' + user.name"
+              class="bg-danger cursor-pointer py-1 px-4 rounded font-semibold text-white"
+            >
               Delete
             </button>
           </div>
         </td>
       </tr>
 
-      <tr class="lg:hidden">
+      <tr class="lg:hidden" [id]="'userDetails-' + user.id">
         <td>
           <div
-            [class]="{ 'slow-down': user.isExpanded(), 'slow-up': user.isShrinked() }"
+            [class]="{
+              'slow-down': getUsersExpandState(user).isExpanded(),
+              'slow-up': getUsersExpandState(user).isShrinked(),
+            }"
             class="overflow-hidden h-0"
           >
             <div class="flex gap-5 flex-col md:flex-row">

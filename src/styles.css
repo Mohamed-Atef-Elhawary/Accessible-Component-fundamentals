@@ -5,6 +5,9 @@
   --color-mainbg: #f7f6fc;
   --color-sidebarbg: #fafafc;
   --color-secondarybg: #9198e8;
-  --color-dark: #1f1e28;
   --color-subHeading: #7d8aa1;
+  --color-dark: #1f1e28;
+  --color-danger: #dc2626;
+  --color-btnporder: #d1d5db;
+  --duration-custom: 300;
 }

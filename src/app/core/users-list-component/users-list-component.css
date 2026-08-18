@@ -18,7 +18,6 @@
     transition: all;
     animation: move-up;
     animation-duration: 1s;
-    /* animation-fill-mode: forwards; */
   }
   @keyframes move-up {
     from {
@@ -50,7 +49,6 @@
     transition: all;
     animation: move-up-sm;
     animation-duration: 1s;
-    /* animation-fill-mode: forwards; */
   }
   @keyframes move-up-sm {
     from {

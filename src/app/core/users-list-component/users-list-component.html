@@ -52,14 +52,14 @@
             <button
               (click)="editUserData.emit(user)"
               [aria-label]="'Edit ' + user.name"
-              class="border border-btnporder cursor-pointer py-1 px-4 rounded font-semibold"
+              class="border border-disbtnporder hover:border-btnporder cursor-pointer py-1 px-4 rounded font-semibold transition-all duration-custom"
             >
               Edit
             </button>
             <button
               (click)="ondelete(user.id)"
               [aria-label]="'Delete ' + user.name"
-              class="bg-danger cursor-pointer py-1 px-4 rounded font-semibold text-white"
+              class="bg-danger2 hover:bg-danger cursor-pointer py-1 px-4 rounded font-semibold text-white transition-all duration-custom"
             >
               Delete
             </button>

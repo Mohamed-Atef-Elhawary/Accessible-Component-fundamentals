@@ -1,5 +1,5 @@
-import { Component, signal } from '@angular/core';
-import { EditableField, ModalInteraction } from '../../types/generalTypes';
+import { Component, input, signal } from '@angular/core';
+import { EditableField, EditableUserFields, ModalInteraction } from '../../types/generalTypes';
 import { Trash2, PencilLine, LucideAngularModule } from 'lucide-angular';
 import {
   FormBuilder,
@@ -9,6 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { User } from '../../interfaces/user';
+import { UserService } from '../../services/user-service/user-service';
 
 @Component({
   selector: 'app-user-modal-component',
@@ -17,8 +18,12 @@ import { User } from '../../interfaces/user';
   styleUrl: './user-modal-component.css',
 })
 export class UserModalComponent {
-  user: User = { id: '1', email: 'ddd@g.com', initial: 'dd', name: 'ss ssss', role: 'dddd' };
-  modalInteraction = signal<ModalInteraction>('edit');
+  trash = Trash2;
+  pencil = PencilLine;
+
+  userData = input<User>();
+  userId = input<string>();
+  modalInteraction = input.required<ModalInteraction>();
 
   isEditing = {
     name: signal<boolean>(false),
@@ -26,25 +31,40 @@ export class UserModalComponent {
     role: signal<boolean>(false),
   };
 
-  trash = Trash2;
-  pencil = PencilLine;
   userForm!: FormGroup<{
     name: FormControl<string>;
     email: FormControl<string>;
     role: FormControl<string>;
   }>;
-  constructor(private fb: FormBuilder) {
+
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+  ) {
     this.buildForm();
   }
+
   buildForm() {
     this.userForm = this.fb.nonNullable.group({
-      name: ['', [Validators.required, Validators.pattern(/^[a-z]{1,10}\s[a-z]{1,10}$/i)]],
-      email: ['', [Validators.required, Validators.pattern(/^\w{2,10}@\w{2,10}.\w{2,10}$/)]],
-      role: ['', [Validators.required, Validators.pattern(/^[a-z ]{1,20}$/i)]],
+      name: ['', [Validators.required, Validators.pattern(/^[a-z\s'-]{2,30}$/i)]],
+      email: ['', [Validators.required, Validators.email]],
+      role: ['', [Validators.required, Validators.pattern(/^[a-z ]{1,30}$/i)]],
     });
   }
 
   updateNotEdit(field: EditableField) {
     this.isEditing[field].update((v) => !v);
+  }
+
+  onSubmit(form: any) {
+    this.editUser();
+  }
+  resetForm(form: any) {
+    console.log(form);
+  }
+
+  editUser() {
+    const userId = this.userData()?.id;
+    userId && this.userService.editUser(userId, this.userForm.getRawValue());
   }
 }

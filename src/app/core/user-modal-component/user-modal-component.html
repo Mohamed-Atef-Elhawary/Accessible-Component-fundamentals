@@ -1,99 +1,130 @@
-@if (modalInteraction() === 'delete') {
-  <div class="bg-white w-[250px] sm:w-[350px] flex flex-col gap-2 items-center p-6">
-    <lucide-icon
-      class="w-[100px] h-[100px] sm:w-[150px] h-[150px] text-red-500"
-      [name]="trash"
-    ></lucide-icon>
-    <p class="text-lg sm:text-2xl font-semibold sm:px-6 text-center">
-      Are you sure you want to delete this user?
-    </p>
-    <div class="w-full flex justify-between sm:justify-center sm:gap-5">
-      <button
-        class="bg-secondarybg text-lg lg sm:text-xl font-semibold text-white py-1 px-5 w-[45%] rounded cursor-pointer"
-      >
-        Cancel
-      </button>
-      <button
-        class="bg-danger text-lg sm:text-xl font-semibold text-white py-1 px-5 w-[45%] rounded cursor-pointer"
-      >
-        Delete
-      </button>
-    </div>
-  </div>
-} @else {
-  <div>
-    <form [formGroup]="userForm" class="bg-white w-[250px] sm:w-[350px] flex flex-col gap-5 p-6">
-      <div class="flex flex-col gap-1">
-        <button
-          (click)="updateNotEdit('name')"
-          class="flex gap-2 items-center font-semibold cursor-pointer"
-        >
-          <lucide-icon class="w-4 h-4" [name]="pencil"></lucide-icon>
-          <span>Edit user name</span>
-        </button>
-        <input
-          [class]="{ 'h-0': !isEditing.name(), 'p-1': isEditing.name() }"
-          type="text"
-          class="bg-gray-100 outline-0 rounded w-full transition-all duration-custom"
-          [placeholder]="user.name"
-          formControlName="name"
-        />
-
-        <span
-          class="text-dark overflow-hidden transition-all duration-custom"
-          [class]="{ 'h-[0px]': isEditing.name() }"
-          >{{ user.name }}</span
-        >
-      </div>
-      <div class="flex flex-col gap-1">
-        <button (click)="updateNotEdit('email')" class="flex gap-2 items-center font-semibold">
-          <lucide-icon class="w-4 h-4" [name]="pencil"></lucide-icon>
-          <span>Edit user email</span>
-        </button>
-        <input
-          type="text"
-          [class]="{ 'h-0': !isEditing.email(), 'p-1': isEditing.email() }"
-          class="bg-gray-100 outline-0 rounded w-full transition-all duration-cusom overflow-hidden"
-          [placeholder]="user.email"
-          formControlName="email"
-        />
-        <span
-          class="overflow-hidden transition-all duration-custom"
-          [class]="{ 'h-0': isEditing.email() }"
-          >{{ user.email }}</span
-        >
-      </div>
-      <div class="flex flex-col gap-1">
-        <button (click)="updateNotEdit('role')" class="flex gap-2 items-center font-semibold">
-          <lucide-icon class="w-4 h-4" [name]="pencil"></lucide-icon>
-          <span>Edit user role</span>
-        </button>
-        <input
-          type="text"
-          [class]="{ 'h-0': !isEditing.role(), 'p-1': isEditing.role() }"
-          class="bg-gray-100 outline-0 rounded w-full transition-all duration-custom"
-          [placeholder]="user.role"
-          formControlName="role"
-        />
-        <span
-          class="text-dark overflow-hidden transition-all duration-custom"
-          [class]="{ 'h-0': isEditing.role() }"
-        >
-          ssssssssssssss {{ user.role }}</span
-        >
-      </div>
+<div class="fixed top-0 bottom-0 left-0 right-0 grid place-items-center bg-black/50">
+  @if (modalInteraction() === 'delete') {
+    <div class="bg-white w-[250px] sm:w-[350px] flex flex-col gap-2 items-center p-6 rounded-2xl">
+      <lucide-icon
+        class="w-[100px] h-[100px] sm:w-[150px] h-[150px] text-red-500"
+        [name]="trash"
+      ></lucide-icon>
+      <p class="text-lg sm:text-2xl font-semibold sm:px-6 text-center">
+        Are you sure you want to delete this user?
+      </p>
       <div class="w-full flex justify-between sm:justify-center sm:gap-5">
         <button
-          class="border-2 border-btnporder text-lg lg sm:text-xl font-semibold py-1 px-5 w-[45%] rounded cursor-pointer"
+          class="text-lg lg sm:text-xl font-semibold py-1 w-[45%] rounded cursor-pointer border hover:border-btnporder border-disbtnporder transition duration-custom"
         >
           Cancel
         </button>
         <button
-          class="bg-secondarybg text-lg sm:text-xl font-semibold text-white py-1 px-5 w-[45%] rounded cursor-pointer"
+          class="bg-danger2 hover:bg-danger text-lg sm:text-xl font-semibold text-white py-1 w-[45%] rounded cursor-pointer"
         >
-          Save
+          Delete
         </button>
       </div>
-    </form>
-  </div>
-}
+    </div>
+  } @else {
+    <div>
+      <form
+        [formGroup]="userForm"
+        (ngSubmit)="onSubmit(userForm)"
+        class="bg-white w-[250px] sm:w-[350px] flex flex-col gap-5 p-6 rounded-2xl"
+      >
+        <div class="flex flex-col gap-1">
+          <button
+            type="button"
+            (click)="updateNotEdit('name')"
+            class="flex gap-2 items-center font-semibold cursor-pointer"
+          >
+            <lucide-icon class="w-4 h-4" [name]="pencil"></lucide-icon>
+            <span>Edit user name</span>
+          </button>
+          <input
+            [class]="{ 'h-0': !isEditing.name(), 'p-1': isEditing.name() }"
+            type="text"
+            class="bg-gray-100 outline-0 rounded w-full transition-all duration-custom"
+            [placeholder]="userData()?.name"
+            formControlName="name"
+          />
+
+          <span
+            class="text-dark overflow-hidden transition-all duration-custom"
+            [class]="{ 'h-[0px]': isEditing.name() }"
+            >{{ userData()?.name }}</span
+          >
+        </div>
+        <div class="flex flex-col gap-1">
+          <button
+            type="button"
+            (click)="updateNotEdit('email')"
+            class="flex gap-2 items-center font-semibold"
+          >
+            <lucide-icon class="w-4 h-4" [name]="pencil"></lucide-icon>
+            <span>Edit user email</span>
+          </button>
+          <input
+            type="email"
+            [class]="{ 'h-0': !isEditing.email(), 'p-1': isEditing.email() }"
+            class="bg-gray-100 outline-0 rounded w-full transition-all duration-cusom overflow-hidden"
+            [placeholder]="userData()?.email"
+            formControlName="email"
+          />
+          <span
+            class="overflow-hidden transition-all duration-custom"
+            [class]="{ 'h-0': isEditing.email() }"
+            >{{ userData()?.email }}</span
+          >
+        </div>
+        <div class="flex flex-col gap-1">
+          <button
+            type="button"
+            (click)="updateNotEdit('role')"
+            class="flex gap-2 items-center font-semibold"
+          >
+            <lucide-icon class="w-4 h-4" [name]="pencil"></lucide-icon>
+            <span>Edit user role</span>
+          </button>
+          <input
+            type="text"
+            [class]="{ 'h-0': !isEditing.role(), 'p-1': isEditing.role() }"
+            class="bg-gray-100 outline-0 rounded w-full transition-all duration-custom"
+            [placeholder]="userData()?.role"
+            formControlName="role"
+          />
+          <span
+            [class]="{ 'h-0': isEditing.role() }"
+            class="text-dark overflow-hidden transition-all duration-custom"
+          >
+            {{ userData()?.role }}</span
+          >
+        </div>
+        <div class="w-full flex justify-between sm:justify-center sm:gap-5">
+          <button
+            type="reset"
+            (click)="resetForm(userForm)"
+            [disabled]="userForm.pristine"
+            [class]="{
+              'cursor-pointer': userForm.dirty,
+              'border-btnporder': userForm.dirty,
+              'cursor-not-allowed': userForm.pristine,
+              'border-disbtnporder': userForm.pristine,
+            }"
+            class="border-2 text-lg lg sm:text-xl font-semibold py-1 w-[45%] rounded"
+          >
+            Cancel
+          </button>
+          <button
+            [disabled]="userForm.invalid"
+            [class]="{
+              'cursor-not-allowed': userForm.invalid,
+              'bg-subHeading': userForm.invalid,
+              'cursor-pointer': userForm.valid,
+              'bg-secondarybg': userForm.valid,
+            }"
+            class="text-lg sm:text-xl font-semibold text-dark py-1 w-[45%] rounded"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  }
+</div>

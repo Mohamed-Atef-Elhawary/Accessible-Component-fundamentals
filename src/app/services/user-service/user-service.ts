@@ -1,5 +1,6 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { User } from '../../interfaces/user';
+import { EditableUserFields } from '../../types/generalTypes';
 
 @Injectable({
   providedIn: 'root',
@@ -45,12 +46,13 @@ export class UserService {
 
   users = computed<User[]>(() => this.userList());
 
-  editUser(userData: User) {
+  editUser(userId: string, userData: EditableUserFields) {
+    const initial: string = this.buildInitial(userData.name);
     this.userList.update((users) => {
       return users.map((user) => {
         let updatedUser: User = { ...user };
-        if (user.id === userData.id) {
-          updatedUser = { ...userData };
+        if (user.id === userId) {
+          updatedUser = { ...user, initial, ...userData };
         }
         return updatedUser;
       });
@@ -58,5 +60,14 @@ export class UserService {
   }
   deleteUser(userId: string) {
     this.userList.update((users) => users.filter((user) => user.id !== userId));
+  }
+
+  buildInitial(userName: string): string {
+    const nameArr = userName.split(' ', 2);
+    try {
+      return `${nameArr[0][0]}${nameArr[1][0]}`.toUpperCase();
+    } catch (error) {
+      return `${nameArr[0][0]}${nameArr[0][1]}`.toUpperCase();
+    }
   }
 }

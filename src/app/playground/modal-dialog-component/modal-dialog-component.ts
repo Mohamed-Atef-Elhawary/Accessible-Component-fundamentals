@@ -1,9 +1,18 @@
-import { Component, ComponentRef, signal, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  Component,
+  ComponentRef,
+  signal,
+  viewChild,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { UsersListComponent } from '../../core/users-list-component/users-list-component';
 import { ModalDialogHeaderComponent } from '../../core/modal-dialog-header-component/modal-dialog-header-component';
 import { User } from '../../interfaces/user';
 import { UserModalComponent } from '../../core/user-modal-component/user-modal-component';
 import { ModalInteraction } from '../../types/generalTypes';
+import { UserService } from '../../services/user-service/user-service';
+import { fromEvent } from 'rxjs';
 @Component({
   selector: 'app-modal-dialog-component',
   imports: [UsersListComponent, ModalDialogHeaderComponent],
@@ -11,12 +20,21 @@ import { ModalInteraction } from '../../types/generalTypes';
   styleUrl: './modal-dialog-component.css',
 })
 export class ModalDialogComponent {
-  @ViewChild('userModalContainer', { read: ViewContainerRef })
-  userModalContainer!: ViewContainerRef;
+  userModalContainerRef = viewChild<ViewContainerRef, ViewContainerRef>('userModalContainer', {
+    read: ViewContainerRef,
+  });
+  userModalNativeElement!: HTMLElement;
   modalInteraction = signal<ModalInteraction>('edit');
   userData = signal<User | null>(null);
   userId = signal<string | null>(null);
-
+  constructor(private userService: UserService) {}
+  ngOnInit() {
+    this.userService.showModalSubject$.subscribe((showModal: boolean) => {
+      if (!showModal) {
+        this.userModalContainerRef()?.clear();
+      }
+    });
+  }
   onEdit(userData: User) {
     this.modalInteraction.set('edit');
     this.userData.set(userData);
@@ -29,14 +47,15 @@ export class ModalDialogComponent {
   }
 
   async uploadUserModal(): Promise<void> {
-    this.userModalContainer.clear();
-    const suerModalComponent: typeof UserModalComponent =
+    const userModalContainerRef: ViewContainerRef = this.userModalContainerRef()!;
+    userModalContainerRef.clear();
+    const userModalComponent: typeof UserModalComponent =
       await import('../../core/user-modal-component/user-modal-component').then(
         (c) => UserModalComponent,
       );
     const userModalComponentRef: ComponentRef<UserModalComponent> =
-      this.userModalContainer.createComponent(suerModalComponent);
-
+      userModalContainerRef.createComponent(userModalComponent)!;
+    this.userModalNativeElement = userModalComponentRef.location.nativeElement;
     userModalComponentRef.setInput('modalInteraction', this.modalInteraction());
     if (this.userData()) {
       userModalComponentRef.setInput('userData', this.userData());

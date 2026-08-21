@@ -13,7 +13,7 @@
         <td class="p-2">
           <div class="flex items-center gap-1">
             <button
-              class="lg:hidden"
+              class="lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
               type="button"
               [aria-expanded]="getUsersExpandState(user).isExpanded()"
               [aria-label]="'Show details for ' + user.name"
@@ -52,14 +52,14 @@
             <button
               (click)="editUserData.emit(user)"
               [aria-label]="'Edit ' + user.name"
-              class="border border-disbtnporder hover:border-btnporder cursor-pointer py-1 px-4 rounded font-semibold transition-all duration-custom"
+              class="border border-disbtnporder hover:border-btnporder cursor-pointer py-1 px-4 rounded font-semibold transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
             >
               Edit
             </button>
             <button
               (click)="ondelete(user.id)"
               [aria-label]="'Delete ' + user.name"
-              class="bg-danger2 hover:bg-danger cursor-pointer py-1 px-4 rounded font-semibold text-white transition-all duration-custom"
+              class="bg-danger2 hover:bg-danger cursor-pointer py-1 px-4 rounded font-semibold text-white transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
             >
               Delete
             </button>

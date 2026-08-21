@@ -1,6 +1,7 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { User } from '../../interfaces/user';
 import { EditableUserFields } from '../../types/generalTypes';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -45,6 +46,7 @@ export class UserService {
   ]);
 
   users = computed<User[]>(() => this.userList());
+  showModalSubject$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   editUser(userId: string, userData: EditableUserFields) {
     const initial: string = this.buildInitial(userData.name);
@@ -58,6 +60,7 @@ export class UserService {
       });
     });
   }
+
   deleteUser(userId: string) {
     this.userList.update((users) => users.filter((user) => user.id !== userId));
   }

@@ -22,17 +22,16 @@
                 !getUsersExpandState(user).isExpanded() ? applyExpand(user) : applyShrink(user)
               "
             >
-              <lucide-icon
+              <fa-icon
                 [class.hidden]="getUsersExpandState(user).isExpanded()"
-                [name]="chevronRight"
                 class="cursor-pointer"
-              ></lucide-icon>
-
-              <lucide-icon
+                [icon]="chevronRight"
+              ></fa-icon>
+              <fa-icon
                 [class.hidden]="!getUsersExpandState(user).isExpanded()"
-                [name]="chevronDown"
                 class="cursor-pointer"
-              ></lucide-icon>
+                [icon]="chevronDown"
+              ></fa-icon>
             </button>
 
             <span

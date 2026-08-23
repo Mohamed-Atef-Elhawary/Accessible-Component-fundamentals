@@ -1,6 +1,13 @@
-import { Component, input, signal, OnDestroy, viewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  input,
+  signal,
+  OnDestroy,
+  viewChild,
+  ElementRef,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { EditableField, ModalInteraction } from '../../types/generalTypes';
-import { Trash2, PencilLine, X, LucideAngularModule } from 'lucide-angular';
 import {
   FormBuilder,
   FormControl,
@@ -11,17 +18,19 @@ import {
 import { User } from '../../interfaces/user';
 import { UserService } from '../../services/user-service/user-service';
 import { fromEvent, Subscription } from 'rxjs';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faTrashCan, faPencil, faXmark } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-user-modal-component',
-  imports: [LucideAngularModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule, FontAwesomeModule],
   templateUrl: './user-modal-component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './user-modal-component.css',
 })
 export class UserModalComponent implements OnDestroy {
-  trash = Trash2;
-  pencil = PencilLine;
-  xIcon = X;
+  trash = faTrashCan;
+  pencil = faPencil;
+  xIcon = faXmark;
 
   userData = input<User>();
   userId = input<string>();

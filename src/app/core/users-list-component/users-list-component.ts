@@ -1,26 +1,20 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  output,
-  Signal,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, output, signal } from '@angular/core';
 import { UserService } from '../../services/user-service/user-service';
 import { User, UserExpandState } from '../../interfaces/user';
-import { ChevronDown, ChevronRight, LucideAngularModule } from 'lucide-angular';
 import { AvatarColorService } from '../../services/avatar-color-service/avatar-color-service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-users-list-component',
-  imports: [LucideAngularModule],
+  imports: [FontAwesomeModule],
   templateUrl: './users-list-component.html',
   styleUrl: './users-list-component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersListComponent {
-  chevronDown = ChevronDown;
-  chevronRight = ChevronRight;
+  chevronDown = faChevronDown;
+  chevronRight = faChevronRight;
   constructor(
     private userService: UserService,
     private avatarColorService: AvatarColorService,

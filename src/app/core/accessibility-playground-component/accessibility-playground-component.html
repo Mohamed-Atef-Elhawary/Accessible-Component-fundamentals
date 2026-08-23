@@ -1,25 +1,71 @@
 <section class="bg-whiteColof p-2 border-2 border-disbtnporder">
-  <h2 class="text-2xl font-semibold mb-6 bg-amber-600">Accessibility Playground</h2>
-  <ul>
+  <h2 class="text-2xl font-semibold mb-10">Accessibility Playground</h2>
+  <ul class="flex flex-col gap-6">
     <li>
-      <input type="checkbox" id="backdrop" class="peer sr-only" (click)="print()" />
+      <label for="backdrop" class="flex gap-2 items-center text-dark cursor-pointer w-fit">
+        <input
+          type="checkbox"
+          id="backdrop"
+          class="peer sr-only"
+          [checked]="backdropAccess()"
+          (change)="toggleBackdropAccess()"
+        />
 
-      <span class="outline-2 outline-disbtnporder peer-checked:outline-btnporder p-1 block w-fit">
-        <lucide-icon class="bg-amber-400" [name]="check"></lucide-icon>
-      </span>
-
-      <label for="backdrop">
-        <span class="bg-amber-700">Close on Beckdrop Click</span>
+        <div class="outline-2 outline-disbtnporder peer-checked:outline-btnporder w-fit">
+          <fa-icon
+            [class]="{
+              'opacity-100': backdropAccess(),
+              'opacity-0': !backdropAccess(),
+            }"
+            [icon]="check"
+          ></fa-icon>
+        </div>
+        <span class="text-xl">Close on Beckdrop Click</span>
       </label>
     </li>
 
     <li>
-      <input type="checkbox" id="esc" />
-      <label for="esc">Close on ESC</label>
+      <label for="esc" class="flex gap-2 items-center text-dark cursor-pointer w-fit">
+        <input
+          type="checkbox"
+          id="esc"
+          class="peer sr-only"
+          [checked]="escAccess()"
+          (change)="toggleEscAccess()"
+        />
+        <div class="outline-2 outline-disbtnporder peer-checked:outline-btnporder w-fit">
+          <fa-icon
+            [class]="{
+              'opacity-0': !escAccess(),
+              'opacity-100': escAccess(),
+            }"
+            [icon]="check"
+          ></fa-icon>
+        </div>
+        <span class="text-xl">Close on ESC</span>
+      </label>
     </li>
+
     <li>
-      <input type="checkbox" id="scroll" />
-      <label for="scroll">Look Scroll</label>
+      <label for="scroll" class="flex gap-2 items-center text-dark cursor-pointer w-fit">
+        <input
+          type="checkbox"
+          id="scroll"
+          class="peer sr-only"
+          [checked]="scrollAccess()"
+          (change)="toggleScrollAccess()"
+        />
+        <div class="outline-2 outline-disbtnporder peer-checked:outline-btnporder fit">
+          <fa-icon
+            [class]="{
+              'opacity-0': !scrollAccess(),
+              'opacity-100': scrollAccess(),
+            }"
+            [icon]="check"
+          ></fa-icon>
+        </div>
+        <span class="text-xl">Look Scroll</span>
+      </label>
     </li>
   </ul>
 </section>

@@ -1,47 +1,48 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
-  LucideAngularModule,
-  LayoutDashboard,
-  ListCollapse,
-  AppWindow,
-  LayoutPanelTop,
-  MessageCircleMore,
-  LucideIconData,
-} from 'lucide-angular';
+  faChartColumn,
+  faListCheck,
+  faPictureInPicture,
+  faFolderOpen,
+  faWandMagicSparkles,
+  IconDefinition,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sidebar-component',
-  imports: [RouterLink, RouterLinkActive, LucideAngularModule],
+  imports: [RouterLink, RouterLinkActive, FontAwesomeModule],
   templateUrl: './sidebar-component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './sidebar-component.css',
 })
 export class SidebarComponent {
-  navigationLinks: { key: string; value: string; icon: LucideIconData }[] = [
+  navigationLinks: { key: string; value: string; icon: IconDefinition }[] = [
     {
       key: 'dashboard',
       value: 'Dashboard',
-      icon: LayoutDashboard,
+      icon: faChartColumn,
     },
     {
       key: 'disclosure',
       value: 'Disclosure',
-      icon: ListCollapse,
+      icon: faListCheck,
     },
     {
       key: 'modal-dialog',
       value: 'Dialog',
-      icon: AppWindow,
+      icon: faPictureInPicture,
     },
     {
       key: 'tabs',
       value: 'Tabs',
-      icon: LayoutPanelTop,
+      icon: faFolderOpen,
     },
     {
       key: 'chat',
       value: 'Chats',
-      icon: MessageCircleMore,
+      icon: faWandMagicSparkles,
     },
   ];
 }

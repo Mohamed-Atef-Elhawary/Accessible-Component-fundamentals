@@ -5,6 +5,7 @@ import {
   viewChild,
   ViewChild,
   ViewContainerRef,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { UsersListComponent } from '../../core/users-list-component/users-list-component';
 import { ModalDialogHeaderComponent } from '../../core/modal-dialog-header-component/modal-dialog-header-component';
@@ -12,11 +13,12 @@ import { User } from '../../interfaces/user';
 import { UserModalComponent } from '../../core/user-modal-component/user-modal-component';
 import { ModalInteraction } from '../../types/generalTypes';
 import { UserService } from '../../services/user-service/user-service';
-import { fromEvent } from 'rxjs';
+import { AccessibilityPlaygroundComponent } from '../../core/accessibility-playground-component/accessibility-playground-component';
 @Component({
   selector: 'app-modal-dialog-component',
-  imports: [UsersListComponent, ModalDialogHeaderComponent],
+  imports: [UsersListComponent, ModalDialogHeaderComponent, AccessibilityPlaygroundComponent],
   templateUrl: './modal-dialog-component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './modal-dialog-component.css',
 })
 export class ModalDialogComponent {

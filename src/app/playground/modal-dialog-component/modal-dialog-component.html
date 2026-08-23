@@ -1,9 +1,14 @@
 <div class="flex flex-col gap-5">
-  <app-modal-dialog-header-component></app-modal-dialog-header-component>
-  <app-users-list-component
-    (editUserData)="onEdit($event)"
-    (deleteUser)="ondelete($event)"
-  ></app-users-list-component>
+  <app-modal-dialog-header-component />
+
+  <div class="flex flex-col gap-5 xl:flex-row xl:justify-between bg-amber-600 p-1">
+    <div class="xl:grow">
+      <app-users-list-component (editUserData)="onEdit($event)" (deleteUser)="ondelete($event)" />
+    </div>
+    <div class="xl:w-[30%] h-full bg-red-500">
+      <app-accessibility-playground-component />
+    </div>
+  </div>
 </div>
 
 <div #userModalContainer></div>

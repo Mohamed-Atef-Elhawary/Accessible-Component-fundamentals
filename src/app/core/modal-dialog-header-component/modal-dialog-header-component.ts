@@ -1,6 +1,5 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, output } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faWandSparkles } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-modal-dialog-header-component',
@@ -10,5 +9,5 @@ import { faWandSparkles } from '@fortawesome/free-solid-svg-icons';
   styleUrl: './modal-dialog-header-component.css',
 })
 export class ModalDialogHeaderComponent {
-  wandSparkles = faWandSparkles;
+  addUser = output<void>();
 }

@@ -6,6 +6,7 @@ import {
   viewChild,
   ElementRef,
   ChangeDetectionStrategy,
+  computed,
 } from '@angular/core';
 import { EditableField, ModalInteraction } from '../../types/generalTypes';
 import {
@@ -31,23 +32,33 @@ export class UserModalComponent implements OnDestroy {
   trash = faTrashCan;
   pencil = faPencil;
   xIcon = faXmark;
-
+  userForm!: FormGroup<{
+    name: FormControl<string>;
+    email: FormControl<string>;
+    role: FormControl<string>;
+  }>;
+  modalSubscription!: Subscription;
   userData = input<User>();
   userId = input<string>();
+  title = computed<string>(() => {
+    const interaction: ModalInteraction = this.modalInteraction();
+    if (interaction === 'add') {
+      return 'Add New User';
+    } else if (interaction === 'edit') {
+      return 'Edit User';
+    }
+    return 'Delete User';
+  });
+
+  editingMode = computed<boolean>(() => this.modalInteraction() === 'edit');
   modalInteraction = input.required<ModalInteraction>();
-  modalSubscription!: Subscription;
+
   modalRootElement = viewChild<ElementRef>('modalRootElement');
   isEditing = {
     name: signal<boolean>(false),
     email: signal<boolean>(false),
     role: signal<boolean>(false),
   };
-
-  userForm!: FormGroup<{
-    name: FormControl<string>;
-    email: FormControl<string>;
-    role: FormControl<string>;
-  }>;
 
   constructor(
     private fb: FormBuilder,
@@ -65,6 +76,7 @@ export class UserModalComponent implements OnDestroy {
         }
       });
   }
+
   buildForm() {
     this.userForm = this.fb.nonNullable.group({
       name: ['', [Validators.required, Validators.pattern(/^[a-z\s'-]{2,30}$/i)]],
@@ -73,15 +85,12 @@ export class UserModalComponent implements OnDestroy {
     });
   }
 
-  updateNotEdit(field: EditableField) {
+  updateisEditing(field: EditableField) {
     this.isEditing[field].update((v) => !v);
   }
 
   onSubmit(form: any) {
     this.editUser();
-  }
-  resetForm(form: any) {
-    console.log(form);
   }
 
   editUser() {

@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { UsersListComponent } from './core/users-list-component/users-list-component';
 import { UserModalComponent } from './core/user-modal-component/user-modal-component';
 import { AccessibilityPlaygroundComponent } from './core/accessibility-playground-component/accessibility-playground-component';
+import { ActivityLogComponent } from './core/activity-log-component/activity-log-component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -36,6 +37,7 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./playground/ai-integration/ai-integration').then((c) => c.AiIntegration),
   },
-
+  ///////////////////////////////////////////components
   { path: 'access', component: AccessibilityPlaygroundComponent },
+  { path: 'log', component: ActivityLogComponent },
 ];

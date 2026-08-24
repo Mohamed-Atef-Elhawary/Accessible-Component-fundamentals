@@ -1,4 +1,4 @@
-<table class="border-2 border-gray-200 bg-white w-full">
+<table class="border-2 border-gray-200 bg-whiteColor w-full table-fixed">
   <thead>
     <tr>
       <th scope="col" class="p-2 text-left">Person</th>
@@ -36,7 +36,7 @@
 
             <span
               [style]="{ 'background-color': getAvatarColor(user.name) }"
-              class="w-7 h-7 rounded-full flex items-center justify-center text-white font-semibold"
+              class="hidden sm:block w-7 h-7 rounded-full flex items-center justify-center text-white font-semibold"
               >{{ user.initial }}</span
             >
             <span class="text-dark font-semibold"> {{ user.name }}</span>

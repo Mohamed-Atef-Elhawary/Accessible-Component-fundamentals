@@ -1,7 +1,7 @@
 import { Component, signal, ChangeDetectionStrategy, computed } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCheck, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { AccessibilityService } from '../../services/playground-service/accessibility-service';
+import { AccessibilityService } from '../../services/accessibility-service/accessibility-service';
 
 @Component({
   selector: 'app-accessibility-playground-component',

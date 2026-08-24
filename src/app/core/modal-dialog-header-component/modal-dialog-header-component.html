@@ -1,4 +1,4 @@
-<header class="flex flex-col lg:flex-row gap-y-4 lg:justify-between lg:items-end">
+<header class="flex flex-col lg:flex-row gap-y-4 lg:justify-between lg:items-end bg-headerbg p-1">
   <section>
     <h1 class="text-xl sm:text-3xl text-dark text-bold" tabindex="-1">
       User Management & Modal Studio
@@ -8,9 +8,9 @@
     </p>
   </section>
   <button
-    class="flex items-center gap-1 bg-secondarybg hover:bg-indigo-400 transition duration-200 text-dark text-xl font-medium w-fit px-2 py-1 lg:py-0 rounded-full h-[40px] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-200"
+    (click)="addUser.emit()"
+    class="flex items-center gap-1 bg-secondarybg hover:bg-indigo-400 transition duration-200 text-dark text-xl font-medium w-fit px-2 py-1 lg:py-0 rounded h-[40px] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-200"
   >
-    <fa-icon [icon]="wandSparkles"></fa-icon>
-    <span> Generate Bio </span>
+    <span> Add User </span>
   </button>
 </header>

@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { AvatarColorService } from './avatar-color-service';
 
 describe('AvatarColorService', () => {

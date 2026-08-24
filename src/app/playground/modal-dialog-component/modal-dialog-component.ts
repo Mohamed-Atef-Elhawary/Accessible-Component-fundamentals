@@ -14,9 +14,15 @@ import { UserModalComponent } from '../../core/user-modal-component/user-modal-c
 import { ModalInteraction } from '../../types/generalTypes';
 import { UserService } from '../../services/user-service/user-service';
 import { AccessibilityPlaygroundComponent } from '../../core/accessibility-playground-component/accessibility-playground-component';
+import { ActivityLogComponent } from '../../core/activity-log-component/activity-log-component';
 @Component({
   selector: 'app-modal-dialog-component',
-  imports: [UsersListComponent, ModalDialogHeaderComponent, AccessibilityPlaygroundComponent],
+  imports: [
+    UsersListComponent,
+    ModalDialogHeaderComponent,
+    AccessibilityPlaygroundComponent,
+    ActivityLogComponent,
+  ],
   templateUrl: './modal-dialog-component.html',
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './modal-dialog-component.css',
@@ -38,13 +44,18 @@ export class ModalDialogComponent {
     });
   }
   onEdit(userData: User) {
+    console.log('gggggggggggggggggggggggggg');
     this.modalInteraction.set('edit');
     this.userData.set(userData);
     this.uploadUserModal();
   }
-  ondelete(userId: string) {
+  onDelete(userId: string) {
     this.modalInteraction.set('delete');
     this.userId.set(userId);
+    this.uploadUserModal();
+  }
+  onAdd() {
+    this.modalInteraction.set('add');
     this.uploadUserModal();
   }
 
@@ -59,9 +70,9 @@ export class ModalDialogComponent {
       userModalContainerRef.createComponent(userModalComponent)!;
     this.userModalNativeElement = userModalComponentRef.location.nativeElement;
     userModalComponentRef.setInput('modalInteraction', this.modalInteraction());
-    if (this.userData()) {
+    if (this.modalInteraction() === 'edit') {
       userModalComponentRef.setInput('userData', this.userData());
-    } else if (this.userId()) {
+    } else if (this.modalInteraction() === 'delete') {
       userModalComponentRef.setInput('userId', this.userId());
     }
   }

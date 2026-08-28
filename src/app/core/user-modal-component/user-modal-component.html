@@ -22,7 +22,7 @@
             ></fa-icon>
           </button>
         </div>
-        <p [id]="modalInteraction()" class="font-bold text-lg">{{ title() }}</p>
+        <p [id]="modalInteraction()" class="font-bold text-lg">{{ formTitle() }}</p>
       </div>
 
       <fa-icon
@@ -70,102 +70,39 @@
               ></fa-icon>
             </button>
           </div>
-          <p [id]="modalInteraction()" class="font-bold text-lg">{{ title() }}</p>
+          <p [id]="modalInteraction()" class="font-bold text-lg">{{ formTitle() }}</p>
         </div>
 
-        <div class="flex flex-col gap-1 text-xl">
-          @if (editingMode()) {
-            <button
-              type="button"
-              (click)="updateisEditing('name')"
-              class="flex gap-2 items-center font-semibold cursor-pointer hover:scale-102 transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
-            >
-              <fa-icon aria-hidden="true" class="w-5 h-5" [icon]="pencil"></fa-icon>
-
-              <span>Edit user name</span>
-            </button>
-          }
+        <label for="userName" class="w-full flex flex-col gap-1 cursor-pointer">
+          <span class="font-semibold">{{ inputsLabel().nameLabel }}</span>
           <input
-            [class]="{
-              'h-0': !isEditing.name() && editingMode(),
-              'p-1': isEditing.name() || !editingMode(),
-              'focus-visible:outline-none': isEditing.name(),
-              'focus-visible:ring-2': isEditing.name() || !editingMode(),
-              'focus-visible:ring-focusVisibleColor': isEditing.name() || !editingMode(),
-            }"
-            type="text"
-            class="bg-gray-100 outline-0 rounded w-full transition-all duration-custom"
-            [placeholder]="editingMode() ? $safeNavigationMigration(userData()?.name) : ''"
+            id="userName"
+            type="text "
             formControlName="name"
+            class="bg-gray-100 outline-2 outline-disbtnporder rounded w-full hover:scale-104 hover:pl-2 transition-all duration-custom p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
           />
-
-          <span
-            class="text-dark overflow-hidden transition-all duration-custom"
-            [class]="{ 'h-[0px]': isEditing.name() }"
-            >{{ userData()?.name }}</span
-          >
-        </div>
-
-        <div class="flex flex-col gap-1 text-xl">
-          <button
-            type="button"
-            (click)="updateisEditing('email')"
-            class="flex gap-2 items-center font-semibold cursor-pointer hover:scale-102 transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
-          >
-            <fa-icon aria-hidden="true" class="w-5 h-5" [icon]="pencil"></fa-icon>
-
-            <span>Edit user email</span>
-          </button>
+          <span class="text-danger">{{ errorMessage.name() }}</span>
+        </label>
+        <label for="userEmail" class="w-full flex flex-col gap-1 cursor-pointer">
+          <span class="font-semibold">{{ inputsLabel().emailLabel }}</span>
           <input
-            type="email"
-            [class]="{
-              'h-0': !isEditing.email(),
-              'p-1': isEditing.email(),
-              'focus-visible:outline-none': isEditing.email(),
-              'focus-visible:ring-2': isEditing.email(),
-              'focus-visible:ring-focusVisibleColor': isEditing.email(),
-            }"
-            class="bg-gray-100 outline-0 rounded w-full transition-all duration-custom overflow-hidden"
-            [placeholder]="$safeNavigationMigration(userData()?.email)"
             formControlName="email"
+            id="userEmail"
+            type="text "
+            class="bg-gray-100 outline-2 outline-disbtnporder rounded w-full hover:scale-104 hover:pl-2 transition-all duration-custom p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
           />
-          <span
-            class="overflow-hidden transition-all duration-custom"
-            [class]="{ 'h-0': isEditing.email() }"
-            >{{ userData()?.email }}</span
-          >
-        </div>
-
-        <div class="flex flex-col gap-1 text-xl">
-          <button
-            type="button"
-            (click)="updateisEditing('role')"
-            class="flex gap-2 items-center font-semibold cursor-pointer hover:scale-102 transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
-          >
-            <fa-icon aria-hidden="true" class="w-5 h-5" [icon]="pencil"></fa-icon>
-            <span>Edit user role</span>
-          </button>
+          <span class="text-danger">{{ errorMessage.email() }}</span>
+        </label>
+        <label for="userRole" class="w-full flex flex-col gap-1 cursor-pointer">
+          <span class="font-semibold">{{ inputsLabel().roleLabel }}</span>
           <input
-            type="text"
-            [class]="{
-              'h-0': !isEditing.role(),
-              'p-1': isEditing.role(),
-              'focus-visible:outline-none': isEditing.role(),
-              'focus-visible:ring-2': isEditing.role(),
-              'focus-visible:ring-focusVisibleColor': isEditing.role(),
-            }"
-            class="bg-gray-100 outline-0 rounded w-full transition-all duration-custom"
-            [placeholder]="$safeNavigationMigration(userData()?.role)"
             formControlName="role"
+            id="userRole"
+            type="text "
+            class="bg-gray-100 outline-2 outline-disbtnporder rounded w-full hover:scale-104 hover:pl-2 transition-all duration-custom p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
           />
-          <span
-            [class]="{ 'h-0': isEditing.role() }"
-            class="text-dark overflow-hidden transition-all duration-custom"
-          >
-            {{ userData()?.role }}</span
-          >
-        </div>
-
+          <span class="text-danger">{{ errorMessage.role() }}</span>
+        </label>
         <div class="w-full flex justify-between sm:justify-center sm:gap-5">
           <button
             type="button"
@@ -175,17 +112,17 @@
             Cancel
           </button>
           <button
-            [disabled]="userForm.invalid"
+            [disabled]="userForm.invalid || userForm.pristine || !isUserDataChanged()"
             [class]="{
-              'cursor-not-allowed': userForm.invalid,
-              'bg-subHeading': userForm.invalid,
-              'cursor-pointer': userForm.valid,
-              'bg-secondarybg': userForm.valid,
-              'hover:scale-102': userForm.valid,
+              'cursor-not-allowed': userForm.invalid || userForm.pristine || !isUserDataChanged(),
+              'bg-subHeading': userForm.invalid || userForm.pristine || !isUserDataChanged(),
+              'cursor-pointer': userForm.valid && userForm.dirty,
+              'bg-secondarybg': userForm.valid && userForm.dirty,
+              'hover:scale-102': userForm.valid && userForm.dirty,
             }"
             class="text-lg sm:text-xl font-semibold text-dark py-1 w-[45%] rounded transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
           >
-            Save
+            {{ editingMode() ? 'Save' : 'Add' }}
           </button>
         </div>
       </form>

@@ -5,7 +5,7 @@ import { AccessibilityPlaygroundComponent } from './core/accessibility-playgroun
 import { ActivityLogComponent } from './core/activity-log-component/activity-log-component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'modal-dialog', pathMatch: 'full' },
   {
     path: 'dashboard',
     loadComponent: () =>

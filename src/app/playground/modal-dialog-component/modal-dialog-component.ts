@@ -44,7 +44,6 @@ export class ModalDialogComponent {
     });
   }
   onEdit(userData: User) {
-    console.log('gggggggggggggggggggggggggg');
     this.modalInteraction.set('edit');
     this.userData.set(userData);
     this.uploadUserModal();

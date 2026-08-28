@@ -47,8 +47,14 @@ export class UserService {
 
   users = computed<User[]>(() => this.userList());
   showModalSubject$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  addUser(userData: EditableUserFields) {
+    const initial: string = this.buildInitial(userData.name);
+    const id: string = crypto.randomUUID();
+    this.userList.update((users) => [...users, { ...userData, initial, id }]);
+  }
 
   editUser(userId: string, userData: EditableUserFields) {
+    console.log('edit called');
     const initial: string = this.buildInitial(userData.name);
     this.userList.update((users) => {
       return users.map((user) => {

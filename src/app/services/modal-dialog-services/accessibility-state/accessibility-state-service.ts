@@ -5,9 +5,10 @@ import { ActivityLog } from '../../../interfaces/activity-log';
   providedIn: 'root',
 })
 export class AccessibilityStateService {
-  private _closeOnBackdropClick = signal<boolean>(false);
-  private _closeOnEsc = signal<boolean>(false);
+  private _closeOnBackdropClick = signal<boolean>(true);
+  private _closeOnEsc = signal<boolean>(true);
   private _lockScroll = signal<boolean>(false);
+
   private _activityLog = signal<ActivityLog[]>([
     { id: crypto.randomUUID(), date: new Date(), activity: 'activity 1' },
     { id: crypto.randomUUID(), date: new Date(), activity: 'activity 2' },

@@ -22,11 +22,12 @@ import {
 } from '@angular/forms';
 import { InputLabel } from '../../interfaces/user';
 import { UserService } from '../../services/user-service/user-service';
-import { fromEvent } from 'rxjs';
+import { fromEvent, tap } from 'rxjs';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faTrashCan, faPencil, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ERROR_MESSAGE } from '../../constants/error-message';
 import { UserModalStateService } from '../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
+import { AccessibilityStateService } from '../../services/modal-dialog-services/accessibility-state/accessibility-state-service';
 @Component({
   selector: 'app-user-modal-component',
   imports: [ReactiveFormsModule, FontAwesomeModule],
@@ -87,23 +88,38 @@ export class UserModalComponent implements OnInit {
   isUserDataChanged = signal<boolean>(true);
 
   modalRootElement = viewChild<ElementRef>('modalRootElement');
-
+  closeOnBackdropClick = computed<boolean>(() =>
+    this.accessibilityStateService.closeOnBackdropClick(),
+  );
+  closeOnEsc = computed<boolean>(() => this.accessibilityStateService.closeOnEsc());
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
     private destroyRef: DestroyRef,
     private userModalStateService: UserModalStateService,
+    private accessibilityStateService: AccessibilityStateService,
   ) {}
 
   ngOnInit() {
     this.buildForm();
-    fromEvent(document, 'click')
+    fromEvent(document, 'keydown')
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((event) => {
-        if (event.target === this.modalRootElement()?.nativeElement) {
+        if ((event as any as KeyboardEvent).key === 'Escape' && this.closeOnEsc()) {
           this.clearModal();
         }
       });
+    fromEvent(document, 'click')
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((event) => {
+        if (
+          event.target === this.modalRootElement()?.nativeElement &&
+          this.closeOnBackdropClick()
+        ) {
+          this.clearModal();
+        }
+      });
+
     this.userForm.events.pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (event) => {
         if (event instanceof ValueChangeEvent) {

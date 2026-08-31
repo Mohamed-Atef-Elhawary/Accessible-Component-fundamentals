@@ -7,15 +7,15 @@
           type="checkbox"
           id="backdrop"
           class="peer sr-only"
-          [checked]="backdropAccess()"
-          (change)="toggleBackdropAccess()"
+          [checked]="closeOnBackdropClick()"
+          (change)="toggleCloseOnBackdropClick()"
         />
 
         <div class="outline-2 outline-disbtnporder peer-checked:outline-btnporder w-fit">
           <fa-icon
             [class]="{
-              'opacity-100': backdropAccess(),
-              'opacity-0': !backdropAccess(),
+              'opacity-100': closeOnBackdropClick(),
+              'opacity-0': !closeOnBackdropClick(),
             }"
             [icon]="check"
           ></fa-icon>
@@ -30,14 +30,14 @@
           type="checkbox"
           id="esc"
           class="peer sr-only"
-          [checked]="escAccess()"
-          (change)="toggleEscAccess()"
+          [checked]="closeOnEsc()"
+          (change)="toggleCloseOnEsc()"
         />
         <div class="outline-2 outline-disbtnporder peer-checked:outline-btnporder w-fit">
           <fa-icon
             [class]="{
-              'opacity-0': !escAccess(),
-              'opacity-100': escAccess(),
+              'opacity-0': !closeOnEsc(),
+              'opacity-100': closeOnEsc(),
             }"
             [icon]="check"
           ></fa-icon>
@@ -52,14 +52,14 @@
           type="checkbox"
           id="scroll"
           class="peer sr-only"
-          [checked]="scrollAccess()"
-          (change)="toggleScrollAccess()"
+          [checked]="lockScroll()"
+          (change)="toggleLookScroll()"
         />
         <div class="outline-2 outline-disbtnporder peer-checked:outline-btnporder fit">
           <fa-icon
             [class]="{
-              'opacity-0': !scrollAccess(),
-              'opacity-100': scrollAccess(),
+              'opacity-0': !lockScroll(),
+              'opacity-100': lockScroll(),
             }"
             [icon]="check"
           ></fa-icon>

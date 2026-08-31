@@ -1,7 +1,7 @@
 import { Component, signal, ChangeDetectionStrategy, computed } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCheck, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { AccessibilityService } from '../../services/accessibility-service/accessibility-service';
+import { AccessibilityStateService } from '../../services/modal-dialog-services/accessibility-state/accessibility-state-service';
 
 @Component({
   selector: 'app-accessibility-playground-component',
@@ -13,19 +13,20 @@ import { AccessibilityService } from '../../services/accessibility-service/acces
 export class AccessibilityPlaygroundComponent {
   check: IconDefinition = faCheck;
 
-  backdropAccess = computed<boolean>(() => this.accessibilityService.backdropAccess());
-  escAccess = computed<boolean>(() => this.accessibilityService.escAccess());
-  scrollAccess = computed<boolean>(() => this.accessibilityService.scrollAccess());
+  closeOnBackdropClick = computed<boolean>(() => this.accessibilityService.closeOnBackdropClick());
+  closeOnEsc = computed<boolean>(() => this.accessibilityService.closeOnEsc());
+  lockScroll = computed<boolean>(() => this.accessibilityService.lockScroll());
 
-  constructor(private accessibilityService: AccessibilityService) {}
+  constructor(private accessibilityService: AccessibilityStateService) {}
   showBackdropIcon = signal<boolean>(false);
-  toggleBackdropAccess() {
-    this.accessibilityService.backdropAccess.update((status: boolean) => !status);
+
+  toggleCloseOnBackdropClick() {
+    (this, this.accessibilityService.toggleCloseOnBackdropClick());
   }
-  toggleEscAccess() {
-    this.accessibilityService.escAccess.update((status: boolean) => !status);
+  toggleCloseOnEsc() {
+    this.accessibilityService.toggleCloseOnEsc();
   }
-  toggleScrollAccess() {
-    this.accessibilityService.scrollAccess.update((status: boolean) => !status);
+  toggleLookScroll() {
+    this.accessibilityService.toggleLookScroll();
   }
 }

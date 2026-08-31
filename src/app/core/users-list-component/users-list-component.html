@@ -49,14 +49,14 @@
         <td class="p-2">
           <div class="flex gap-2 flex-col md:flex-row justify-end">
             <button
-              (click)="editUserData.emit(user)"
+              (click)="openEditModal(user)"
               [aria-label]="'Edit ' + user.name"
               class="border border-disbtnporder hover:border-btnporder cursor-pointer py-1 px-4 rounded font-semibold transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
             >
               Edit
             </button>
             <button
-              (click)="ondelete(user.id)"
+              (click)="openDeleteModal(user.id)"
               [aria-label]="'Delete ' + user.name"
               class="bg-danger2 hover:bg-danger cursor-pointer py-1 px-4 rounded font-semibold text-white transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
             >

@@ -1,8 +1,8 @@
 <div
   #modalRootElement
+  [aria-labelledby]="modalInteraction()"
   role="dialog"
   aria-modal="true"
-  [aria-labelledby]="modalInteraction()"
   class="fixed top-0 bottom-0 left-0 right-0 grid place-items-center bg-black/50"
 >
   @if (modalInteraction() === 'delete') {
@@ -122,7 +122,7 @@
             }"
             class="text-lg sm:text-xl font-semibold text-dark py-1 w-[45%] rounded transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
           >
-            {{ editingMode() ? 'Save' : 'Add' }}
+            {{ true ? 'Save' : 'Add' }}
           </button>
         </div>
       </form>

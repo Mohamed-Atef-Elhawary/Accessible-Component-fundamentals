@@ -4,6 +4,7 @@ import { User, UserExpandState } from '../../interfaces/user';
 import { AvatarColorService } from '../../services/avatar-color-service/avatar-color-service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { UserModalStateService } from '../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
 
 @Component({
   selector: 'app-users-list-component',
@@ -18,11 +19,12 @@ export class UsersListComponent {
   constructor(
     private userService: UserService,
     private avatarColorService: AvatarColorService,
+    private userModalStateService: UserModalStateService,
   ) {}
   usersExpandState = new Map<string, UserExpandState>();
   users = computed<User[]>(() => this.userService.users());
-  editUserData = output<User>();
-  deleteUser = output<string>();
+  // editUserData = output<User>();
+  // deleteUser = output<string>();
 
   getAvatarColor(name: string): string {
     return this.avatarColorService.getAvatarColor(name);
@@ -48,10 +50,12 @@ export class UsersListComponent {
     };
   }
 
-  onEdit(user: User) {
-    this.editUserData.emit(user);
+  openEditModal(user: User) {
+    this.userModalStateService.openEditModal(user);
+    // this.editUserData.emit(user);
   }
-  ondelete(userId: string) {
-    this.deleteUser.emit(userId);
+  openDeleteModal(userId: string) {
+    this.userModalStateService.openDeleteModal(userId);
+    // this.deleteUser.emit(userId);
   }
 }

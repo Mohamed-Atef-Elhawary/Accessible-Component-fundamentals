@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, output } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { UserModalStateService } from '../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
 
 @Component({
   selector: 'app-modal-dialog-header-component',
@@ -9,5 +10,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   styleUrl: './modal-dialog-header-component.css',
 })
 export class ModalDialogHeaderComponent {
-  addUser = output<void>();
+  constructor(private userModalStateService: UserModalStateService) {}
+  openAddModal() {
+    this.userModalStateService.openAddModal();
+  }
 }

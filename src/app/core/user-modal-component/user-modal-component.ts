@@ -1,8 +1,6 @@
 import {
   Component,
-  input,
   signal,
-  OnDestroy,
   viewChild,
   ElementRef,
   ChangeDetectionStrategy,
@@ -10,11 +8,9 @@ import {
   WritableSignal,
   DestroyRef,
   OnInit,
-  effect,
-  untracked,
 } from '@angular/core';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
-import { UserField, ModalInteraction, EditableUserFields } from '../../types/generalTypes';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { UserField, EditableUserFields } from '../../types/generalTypes';
 import {
   FormBuilder,
   FormControl,
@@ -24,16 +20,16 @@ import {
   Validators,
   ValueChangeEvent,
 } from '@angular/forms';
-import { InputLabel, User, UserUpdatedField } from '../../interfaces/user';
+import { InputLabel } from '../../interfaces/user';
 import { UserService } from '../../services/user-service/user-service';
-import { fromEvent, of, Subscription } from 'rxjs';
+import { fromEvent } from 'rxjs';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faTrashCan, faPencil, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ERROR_MESSAGE } from '../../constants/error-message';
-import { JsonPipe } from '@angular/common';
+import { UserModalStateService } from '../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
 @Component({
   selector: 'app-user-modal-component',
-  imports: [ReactiveFormsModule, FontAwesomeModule, JsonPipe],
+  imports: [ReactiveFormsModule, FontAwesomeModule],
   templateUrl: './user-modal-component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './user-modal-component.css',
@@ -43,32 +39,31 @@ export class UserModalComponent implements OnInit {
   pencil = faPencil;
   xIcon = faXmark;
 
+  userData = computed(() => this.userModalStateService.userData());
+  userId = computed(() => this.userModalStateService.userid());
+
+  modalInteraction = computed(() => this.userModalStateService.modalInteraction());
   userForm!: FormGroup<{
     name: FormControl<string>;
     email: FormControl<string>;
     role: FormControl<string>;
   }>;
 
-  userData = input<User>();
-  userId = input<string>();
-
-  formTitle = computed<string>(() => {
-    const interaction: ModalInteraction = this.modalInteraction();
-    if (interaction === 'add') {
+  formTitle = computed<string | null>(() => {
+    if (this.modalInteraction() === 'add') {
       return 'Add New User';
-    } else if (interaction === 'edit') {
+    } else if (this.modalInteraction() === 'edit') {
       return 'Edit User';
+    } else if (this.modalInteraction() === 'delete') {
+      return 'Delete User';
     }
-    return 'Delete User';
+    return null;
   });
 
-  editingMode = computed<boolean>(() => this.modalInteraction() === 'edit');
-
-  modalInteraction = input.required<ModalInteraction>();
+  editingMode = computed<boolean>(() => this.userModalStateService.modalInteraction() === 'edit');
 
   inputsLabel = computed<InputLabel>(() => {
-    const editMode = this.modalInteraction() === 'edit';
-    if (editMode) {
+    if (this.editingMode()) {
       return {
         nameLabel: 'Edit user name',
         emailLabel: 'Edit user email',
@@ -88,16 +83,17 @@ export class UserModalComponent implements OnInit {
     email: signal<string | null>(null),
     role: signal<string | null>(null),
   };
+
   isUserDataChanged = signal<boolean>(true);
+
   modalRootElement = viewChild<ElementRef>('modalRootElement');
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
     private destroyRef: DestroyRef,
-  ) {
-    effect(() => {});
-  }
+    private userModalStateService: UserModalStateService,
+  ) {}
 
   ngOnInit() {
     this.buildForm();
@@ -185,6 +181,7 @@ export class UserModalComponent implements OnInit {
   addUser() {
     const userdata: EditableUserFields = this.userForm.value as EditableUserFields;
     this.userService.addUser(userdata);
+    this.clearModal();
   }
   editUser() {
     console.log(this.userForm);
@@ -198,6 +195,6 @@ export class UserModalComponent implements OnInit {
     this.clearModal();
   }
   clearModal() {
-    this.userService.showModalSubject$.next(false);
+    this.userModalStateService.clearModal();
   }
 }

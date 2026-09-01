@@ -1,7 +1,6 @@
 import { Component, computed } from '@angular/core';
 import { ActivityLog } from '../../interfaces/activity-log';
-import { retry } from 'rxjs';
-import { AccessibilityStateService } from '../../services/modal-dialog-services/accessibility-state/accessibility-state-service';
+import { ActivityLogService } from '../../services/modal-dialog-services/activity-log-service';
 
 @Component({
   imports: [],
@@ -10,8 +9,8 @@ import { AccessibilityStateService } from '../../services/modal-dialog-services/
   templateUrl: './activity-log-component.html',
 })
 export class ActivityLogComponent {
-  activityLog = computed<ActivityLog[]>(() => this.accessibilityService.activityLog());
-  constructor(private accessibilityService: AccessibilityStateService) {}
+  activityLog = computed<ActivityLog[]>(() => this.activityLogService.activityLog());
+  constructor(private activityLogService: ActivityLogService) {}
 
   ngOnInit() {}
 }

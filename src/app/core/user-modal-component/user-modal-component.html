@@ -1,5 +1,7 @@
 <div
   #modalRootElement
+  appCloseOnBackdropDirective
+  [hostElement]="modalRootElement"
   [aria-labelledby]="modalInteraction()"
   role="dialog"
   aria-modal="true"
@@ -11,7 +13,7 @@
         <div class="w-full text-right">
           <button
             type="button"
-            (click)="clearModal()"
+            (click)="onCancel('(X)')"
             aria-label="close dialog"
             class="cursor-pointer hover:scale-102 transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
           >
@@ -35,7 +37,7 @@
       </p>
       <div class="w-full flex justify-between sm:justify-center sm:gap-5">
         <button
-          (click)="clearModal()"
+          (click)="onCancel('Cancel')"
           class="text-lg sm:text-xl font-semibold py-1 w-[45%] rounded cursor-pointer border hover:border-btnporder border-disbtnporder transition duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
         >
           Cancel
@@ -59,7 +61,7 @@
           <div class="w-full text-right">
             <button
               type="button"
-              (click)="clearModal()"
+              (click)="onCancel('(X)')"
               aria-label="close dialog"
               class="cursor-pointer hover:scale-102 transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
             >
@@ -76,6 +78,7 @@
         <label for="userName" class="w-full flex flex-col gap-1 cursor-pointer">
           <span class="font-semibold">{{ inputsLabel().nameLabel }}</span>
           <input
+            focus="true"
             id="userName"
             type="text "
             formControlName="name"
@@ -106,7 +109,7 @@
         <div class="w-full flex justify-between sm:justify-center sm:gap-5">
           <button
             type="button"
-            (click)="clearModal()"
+            (click)="onCancel('Cancel')"
             class="border-2 text-lg sm:text-xl font-semibold py-1 w-[45%] rounded cursor-pointer border-btnporder hover:scale-102 transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
           >
             Cancel

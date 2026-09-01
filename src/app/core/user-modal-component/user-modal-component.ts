@@ -21,16 +21,17 @@ import {
   ValueChangeEvent,
 } from '@angular/forms';
 import { InputLabel } from '../../interfaces/user';
-import { UserService } from '../../services/user-service/user-service';
-import { fromEvent, tap } from 'rxjs';
+import { UserService } from '../../services/modal-dialog-services/user-service/user-service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faTrashCan, faPencil, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ERROR_MESSAGE } from '../../constants/error-message';
 import { UserModalStateService } from '../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
 import { AccessibilityStateService } from '../../services/modal-dialog-services/accessibility-state/accessibility-state-service';
+import { CloseOnBackdropDirective } from '../../directives/mogal-dialog-directives/close-onbackdrop-click-directive/close-on-backdrop-directive';
+import { ActivityLogService } from '../../services/modal-dialog-services/activity-log-service';
 @Component({
   selector: 'app-user-modal-component',
-  imports: [ReactiveFormsModule, FontAwesomeModule],
+  imports: [ReactiveFormsModule, FontAwesomeModule, CloseOnBackdropDirective],
   templateUrl: './user-modal-component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './user-modal-component.css',
@@ -41,9 +42,11 @@ export class UserModalComponent implements OnInit {
   xIcon = faXmark;
 
   userData = computed(() => this.userModalStateService.userData());
+  username = computed(() => this.userModalStateService.userName());
   userId = computed(() => this.userModalStateService.userid());
-
   modalInteraction = computed(() => this.userModalStateService.modalInteraction());
+  editingMode = computed<boolean>(() => this.userModalStateService.modalInteraction() === 'edit');
+
   userForm!: FormGroup<{
     name: FormControl<string>;
     email: FormControl<string>;
@@ -60,8 +63,6 @@ export class UserModalComponent implements OnInit {
     }
     return null;
   });
-
-  editingMode = computed<boolean>(() => this.userModalStateService.modalInteraction() === 'edit');
 
   inputsLabel = computed<InputLabel>(() => {
     if (this.editingMode()) {
@@ -98,28 +99,11 @@ export class UserModalComponent implements OnInit {
     private destroyRef: DestroyRef,
     private userModalStateService: UserModalStateService,
     private accessibilityStateService: AccessibilityStateService,
+    private activityLogService: ActivityLogService,
   ) {}
 
   ngOnInit() {
     this.buildForm();
-    fromEvent(document, 'keydown')
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((event) => {
-        if ((event as any as KeyboardEvent).key === 'Escape' && this.closeOnEsc()) {
-          this.clearModal();
-        }
-      });
-    fromEvent(document, 'click')
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((event) => {
-        if (
-          event.target === this.modalRootElement()?.nativeElement &&
-          this.closeOnBackdropClick()
-        ) {
-          this.clearModal();
-        }
-      });
-
     this.userForm.events.pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (event) => {
         if (event instanceof ValueChangeEvent) {
@@ -194,21 +178,31 @@ export class UserModalComponent implements OnInit {
       this.addUser();
     }
   }
+  onCancel(buttonType: string) {
+    this.activityLogService.addActivityLog(`Closed modal via ${buttonType} button`);
+    this.clearModal();
+  }
   addUser() {
     const userdata: EditableUserFields = this.userForm.value as EditableUserFields;
     this.userService.addUser(userdata);
+    this.activityLogService.addActivityLog(` Added new user: ${userdata.name}`);
     this.clearModal();
   }
   editUser() {
-    console.log(this.userForm);
     const userId = this.userData()?.id;
-    userId && this.userService.editUser(userId, this.userForm.getRawValue());
-    this.clearModal();
+    if (userId) {
+      this.userService.editUser(userId, this.userForm.getRawValue());
+      this.activityLogService.addActivityLog(`Edit user: ${this.userData()?.name}`);
+      this.clearModal();
+    }
   }
   deleteUser() {
     const userId = this.userId();
-    userId && this.userService.deleteUser(userId);
-    this.clearModal();
+    if (userId) {
+      this.userService.deleteUser(userId);
+      this.activityLogService.addActivityLog(`Deleted user ${this.username()}`);
+      this.clearModal();
+    }
   }
   clearModal() {
     this.userModalStateService.clearModal();

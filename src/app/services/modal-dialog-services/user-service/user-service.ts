@@ -1,13 +1,12 @@
-import { computed, Injectable, signal } from '@angular/core';
-import { User } from '../../interfaces/user';
-import { EditableUserFields } from '../../types/generalTypes';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
+import { User } from '../../../interfaces/user';
+import { EditableUserFields } from '../../../types/generalTypes';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private userList = signal<User[]>([
+  private _userList = signal<User[]>([
     {
       name: 'Mohamed Elhawary',
       initial: 'ME',
@@ -45,18 +44,16 @@ export class UserService {
     },
   ]);
 
-  users = computed<User[]>(() => this.userList());
-  showModalSubject$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  userList = this._userList.asReadonly();
   addUser(userData: EditableUserFields) {
     const initial: string = this.buildInitial(userData.name);
     const id: string = crypto.randomUUID();
-    this.userList.update((users) => [...users, { ...userData, initial, id }]);
+    this._userList.update((users) => [...users, { ...userData, initial, id }]);
   }
 
   editUser(userId: string, userData: EditableUserFields) {
-    console.log('edit called');
     const initial: string = this.buildInitial(userData.name);
-    this.userList.update((users) => {
+    this._userList.update((users) => {
       return users.map((user) => {
         let updatedUser: User = { ...user };
         if (user.id === userId) {
@@ -68,7 +65,7 @@ export class UserService {
   }
 
   deleteUser(userId: string) {
-    this.userList.update((users) => users.filter((user) => user.id !== userId));
+    this._userList.update((users) => users.filter((user) => user.id !== userId));
   }
 
   buildInitial(userName: string): string {

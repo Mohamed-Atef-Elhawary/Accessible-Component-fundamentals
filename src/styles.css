@@ -2,13 +2,12 @@
 
 @import 'tailwindcss';
 @theme {
-  /* --color-mainbg: #f7f6fc; */
   --color-mainbg: #d2d3d8;
-  /* --color-sidebarbg: #fafafc; */
   --color-sidebarbg: #eaeaea;
   --color-headerbg: #eeeefa;
   --color-secondarybg: #9198e8;
   --color-subHeading: #7d8aa1;
+  --color-scrollbg: #9ca3af;
 
   --color-whiteColor: #fff;
   --color-dark: #1f1e28;
@@ -19,4 +18,15 @@
   --color-focusVisibleColor: #c7d2fe;
   --padding-innerCompPadding: 4px;
   --duration-custom: 300;
+}
+
+::-webkit-scrollbar {
+  @apply w-2;
+}
+::-webkit-scrollbar-track {
+  @apply bg-mainbg;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-scrollbg rounded-lg;
 }

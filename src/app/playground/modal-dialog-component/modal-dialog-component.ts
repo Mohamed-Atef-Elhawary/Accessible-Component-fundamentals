@@ -19,6 +19,7 @@ import { AccessibilityPlaygroundComponent } from '../../core/accessibility-playg
 import { ActivityLogComponent } from '../../core/activity-log-component/activity-log-component';
 import { UserModalStateService } from '../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
 import { AccessibilityStateService } from '../../services/modal-dialog-services/accessibility-state/accessibility-state-service';
+import { CloseOnEscapeDirective } from '../../directives/mogal-dialog-directives/close-onscape-directive/close-on-escape-directive';
 @Component({
   selector: 'app-modal-dialog-component',
   imports: [
@@ -26,6 +27,7 @@ import { AccessibilityStateService } from '../../services/modal-dialog-services/
     ModalDialogHeaderComponent,
     AccessibilityPlaygroundComponent,
     ActivityLogComponent,
+    CloseOnEscapeDirective,
   ],
   templateUrl: './modal-dialog-component.html',
   changeDetection: ChangeDetectionStrategy.Eager,

@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, output, signal } from '@angular/core';
-import { UserService } from '../../services/user-service/user-service';
+import { UserService } from '../../services/modal-dialog-services/user-service/user-service';
 import { User, UserExpandState } from '../../interfaces/user';
-import { AvatarColorService } from '../../services/avatar-color-service/avatar-color-service';
+import { AvatarColorService } from '../../services/modal-dialog-services/avatar-color-service/avatar-color-service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { UserModalStateService } from '../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
+import { ActivityLogService } from '../../services/modal-dialog-services/activity-log-service';
 
 @Component({
   selector: 'app-users-list-component',
@@ -20,11 +21,10 @@ export class UsersListComponent {
     private userService: UserService,
     private avatarColorService: AvatarColorService,
     private userModalStateService: UserModalStateService,
+    private activityLogService: ActivityLogService,
   ) {}
   usersExpandState = new Map<string, UserExpandState>();
-  users = computed<User[]>(() => this.userService.users());
-  // editUserData = output<User>();
-  // deleteUser = output<string>();
+  users = computed<User[]>(() => this.userService.userList());
 
   getAvatarColor(name: string): string {
     return this.avatarColorService.getAvatarColor(name);
@@ -51,11 +51,11 @@ export class UsersListComponent {
   }
 
   openEditModal(user: User) {
+    this.activityLogService.addActivityLog(`Opened Edit User modal for ${user.name}`);
     this.userModalStateService.openEditModal(user);
-    // this.editUserData.emit(user);
   }
-  openDeleteModal(userId: string) {
-    this.userModalStateService.openDeleteModal(userId);
-    // this.deleteUser.emit(userId);
+  openDeleteModal(userId: string, username: string) {
+    this.activityLogService.addActivityLog(`Opened delete User modal for ${username}`);
+    this.userModalStateService.openDeleteModal(userId, username);
   }
 }

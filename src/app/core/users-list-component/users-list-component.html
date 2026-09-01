@@ -56,7 +56,7 @@
               Edit
             </button>
             <button
-              (click)="openDeleteModal(user.id)"
+              (click)="openDeleteModal(user.id,user.name)"
               [aria-label]="'Delete ' + user.name"
               class="bg-danger2 hover:bg-danger cursor-pointer py-1 px-4 rounded font-semibold text-white transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
             >

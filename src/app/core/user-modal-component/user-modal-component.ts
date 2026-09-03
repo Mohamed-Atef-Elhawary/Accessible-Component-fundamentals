@@ -8,13 +8,18 @@ import {
   WritableSignal,
   DestroyRef,
   OnInit,
+  AfterViewInit,
+  ChangeDetectorRef,
+  afterNextRender,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { UserField, EditableUserFields } from '../../types/generalTypes';
+import { UserField, EditableUserFields, FocusableElement } from '../../types/generalTypes';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
+  FormsModule,
+  NgModel,
   ReactiveFormsModule,
   ValidationErrors,
   Validators,
@@ -29,9 +34,16 @@ import { UserModalStateService } from '../../services/modal-dialog-services/user
 import { AccessibilityStateService } from '../../services/modal-dialog-services/accessibility-state/accessibility-state-service';
 import { CloseOnBackdropDirective } from '../../directives/mogal-dialog-directives/close-onbackdrop-click-directive/close-on-backdrop-directive';
 import { ActivityLogService } from '../../services/modal-dialog-services/activity-log-service';
+import { FocusTrapDirective } from '../../directives/mogal-dialog-directives/Focus-trap-directive/focus-trap-directive';
 @Component({
   selector: 'app-user-modal-component',
-  imports: [ReactiveFormsModule, FontAwesomeModule, CloseOnBackdropDirective],
+  imports: [
+    ReactiveFormsModule,
+    FontAwesomeModule,
+    CloseOnBackdropDirective,
+    FocusTrapDirective,
+    FormsModule,
+  ],
   templateUrl: './user-modal-component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './user-modal-component.css',
@@ -44,15 +56,18 @@ export class UserModalComponent implements OnInit {
   userData = computed(() => this.userModalStateService.userData());
   username = computed(() => this.userModalStateService.userName());
   userId = computed(() => this.userModalStateService.userid());
-  modalInteraction = computed(() => this.userModalStateService.modalInteraction());
   editingMode = computed<boolean>(() => this.userModalStateService.modalInteraction() === 'edit');
+  modalInteraction = computed(() => this.userModalStateService.modalInteraction());
+
+  firstFocusedElement = signal<FocusableElement | null>(null);
+  firstFocusedButttonElement = viewChild<ElementRef>('firstFocusedButttonElement');
+  firstFocusedInputElement = viewChild<ElementRef>('firstFocusedInputElement');
 
   userForm!: FormGroup<{
     name: FormControl<string>;
     email: FormControl<string>;
     role: FormControl<string>;
   }>;
-
   formTitle = computed<string | null>(() => {
     if (this.modalInteraction() === 'add') {
       return 'Add New User';
@@ -100,7 +115,15 @@ export class UserModalComponent implements OnInit {
     private userModalStateService: UserModalStateService,
     private accessibilityStateService: AccessibilityStateService,
     private activityLogService: ActivityLogService,
-  ) {}
+  ) {
+    afterNextRender(() => {
+      if (this.modalInteraction() === 'delete') {
+        this.firstFocusedElement.set(this.firstFocusedButttonElement()?.nativeElement);
+      } else {
+        this.firstFocusedElement.set(this.firstFocusedInputElement()?.nativeElement);
+      }
+    });
+  }
 
   ngOnInit() {
     this.buildForm();

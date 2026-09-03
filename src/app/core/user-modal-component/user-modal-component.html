@@ -1,7 +1,7 @@
 <div
-  #modalRootElement
   appCloseOnBackdropDirective
-  [hostElement]="modalRootElement"
+  appFocusTrapDirective
+  [firstFocusedElement]="firstFocusedElement()!"
   [aria-labelledby]="modalInteraction()"
   role="dialog"
   aria-modal="true"
@@ -37,6 +37,7 @@
       </p>
       <div class="w-full flex justify-between sm:justify-center sm:gap-5">
         <button
+          #firstFocusedButttonElement
           (click)="onCancel('Cancel')"
           class="text-lg sm:text-xl font-semibold py-1 w-[45%] rounded cursor-pointer border hover:border-btnporder border-disbtnporder transition duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
         >
@@ -78,9 +79,9 @@
         <label for="userName" class="w-full flex flex-col gap-1 cursor-pointer">
           <span class="font-semibold">{{ inputsLabel().nameLabel }}</span>
           <input
-            focus="true"
             id="userName"
             type="text "
+            #firstFocusedInputElement
             formControlName="name"
             class="bg-gray-100 outline-2 outline-disbtnporder rounded w-full hover:scale-104 hover:pl-2 transition-all duration-custom p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
           />

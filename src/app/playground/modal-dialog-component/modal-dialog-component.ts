@@ -41,8 +41,9 @@ export class ModalDialogComponent {
   modalInteraction = signal<ModalInteraction>('edit');
   userData = signal<User | null>(null);
   userId = signal<string | null>(null);
+  isModalOpen = computed<boolean>(() => this.userModalStateService.isModalOpen());
   lockScrollOnopendModal = computed<boolean>(
-    () => this.accessibilityStateService.lockScroll() && this.userModalStateService.isModalOpen(),
+    () => this.accessibilityStateService.lockScroll() && this.isModalOpen(),
   );
   constructor(
     private userModalStateService: UserModalStateService,
@@ -51,10 +52,13 @@ export class ModalDialogComponent {
     private renderer: Renderer2,
   ) {
     effect(() => {
-      if (this.userModalStateService.isModalOpen()) {
+      if (this.isModalOpen()) {
         this.uploadUserModal();
       } else {
         this.userModalContainerRef()?.clear();
+        setTimeout(() => {
+          this.userModalStateService.activeElement()?.focus();
+        });
       }
       if (this.lockScrollOnopendModal()) {
         this.hideScrollbar();

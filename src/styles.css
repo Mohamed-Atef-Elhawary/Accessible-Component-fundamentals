@@ -30,3 +30,6 @@
 ::-webkit-scrollbar-thumb {
   @apply bg-scrollbg rounded-lg;
 }
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-dark;
+}

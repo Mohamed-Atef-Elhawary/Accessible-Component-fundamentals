@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { ActivityLog } from '../../interfaces/activity-log';
+import { ActivityLog } from '../../../interfaces/activity-log';
 
 @Injectable({
   providedIn: 'root',

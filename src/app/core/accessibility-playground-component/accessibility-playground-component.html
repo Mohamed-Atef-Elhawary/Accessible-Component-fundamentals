@@ -11,7 +11,14 @@
           (change)="toggleCloseOnBackdropClick()"
         />
 
-        <div class="outline-2 outline-disbtnporder peer-checked:outline-btnporder w-fit">
+        <div
+          [class]="{
+            'peer-focus-visible:outline-0': !closeOnBackdropClick(),
+            'peer-focus-visible:ring-2': !closeOnBackdropClick(),
+            'peer-focus-visible:ring-4': closeOnBackdropClick(),
+          }"
+          class="outline-2 outline-disbtnporder peer-checked:outline-btnporder w-fit peer-focus-visible:ring-focusVisibleColor"
+        >
           <fa-icon
             [class]="{
               'opacity-100': closeOnBackdropClick(),
@@ -33,7 +40,14 @@
           [checked]="closeOnEsc()"
           (change)="toggleCloseOnEsc()"
         />
-        <div class="outline-2 outline-disbtnporder peer-checked:outline-btnporder w-fit">
+        <div
+          [class]="{
+            'peer-focus-visible:outline-0': !closeOnEsc(),
+            'peer-focus-visible:ring-2': !closeOnEsc(),
+            'peer-focus-visible:ring-4': closeOnEsc(),
+          }"
+          class="outline-2 outline-disbtnporder peer-checked:outline-btnporder w-fit peer-focus-visible:ring-focusVisibleColor"
+        >
           <fa-icon
             [class]="{
               'opacity-0': !closeOnEsc(),
@@ -55,7 +69,14 @@
           [checked]="lockScroll()"
           (change)="toggleLockScroll()"
         />
-        <div class="outline-2 outline-disbtnporder peer-checked:outline-btnporder fit">
+        <div
+          [class]="{
+            'peer-focus-visible:outline-0': !lockScroll(),
+            'peer-focus-visible:ring-2': !lockScroll(),
+            'peer-focus-visible:ring-4': lockScroll(),
+          }"
+          class="outline-2 outline-disbtnporder peer-checked:outline-btnporder fit peer-focus-visible:ring-focusVisibleColor"
+        >
           <fa-icon
             [class]="{
               'opacity-0': !lockScroll(),

@@ -1,6 +1,6 @@
 import { Component, computed } from '@angular/core';
 import { ActivityLog } from '../../interfaces/activity-log';
-import { ActivityLogService } from '../../services/modal-dialog-services/activity-log-service';
+import { ActivityLogService } from '../../services/modal-dialog-services/activity-log/activity-log-service';
 
 @Component({
   imports: [],

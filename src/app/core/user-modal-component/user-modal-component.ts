@@ -33,8 +33,8 @@ import { ERROR_MESSAGE } from '../../constants/error-message';
 import { UserModalStateService } from '../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
 import { AccessibilityStateService } from '../../services/modal-dialog-services/accessibility-state/accessibility-state-service';
 import { CloseOnBackdropDirective } from '../../directives/mogal-dialog-directives/close-onbackdrop-click-directive/close-on-backdrop-directive';
-import { ActivityLogService } from '../../services/modal-dialog-services/activity-log-service';
 import { FocusTrapDirective } from '../../directives/mogal-dialog-directives/Focus-trap-directive/focus-trap-directive';
+import { ActivityLogService } from '../../services/modal-dialog-services/activity-log/activity-log-service';
 @Component({
   selector: 'app-user-modal-component',
   imports: [

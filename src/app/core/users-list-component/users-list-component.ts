@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, output, signal } from '@angular/core';
 import { UserService } from '../../services/modal-dialog-services/user-service/user-service';
 import { User, UserExpandState } from '../../interfaces/user';
-import { AvatarColorService } from '../../services/modal-dialog-services/avatar-color-service/avatar-color-service';
+import { AvatarColorService } from '../../services/modal-dialog-services/avatar-color/avatar-color-service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { UserModalStateService } from '../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
-import { ActivityLogService } from '../../services/modal-dialog-services/activity-log-service';
+import { ActivityLogService } from '../../services/modal-dialog-services/activity-log/activity-log-service';
 
 @Component({
   selector: 'app-users-list-component',

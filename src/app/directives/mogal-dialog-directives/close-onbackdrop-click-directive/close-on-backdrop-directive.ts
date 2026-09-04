@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Host, input } from '@angular/core';
 import { AccessibilityStateService } from '../../../services/modal-dialog-services/accessibility-state/accessibility-state-service';
 import { UserModalStateService } from '../../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
-import { ActivityLogService } from '../../../services/modal-dialog-services/activity-log-service';
+import { ActivityLogService } from '../../../services/modal-dialog-services/activity-log/activity-log-service';
 
 @Directive({
   selector: '[appCloseOnBackdropDirective]',

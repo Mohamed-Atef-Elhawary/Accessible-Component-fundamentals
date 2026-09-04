@@ -2,7 +2,7 @@ import { Component, signal, ChangeDetectionStrategy, computed } from '@angular/c
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCheck, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { AccessibilityStateService } from '../../services/modal-dialog-services/accessibility-state/accessibility-state-service';
-import { ActivityLogService } from '../../services/modal-dialog-services/activity-log-service';
+import { ActivityLogService } from '../../services/modal-dialog-services/activity-log/activity-log-service';
 
 @Component({
   selector: 'app-accessibility-playground-component',

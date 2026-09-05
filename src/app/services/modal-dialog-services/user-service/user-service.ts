@@ -7,41 +7,41 @@ import { EditableUserFields } from '../../../types/generalTypes';
 })
 export class UserService {
   private _userList = signal<User[]>([
-    {
-      name: 'Mohamed Elhawary',
-      initial: 'ME',
-      email: 'mohamed@devmail.com',
-      role: 'Lead Developer',
-      id: '1',
-    },
-    {
-      name: 'Sarah Ahmed',
-      initial: 'SA',
-      email: 'sarah@designhub.com',
-      role: 'UI/UX Designer',
-      id: '2',
-    },
-    {
-      name: 'Omar Ali',
-      initial: 'OA',
-      email: 'omar@frontendhub.com',
-      role: 'UI/UX Designer',
-      id: '3',
-    },
-    {
-      name: 'Laila Hassan',
-      initial: 'LH',
-      email: 'laila@stacknet.com',
-      role: 'Backend Developer',
-      id: '4',
-    },
-    {
-      name: 'Youssef Nabil',
-      initial: 'YN',
-      email: 'youssef@testlab.com',
-      role: 'DevOps Engineer',
-      id: '5',
-    },
+    // {
+    //   name: 'Mohamed Elhawary',
+    //   initial: 'ME',
+    //   email: 'mohamed@devmail.com',
+    //   role: 'Lead Developer',
+    //   id: '1',
+    // },
+    // {
+    //   name: 'Sarah Ahmed',
+    //   initial: 'SA',
+    //   email: 'sarah@designhub.com',
+    //   role: 'UI/UX Designer',
+    //   id: '2',
+    // },
+    // {
+    //   name: 'Omar Ali',
+    //   initial: 'OA',
+    //   email: 'omar@frontendhub.com',
+    //   role: 'UI/UX Designer',
+    //   id: '3',
+    // },
+    // {
+    //   name: 'Laila Hassan',
+    //   initial: 'LH',
+    //   email: 'laila@stacknet.com',
+    //   role: 'Backend Developer',
+    //   id: '4',
+    // },
+    // {
+    //   name: 'Youssef Nabil',
+    //   initial: 'YN',
+    //   email: 'youssef@testlab.com',
+    //   role: 'DevOps Engineer',
+    //   id: '5',
+    // },
   ]);
 
   userList = this._userList.asReadonly();

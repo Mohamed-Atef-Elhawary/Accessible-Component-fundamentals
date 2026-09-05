@@ -3,7 +3,12 @@ import { UserService } from '../../services/modal-dialog-services/user-service/u
 import { User, UserExpandState } from '../../interfaces/user';
 import { AvatarColorService } from '../../services/modal-dialog-services/avatar-color/avatar-color-service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import {
+  faChevronDown,
+  faChevronRight,
+  faUserGroup,
+  faPlus,
+} from '@fortawesome/free-solid-svg-icons';
 import { UserModalStateService } from '../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
 import { ActivityLogService } from '../../services/modal-dialog-services/activity-log/activity-log-service';
 
@@ -17,6 +22,8 @@ import { ActivityLogService } from '../../services/modal-dialog-services/activit
 export class UsersListComponent {
   chevronDown = faChevronDown;
   chevronRight = faChevronRight;
+  userGroup = faUserGroup;
+  plus = faPlus;
   constructor(
     private userService: UserService,
     private avatarColorService: AvatarColorService,
@@ -49,7 +56,10 @@ export class UsersListComponent {
       isShrinked: signal(userState?.isShrinked() || false),
     };
   }
-
+  openAddModal() {
+    this.activityLogService.addActivityLog('Opened Add User modal');
+    this.userModalStateService.openAddModal();
+  }
   openEditModal(user: User) {
     this.activityLogService.addActivityLog(`Opened Edit User modal for ${user.name}`);
     this.userModalStateService.openEditModal(user);

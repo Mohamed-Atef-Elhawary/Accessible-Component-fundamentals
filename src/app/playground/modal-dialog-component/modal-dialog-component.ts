@@ -9,6 +9,7 @@ import {
   Inject,
   DOCUMENT,
   Renderer2,
+  ElementRef,
 } from '@angular/core';
 import { UsersListComponent } from '../../core/users-list-component/users-list-component';
 import { ModalDialogHeaderComponent } from '../../core/modal-dialog-header-component/modal-dialog-header-component';
@@ -56,10 +57,12 @@ export class ModalDialogComponent {
         this.uploadUserModal();
       } else {
         this.userModalContainerRef()?.clear();
+
         setTimeout(() => {
           this.userModalStateService.activeElement()?.focus();
         });
       }
+
       if (this.lockScrollOnopendModal()) {
         this.hideScrollbar();
       } else {

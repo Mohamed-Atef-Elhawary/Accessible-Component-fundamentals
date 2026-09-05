@@ -5,6 +5,9 @@ import {
   viewChild,
   afterNextRender,
   ElementRef,
+  input,
+  computed,
+  effect,
 } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserModalStateService } from '../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
@@ -19,12 +22,20 @@ import { ActivityLogService } from '../../services/modal-dialog-services/activit
 })
 export class ModalDialogHeaderComponent {
   addBtn = viewChild<ElementRef>('addBtn');
+  shouldFocusPermanentAddButton = computed(() =>
+    this.userModalStateService.shouldFocusPermanentAddButton(),
+  );
   constructor(
     private userModalStateService: UserModalStateService,
     private activityLogService: ActivityLogService,
   ) {
     afterNextRender(() => {
       this.addBtn()?.nativeElement.focus();
+    });
+    effect(() => {
+      if (this.shouldFocusPermanentAddButton()) {
+        this.addBtn()?.nativeElement.focus();
+      }
     });
   }
   openAddModal() {

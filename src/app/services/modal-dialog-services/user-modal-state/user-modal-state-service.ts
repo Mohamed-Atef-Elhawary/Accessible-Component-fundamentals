@@ -8,18 +8,19 @@ import { ModalInteraction } from '../../../types/generalTypes';
 export class UserModalStateService {
   private _modalInteraction = signal<ModalInteraction | null>(null);
   isModalOpen = computed<boolean>(() => !!this._modalInteraction());
-  // activeElement = computed<HTMLButtonElement | null>(() => this._activeElement());
 
   private _userData = signal<User | null>(null);
   private _userId = signal<string | null>(null);
   private _userName = signal<string | null>(null);
   private _activeElement = signal<HTMLButtonElement | null>(null);
-
+  private _shouldFocusPermanentAddButton = signal<boolean>(false);
   readonly modalInteraction = this._modalInteraction.asReadonly();
   readonly userData = this._userData.asReadonly();
   readonly userid = this._userId.asReadonly();
   readonly userName = this._userName.asReadonly();
   readonly activeElement = this._activeElement.asReadonly();
+  readonly shouldFocusPermanentAddButton = this._shouldFocusPermanentAddButton.asReadonly();
+
   openAddModal() {
     this._modalInteraction.set('add');
     this._activeElement.set(document.activeElement as HTMLButtonElement);
@@ -41,5 +42,9 @@ export class UserModalStateService {
     this._modalInteraction.set(null);
     this._userData.set(null);
     this._userId.set(null);
+    setTimeout(() => {
+      const isConnected = this._activeElement()?.isConnected;
+      this._shouldFocusPermanentAddButton.set(!isConnected);
+    });
   }
 }

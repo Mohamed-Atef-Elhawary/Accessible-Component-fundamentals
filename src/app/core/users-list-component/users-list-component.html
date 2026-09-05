@@ -1,93 +1,108 @@
-<table class="border-2 border-gray-200 bg-whiteColor w-full table-fixed">
-  <thead>
-    <tr>
-      <th scope="col" class="p-2 text-left">Person</th>
-      <th scope="col" class="p-2 text-left hidden lg:table-cell">Email</th>
-      <th scope="col" class="p-2 text-left hidden lg:table-cell">Role</th>
-      <th scope="col" class="p-2 text-right">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (user of users(); track user.id) {
-      <tr class="border border-gray-200">
-        <td class="p-2">
-          <div class="flex items-center gap-1">
-            <button
-              class="lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
-              type="button"
-              [aria-expanded]="getUsersExpandState(user).isExpanded()"
-              [aria-label]="'Show details for ' + user.name"
-              [attr.aria-controls]="'userDetails-' + user.id"
-              (click)="
-                !getUsersExpandState(user).isExpanded() ? applyExpand(user) : applyShrink(user)
-              "
-            >
-              <fa-icon
-                [class.hidden]="getUsersExpandState(user).isExpanded()"
-                class="cursor-pointer"
-                [icon]="chevronRight"
-              ></fa-icon>
-              <fa-icon
-                [class.hidden]="!getUsersExpandState(user).isExpanded()"
-                class="cursor-pointer"
-                [icon]="chevronDown"
-              ></fa-icon>
-            </button>
-
-            <span
-              [style]="{ 'background-color': getAvatarColor(user.name) }"
-              class="hidden sm:flex w-7 h-7 rounded-full items-center justify-center text-white font-semibold"
-              >{{ user.initial }}</span
-            >
-            <span class="text-dark font-semibold"> {{ user.name }}</span>
-          </div>
-        </td>
-        <td class="p-2 hidden lg:table-cell text-dark font-semibold">
-          {{ user.email }}
-        </td>
-        <td class="p-2 hidden lg:table-cell text-dark font-semibold">{{ user.role }}</td>
-        <td class="p-2">
-          <div class="flex gap-2 flex-col md:flex-row justify-end">
-            <button
-              (click)="openEditModal(user)"
-              [aria-label]="'Edit ' + user.name"
-              class="border border-disbtnporder hover:border-btnporder cursor-pointer py-1 px-4 rounded font-semibold transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
-            >
-              Edit
-            </button>
-            <button
-              (click)="openDeleteModal(user.id,user.name)"
-              [aria-label]="'Delete ' + user.name"
-              class="bg-danger2 hover:bg-danger cursor-pointer py-1 px-4 rounded font-semibold text-white transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
-            >
-              Delete
-            </button>
-          </div>
-        </td>
+@if (users().length) {
+  <table class="border-2 border-gray-200 bg-whiteColor w-full table-fixed">
+    <thead>
+      <tr>
+        <th scope="col" class="p-2 text-left">Person</th>
+        <th scope="col" class="p-2 text-left hidden lg:table-cell">Email</th>
+        <th scope="col" class="p-2 text-left hidden lg:table-cell">Role</th>
+        <th scope="col" class="p-2 text-right">Actions</th>
       </tr>
+    </thead>
+    <tbody>
+      @for (user of users(); track user.id) {
+        <tr class="border border-gray-200">
+          <td class="p-2">
+            <div class="flex items-center gap-1">
+              <button
+                class="lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+                type="button"
+                [aria-expanded]="getUsersExpandState(user).isExpanded()"
+                [aria-label]="'Show details for ' + user.name"
+                [attr.aria-controls]="'userDetails-' + user.id"
+                (click)="
+                  !getUsersExpandState(user).isExpanded() ? applyExpand(user) : applyShrink(user)
+                "
+              >
+                <fa-icon
+                  [class.hidden]="getUsersExpandState(user).isExpanded()"
+                  class="cursor-pointer"
+                  [icon]="chevronRight"
+                ></fa-icon>
+                <fa-icon
+                  [class.hidden]="!getUsersExpandState(user).isExpanded()"
+                  class="cursor-pointer"
+                  [icon]="chevronDown"
+                ></fa-icon>
+              </button>
 
-      <tr class="lg:hidden" [id]="'userDetails-' + user.id">
-        <td>
-          <div
-            [class]="{
-              'slow-down': getUsersExpandState(user).isExpanded(),
-              'slow-up': getUsersExpandState(user).isShrinked(),
-            }"
-            class="overflow-hidden h-0"
-          >
-            <div class="flex gap-5 flex-col md:flex-row">
-              <div class="mt-2 p-2 flex flex-col gap-y-[2px]">
-                <span class="text-gray-700 font-medium text-sm">Email</span>
-                <span class="text-dark font-semibold">{{ user.email }}</span>
-              </div>
-              <div class="mt-2 p-2 flex flex-col gap-y-[2px]">
-                <span class="text-gray-700 font-medium text-sm">Role</span>
-                <span class="text-dark font-semibold">{{ user.role }}</span>
+              <span
+                [style]="{ 'background-color': getAvatarColor(user.name) }"
+                class="hidden sm:flex w-7 h-7 rounded-full items-center justify-center text-white font-semibold"
+                >{{ user.initial }}</span
+              >
+              <span class="text-dark font-semibold"> {{ user.name }}</span>
+            </div>
+          </td>
+          <td class="p-2 hidden lg:table-cell text-dark font-semibold">
+            {{ user.email }}
+          </td>
+          <td class="p-2 hidden lg:table-cell text-dark font-semibold">{{ user.role }}</td>
+          <td class="p-2">
+            <div class="flex gap-2 flex-col md:flex-row justify-end">
+              <button
+                (click)="openEditModal(user)"
+                [aria-label]="'Edit ' + user.name"
+                class="border border-disbtnporder hover:border-btnporder cursor-pointer py-1 px-4 rounded font-semibold transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+              >
+                Edit
+              </button>
+              <button
+                (click)="openDeleteModal(user.id, user.name)"
+                [aria-label]="'Delete ' + user.name"
+                class="bg-danger2 hover:bg-danger cursor-pointer py-1 px-4 rounded font-semibold text-white transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+              >
+                Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+
+        <tr class="lg:hidden" [id]="'userDetails-' + user.id">
+          <td>
+            <div
+              [class]="{
+                'slow-down': getUsersExpandState(user).isExpanded(),
+                'slow-up': getUsersExpandState(user).isShrinked(),
+              }"
+              class="overflow-hidden h-0"
+            >
+              <div class="flex gap-5 flex-col md:flex-row">
+                <div class="mt-2 p-2 flex flex-col gap-y-[2px]">
+                  <span class="text-gray-700 font-medium text-sm">Email</span>
+                  <span class="text-dark font-semibold">{{ user.email }}</span>
+                </div>
+                <div class="mt-2 p-2 flex flex-col gap-y-[2px]">
+                  <span class="text-gray-700 font-medium text-sm">Role</span>
+                  <span class="text-dark font-semibold">{{ user.role }}</span>
+                </div>
               </div>
             </div>
-          </div>
-        </td>
-      </tr>
-    }
-  </tbody>
-</table>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+} @else {
+  <section class="bg-whiteColor flex flex-col gap-1 items-center justify-center h-full w-full">
+    <fa-icon [icon]="userGroup" class="text-[100px]"></fa-icon>
+    <h2 class="text-2xl font-semibold">No users yet</h2>
+    <p class="text-lg text-dark">Add your first user to get started.</p>
+    <button
+      (click)="openAddModal()"
+      class="border-2 border-disbtnporder hover:border-secondarybg px-2 py-1 rounded-lg cursor-pointer transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+    >
+      <fa-icon [icon]="plus" aria-hidden="true"></fa-icon>
+      <span class="font-semibold ml-1">Add user</span>
+    </button>
+  </section>
+}

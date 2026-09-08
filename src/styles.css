@@ -21,15 +21,20 @@
 }
 
 ::-webkit-scrollbar {
-  @apply w-2;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-  @apply bg-mainbg;
+  background-color: var(--color-mainbg);
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-scrollbg rounded-lg;
+  background-color: var(--color-scrollbg);
+  border-radius: 0.5rem;
 }
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-dark;
+  background-color: var(--color-dark);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
 }

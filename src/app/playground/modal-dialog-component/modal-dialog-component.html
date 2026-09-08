@@ -1,18 +1,20 @@
 <div
   appCloseOnEscapeDirective
   [inert]="isModalOpen()"
-  class="grid grid-rows-[auto_1fr_auto_auto] xl:grid-rows-[auto_1fr_1fr_auto] grid-cols-5 h-full"
+  class="grid grid-rows-[auto_1fr_auto_auto] xl:grid-rows-[auto_1fr_1fr_auto] grid-cols-5 gap-2 h-full"
 >
-  <div class="p-innerCompPadding row-span-1 col-span-5">
+  <div class="row-span-1 col-span-5">
     <app-modal-dialog-header-component />
   </div>
-  <div class="p-innerCompPadding row-span-1 col-span-5 xl:row-span-2 -2 xl:col-span-4">
+  <div
+    class="row-span-1 col-span-5 xl:row-span-2 -2 xl:col-span-4 overflow-y-auto max-h-[350px] sm:max-h-[500px] md:max-h-[700%]"
+  >
     <app-users-list-component />
   </div>
-  <div class="p-innerCompPadding row-span-1 col-span-5 xl:row-span-2 xl:col-span-1">
+  <div class="row-span-1 col-span-5 xl:row-span-2 xl:col-span-1">
     <app-accessibility-playground-component />
   </div>
-  <div class="p-innerCompPadding row-span-1 col-span-5">
+  <div class="row-span-1 col-span-5">
     <app-activity-log-component />
   </div>
 </div>

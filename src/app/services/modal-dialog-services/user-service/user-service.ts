@@ -11,7 +11,7 @@ export class UserService {
       name: 'Mohamed Elhawary',
       initial: 'ME',
       email: 'mohamed@devmail.com',
-      role: 'Lead Developer',
+      role: 'Angular Developer',
       id: '1',
     },
     {
@@ -56,20 +56,20 @@ export class UserService {
       role: 'Frontend Developer',
       id: '7',
     },
-    {
-      name: 'Heba Mohamed',
-      initial: 'HM',
-      email: 'Ahmed@testlab.com',
-      role: 'Frontend Developer',
-      id: '8',
-    },
-    {
-      name: 'Hossam Mohamed',
-      initial: 'HM',
-      email: 'Hossam@testlab.com',
-      id: '9',
-      role: 'Frontend Developer',
-    },
+    // {
+    //   name: 'Heba Mohamed',
+    //   initial: 'HM',
+    //   email: 'Ahmed@testlab.com',
+    //   role: 'Frontend Developer',
+    //   id: '8',
+    // },
+    // {
+    //   name: 'Hossam Mohamed',
+    //   initial: 'HM',
+    //   email: 'Hossam@testlab.com',
+    //   id: '9',
+    //   role: 'Frontend Developer',
+    // },
     // {
     //   name: 'Hossam Mohamed',
     //   initial: 'HM',

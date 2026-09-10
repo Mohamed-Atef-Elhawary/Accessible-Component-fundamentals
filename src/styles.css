@@ -18,8 +18,9 @@
   --color-disbtnporder: #d1d5db;
   --color-focusVisibleColor: #c7d2fe;
   --padding-innerCompPadding: 4px;
-  --duration-custom: 300;
+  --duration-custom: 300ms;
 }
+@import './utilities.css';
 
 ::-webkit-scrollbar {
   width: 8px;

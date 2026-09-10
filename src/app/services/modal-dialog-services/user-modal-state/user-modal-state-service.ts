@@ -44,7 +44,10 @@ export class UserModalStateService {
     this._userId.set(null);
     setTimeout(() => {
       const isConnected = this._activeElement()?.isConnected;
-      this._shouldFocusPermanentAddButton.set(!isConnected);
+      if (!isConnected) {
+        this._activeElement.set(null);
+        this._shouldFocusPermanentAddButton.set(true);
+      }
     });
   }
 }

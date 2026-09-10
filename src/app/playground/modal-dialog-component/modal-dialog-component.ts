@@ -10,9 +10,10 @@ import {
   DOCUMENT,
   Renderer2,
   ElementRef,
+  afterNextRender,
 } from '@angular/core';
 import { UsersListComponent } from '../../core/users-list-component/users-list-component';
-import { ModalDialogHeaderComponent } from '../../core/modal-dialog-header-component/modal-dialog-header-component';
+import { HeaderComponent } from '../../core/header-component/header-component';
 import { User } from '../../interfaces/user';
 import { UserModalComponent } from '../../core/user-modal-component/user-modal-component';
 import { ModalInteraction } from '../../types/generalTypes';
@@ -21,11 +22,13 @@ import { ActivityLogComponent } from '../../core/activity-log-component/activity
 import { UserModalStateService } from '../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
 import { AccessibilityStateService } from '../../services/modal-dialog-services/accessibility-state/accessibility-state-service';
 import { CloseOnEscapeDirective } from '../../directives/mogal-dialog-directives/close-onscape-directive/close-on-escape-directive';
+import { HeaderData } from '../../interfaces/header';
+import { ActivityLogService } from '../../services/modal-dialog-services/activity-log/activity-log-service';
 @Component({
   selector: 'app-modal-dialog-component',
   imports: [
     UsersListComponent,
-    ModalDialogHeaderComponent,
+    HeaderComponent,
     AccessibilityPlaygroundComponent,
     ActivityLogComponent,
     CloseOnEscapeDirective,
@@ -35,9 +38,16 @@ import { CloseOnEscapeDirective } from '../../directives/mogal-dialog-directives
   styleUrl: './modal-dialog-component.css',
 })
 export class ModalDialogComponent {
+  headerData: HeaderData = {
+    title: ' User Management & Modal Studio',
+    description: 'Manage system users and test accessible modal dialog interactions.',
+    buttonTitle: 'Add User',
+  };
   userModalContainerRef = viewChild<ViewContainerRef, ViewContainerRef>('userModalContainer', {
     read: ViewContainerRef,
   });
+  addBtn = viewChild<ElementRef>('addBtn');
+
   userModalNativeElement!: HTMLElement;
   modalInteraction = signal<ModalInteraction>('edit');
   userData = signal<User | null>(null);
@@ -49,15 +59,19 @@ export class ModalDialogComponent {
   constructor(
     private userModalStateService: UserModalStateService,
     private accessibilityStateService: AccessibilityStateService,
+    private activityLogService: ActivityLogService,
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
   ) {
+    afterNextRender(() => {
+      this.addBtn()?.nativeElement.focus();
+    });
+
     effect(() => {
       if (this.isModalOpen()) {
         this.uploadUserModal();
       } else {
         this.userModalContainerRef()?.clear();
-
         setTimeout(() => {
           this.userModalStateService.activeElement()?.focus();
         });
@@ -89,5 +103,10 @@ export class ModalDialogComponent {
     this.renderer.setStyle(this.document.documentElement, 'overflow', 'auto');
     this.renderer.setStyle(this.document.documentElement, 'padding-right', '0px');
     this.renderer.setStyle(this.document.documentElement, 'background-color', 'transparent');
+  }
+
+  openAddModal() {
+    this.activityLogService.addActivityLog('Opened Add User modal');
+    this.userModalStateService.openAddModal();
   }
 }

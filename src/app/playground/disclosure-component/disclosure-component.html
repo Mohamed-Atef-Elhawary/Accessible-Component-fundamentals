@@ -1,1 +1,12 @@
-<p>disclosure-component works!</p>
+<div
+  class="grid grid-rows-[auto_1fr_auto_auto] xl:grid-rows-[auto_1fr_1fr_auto] grid-cols-5 gap-2 h-full w-full"
+>
+  <div class="col-span-5">
+    <app-header-component [headerData]="headerData" (actionClicked)="saveSettings()" />
+  </div>
+  <div class="col-span-5 xl:col-span-4 bg-red-300">notification</div>
+  <div class="col-span-5 xl:col-span-1 xl:row-span-2 bg-amber-400">
+    app-accessibility-playground-component
+  </div>
+  <div class="col-span-5 bg-amber-900">app-activity-log-component</div>
+</div>

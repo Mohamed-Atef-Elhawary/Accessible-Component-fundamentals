@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalDialogHeaderComponent } from './modal-dialog-header-component';
+import { ModalDialogHeaderComponent } from './header-component';
 
 describe('ModalDialogHeaderComponent', () => {
   let component: ModalDialogHeaderComponent;
@@ -8,9 +8,8 @@ describe('ModalDialogHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ModalDialogHeaderComponent]
-    })
-    .compileComponents();
+      imports: [ModalDialogHeaderComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ModalDialogHeaderComponent);
     component = fixture.componentInstance;

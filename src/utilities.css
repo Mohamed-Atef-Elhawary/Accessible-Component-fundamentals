@@ -1,0 +1,3 @@
+@utility duration-custom {
+  transition-duration: var(--duration-custom);
+}

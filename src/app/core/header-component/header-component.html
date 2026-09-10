@@ -1,0 +1,13 @@
+<header class="flex flex-col lg:flex-row gap-y-4 lg:justify-between lg:items-end bg-headerbg p-1">
+  <section>
+    <h1 class="text-xl sm:text-3xl text-dark text-bold" tabindex="-1">{{ headerData().title }}</h1>
+    <p class="text-xl text-indigo-600">{{ headerData().description }}</p>
+  </section>
+  <button
+    #btn
+    (click)="actionClicked.emit()"
+    class="bg-secondarybg hover:bg-indigo-400 transition duration-custom text-dark text-xl font-medium w-fit px-2 py-1 lg:py-0 rounded h-[40px] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-200"
+  >
+    {{ headerData().buttonTitle }}
+  </button>
+</header>

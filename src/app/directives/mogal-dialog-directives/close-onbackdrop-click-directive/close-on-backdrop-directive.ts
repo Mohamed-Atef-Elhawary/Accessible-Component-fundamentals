@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Host, input } from '@angular/core';
-import { AccessibilityStateService } from '../../../services/modal-dialog-services/accessibility-state/accessibility-state-service';
 import { UserModalStateService } from '../../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
-import { ActivityLogService } from '../../../services/modal-dialog-services/activity-log/activity-log-service';
+import { ActivityLogService } from '../../../services/activity-log/activity-log-service';
+import { ModalAccessibilityStateService } from '../../../services/modal-dialog-services/modal-accessibility-state/modal-accessibility-state-service';
 
 @Directive({
   selector: '[appCloseOnBackdropDirective]',
@@ -12,13 +12,13 @@ import { ActivityLogService } from '../../../services/modal-dialog-services/acti
 export class CloseOnBackdropDirective {
   constructor(
     private elementRef: ElementRef,
-    private accessibilityStateService: AccessibilityStateService,
+    private modalAccessibilityStateService: ModalAccessibilityStateService,
     private userModalStateService: UserModalStateService,
     private activityLogService: ActivityLogService,
   ) {}
   onclick(event: MouseEvent) {
     if (
-      this.accessibilityStateService.closeOnBackdropClick() &&
+      this.modalAccessibilityStateService.closeOnBackdropClick() &&
       this.elementRef.nativeElement === event.target
     ) {
       this.activityLogService.addActivityLog('Closed modal via backdrop click');

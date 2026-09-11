@@ -1,7 +1,7 @@
 import { computed, Directive } from '@angular/core';
 import { UserModalStateService } from '../../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
-import { AccessibilityStateService } from '../../../services/modal-dialog-services/accessibility-state/accessibility-state-service';
-import { ActivityLogService } from '../../../services/modal-dialog-services/activity-log/activity-log-service';
+import { ActivityLogService } from '../../../services/activity-log/activity-log-service';
+import { ModalAccessibilityStateService } from '../../../services/modal-dialog-services/modal-accessibility-state/modal-accessibility-state-service';
 
 @Directive({
   selector: '[appCloseOnEscapeDirective]',
@@ -11,14 +11,14 @@ import { ActivityLogService } from '../../../services/modal-dialog-services/acti
 })
 export class CloseOnEscapeDirective {
   canCloseOnEsc = computed<boolean>(() => {
-    const closeOnEsc = this.accessibilityStateService.closeOnEsc();
+    const closeOnEsc = this.modalAccessibilityStateService.closeOnEsc();
     const isModalOpen = this.userModalStateService.isModalOpen();
     return closeOnEsc && isModalOpen;
   });
 
   constructor(
     private userModalStateService: UserModalStateService,
-    private accessibilityStateService: AccessibilityStateService,
+    private modalAccessibilityStateService: ModalAccessibilityStateService,
     private activityLogService: ActivityLogService,
   ) {}
 

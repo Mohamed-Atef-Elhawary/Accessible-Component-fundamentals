@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { AccessibilityStateService } from './accessibility-state-service';
+import { ModalAccessibilityStateService } from './modal-accessibility-state-service';
 
 describe('AccessibilityStateService', () => {
-  let service: AccessibilityStateService;
+  let service: ModalAccessibilityStateService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AccessibilityStateService);
+    service = TestBed.inject(ModalAccessibilityStateService);
   });
 
   it('should be created', () => {

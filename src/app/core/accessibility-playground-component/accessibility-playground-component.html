@@ -1,92 +1,36 @@
 <section class="bg-whiteColor h-full p-2 border-2 border-disbtnporder">
-  <h2 class="text-2xl font-semibold mb-6">Accessibility Playground</h2>
-  <ul class="flex flex-col gap-3">
-    <li>
-      <label for="backdrop" class="flex gap-2 items-center text-dark cursor-pointer w-fit">
-        <input
-          type="checkbox"
-          id="backdrop"
-          class="peer sr-only"
-          [checked]="closeOnBackdropClick()"
-          (change)="toggleCloseOnBackdropClick()"
-        />
+  <h2 class="text-2xl font-semibold mb-6 xl:mb-8">Accessibility Playground</h2>
+  <ul class="flex flex-col gap-3 xl:gap-5">
+    @for (option of accessibilityOptions(); track $index) {
+      <li>
+        <label [for]="option.id" class="flex gap-2 items-center text-dark cursor-pointer w-fit">
+          <input
+            type="checkbox"
+            [id]="option.id"
+            class="peer sr-only"
+            [checked]="option.checked()"
+            (change)="toggle(option)"
+          />
 
-        <div
-          [class]="{
-            'peer-focus-visible:outline-0': !closeOnBackdropClick(),
-            'peer-focus-visible:ring-2': !closeOnBackdropClick(),
-            'peer-focus-visible:ring-4': closeOnBackdropClick(),
-          }"
-          class="outline-2 outline-disbtnporder peer-checked:outline-btnporder w-fit peer-focus-visible:ring-focusVisibleColor"
-        >
-          <fa-icon
+          <div
             [class]="{
-              'opacity-100': closeOnBackdropClick(),
-              'opacity-0': !closeOnBackdropClick(),
+              'peer-focus-visible:outline-0': !option.checked(),
+              'peer-focus-visible:ring-2': !option.checked(),
+              'peer-focus-visible:ring-4': option.checked(),
             }"
-            [icon]="check"
-          ></fa-icon>
-        </div>
-        <span class="text-lg">Close on Backdrop Click</span>
-      </label>
-    </li>
-
-    <li>
-      <label for="esc" class="flex gap-2 items-center text-dark cursor-pointer w-fit">
-        <input
-          type="checkbox"
-          id="esc"
-          class="peer sr-only"
-          [checked]="closeOnEsc()"
-          (change)="toggleCloseOnEsc()"
-        />
-        <div
-          [class]="{
-            'peer-focus-visible:outline-0': !closeOnEsc(),
-            'peer-focus-visible:ring-2': !closeOnEsc(),
-            'peer-focus-visible:ring-4': closeOnEsc(),
-          }"
-          class="outline-2 outline-disbtnporder peer-checked:outline-btnporder w-fit peer-focus-visible:ring-focusVisibleColor"
-        >
-          <fa-icon
-            [class]="{
-              'opacity-0': !closeOnEsc(),
-              'opacity-100': closeOnEsc(),
-            }"
-            [icon]="check"
-          ></fa-icon>
-        </div>
-        <span class="text-lg">Close on ESC</span>
-      </label>
-    </li>
-
-    <li>
-      <label for="scroll" class="flex gap-2 items-center text-dark cursor-pointer w-fit">
-        <input
-          type="checkbox"
-          id="scroll"
-          class="peer sr-only"
-          [checked]="lockScroll()"
-          (change)="toggleLockScroll()"
-        />
-        <div
-          [class]="{
-            'peer-focus-visible:outline-0': !lockScroll(),
-            'peer-focus-visible:ring-2': !lockScroll(),
-            'peer-focus-visible:ring-4': lockScroll(),
-          }"
-          class="outline-2 outline-disbtnporder peer-checked:outline-btnporder fit peer-focus-visible:ring-focusVisibleColor"
-        >
-          <fa-icon
-            [class]="{
-              'opacity-0': !lockScroll(),
-              'opacity-100': lockScroll(),
-            }"
-            [icon]="check"
-          ></fa-icon>
-        </div>
-        <span class="text-lg">Lock Scroll</span>
-      </label>
-    </li>
+            class="outline-2 outline-disbtnporder peer-checked:outline-btnporder w-fit peer-focus-visible:ring-focusVisibleColor"
+          >
+            <fa-icon
+              [class]="{
+                'opacity-100': option.checked(),
+                'opacity-0': !option.checked(),
+              }"
+              [icon]="check"
+            ></fa-icon>
+          </div>
+          <span class="text-lg">{{ option.label }} </span>
+        </label>
+      </li>
+    }
   </ul>
 </section>

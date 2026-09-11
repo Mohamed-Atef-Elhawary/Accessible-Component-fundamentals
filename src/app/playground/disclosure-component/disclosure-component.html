@@ -6,7 +6,9 @@
   </div>
   <div class="col-span-5 xl:col-span-4 bg-red-300">notification</div>
   <div class="col-span-5 xl:col-span-1 xl:row-span-2 bg-amber-400">
-    app-accessibility-playground-component
+    <app-accessibility-playground-component [accessibilityOptions]="accessibilityOptions()" />
   </div>
-  <div class="col-span-5 bg-amber-900">app-activity-log-component</div>
+  <div class="col-span-5 bg-amber-900">
+    <app-activity-log-component />
+  </div>
 </div>

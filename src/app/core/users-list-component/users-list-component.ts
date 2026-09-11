@@ -10,7 +10,7 @@ import {
   faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import { UserModalStateService } from '../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
-import { ActivityLogService } from '../../services/modal-dialog-services/activity-log/activity-log-service';
+import { ActivityLogService } from '../../services/activity-log/activity-log-service';
 
 @Component({
   selector: 'app-users-list-component',

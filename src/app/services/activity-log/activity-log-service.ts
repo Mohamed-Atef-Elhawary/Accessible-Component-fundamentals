@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { ActivityLog } from '../../../interfaces/activity-log';
+import { ActivityLog } from '../../interfaces/activity-log';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +15,6 @@ export class ActivityLogService {
       date: new Date(),
       id: crypto.randomUUID(),
     };
-    this._activityLog.update((activities) => [...activities, newActivityLog]);
+    this._activityLog.update((activities) => [newActivityLog, ...activities]);
   }
 }

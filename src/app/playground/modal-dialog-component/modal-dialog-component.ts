@@ -1,6 +1,5 @@
 import {
   Component,
-  signal,
   viewChild,
   ViewContainerRef,
   ChangeDetectionStrategy,
@@ -14,16 +13,15 @@ import {
 } from '@angular/core';
 import { UsersListComponent } from '../../core/users-list-component/users-list-component';
 import { HeaderComponent } from '../../core/header-component/header-component';
-import { User } from '../../interfaces/user';
 import { UserModalComponent } from '../../core/user-modal-component/user-modal-component';
-import { ModalInteraction } from '../../types/generalTypes';
 import { AccessibilityPlaygroundComponent } from '../../core/accessibility-playground-component/accessibility-playground-component';
 import { ActivityLogComponent } from '../../core/activity-log-component/activity-log-component';
 import { UserModalStateService } from '../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
-import { AccessibilityStateService } from '../../services/modal-dialog-services/accessibility-state/accessibility-state-service';
 import { CloseOnEscapeDirective } from '../../directives/mogal-dialog-directives/close-onscape-directive/close-on-escape-directive';
 import { HeaderData } from '../../interfaces/header';
-import { ActivityLogService } from '../../services/modal-dialog-services/activity-log/activity-log-service';
+import { ActivityLogService } from '../../services/activity-log/activity-log-service';
+import { AccessibilityOption } from '../../interfaces/accessibility-options';
+import { ModalAccessibilityStateService } from '../../services/modal-dialog-services/modal-accessibility-state/modal-accessibility-state-service';
 @Component({
   selector: 'app-modal-dialog-component',
   imports: [
@@ -34,8 +32,8 @@ import { ActivityLogService } from '../../services/modal-dialog-services/activit
     CloseOnEscapeDirective,
   ],
   templateUrl: './modal-dialog-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './modal-dialog-component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalDialogComponent {
   headerData: HeaderData = {
@@ -49,16 +47,17 @@ export class ModalDialogComponent {
   addBtn = viewChild<ElementRef>('addBtn');
 
   userModalNativeElement!: HTMLElement;
-  modalInteraction = signal<ModalInteraction>('edit');
-  userData = signal<User | null>(null);
-  userId = signal<string | null>(null);
   isModalOpen = computed<boolean>(() => this.userModalStateService.isModalOpen());
+
   lockScrollOnopendModal = computed<boolean>(
-    () => this.accessibilityStateService.lockScroll() && this.isModalOpen(),
+    () => this.modalAccessibilityStateService.lockScroll() && this.isModalOpen(),
+  );
+  accessibilityOptions = computed<AccessibilityOption[]>(() =>
+    this.modalAccessibilityStateService.accessibilityOptions(),
   );
   constructor(
     private userModalStateService: UserModalStateService,
-    private accessibilityStateService: AccessibilityStateService,
+    private modalAccessibilityStateService: ModalAccessibilityStateService,
     private activityLogService: ActivityLogService,
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
@@ -108,5 +107,12 @@ export class ModalDialogComponent {
   openAddModal() {
     this.activityLogService.addActivityLog('Opened Add User modal');
     this.userModalStateService.openAddModal();
+  }
+
+  onToggleOption(option: AccessibilityOption) {
+    this.modalAccessibilityStateService.toggleAccessibilityState(option.id);
+    const action = option.checked() ? 'Enabled' : 'Disabled';
+    const message = option.label;
+    this.activityLogService.addActivityLog(`${action} ${message}`);
   }
 }

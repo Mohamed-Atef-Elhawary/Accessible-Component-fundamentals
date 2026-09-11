@@ -31,10 +31,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faTrashCan, faPencil, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ERROR_MESSAGE } from '../../constants/error-message';
 import { UserModalStateService } from '../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
-import { AccessibilityStateService } from '../../services/modal-dialog-services/accessibility-state/accessibility-state-service';
+import { ModalAccessibilityStateService } from '../../services/modal-dialog-services/modal-accessibility-state/modal-accessibility-state-service';
 import { CloseOnBackdropDirective } from '../../directives/mogal-dialog-directives/close-onbackdrop-click-directive/close-on-backdrop-directive';
 import { FocusTrapDirective } from '../../directives/mogal-dialog-directives/Focus-trap-directive/focus-trap-directive';
-import { ActivityLogService } from '../../services/modal-dialog-services/activity-log/activity-log-service';
+import { ActivityLogService } from '../../services/activity-log/activity-log-service';
 @Component({
   selector: 'app-user-modal-component',
   imports: [
@@ -105,15 +105,15 @@ export class UserModalComponent implements OnInit {
 
   modalRootElement = viewChild<ElementRef>('modalRootElement');
   closeOnBackdropClick = computed<boolean>(() =>
-    this.accessibilityStateService.closeOnBackdropClick(),
+    this.modalAccessibilityStateService.closeOnBackdropClick(),
   );
-  closeOnEsc = computed<boolean>(() => this.accessibilityStateService.closeOnEsc());
+  closeOnEsc = computed<boolean>(() => this.modalAccessibilityStateService.closeOnEsc());
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
     private destroyRef: DestroyRef,
     private userModalStateService: UserModalStateService,
-    private accessibilityStateService: AccessibilityStateService,
+    private modalAccessibilityStateService: ModalAccessibilityStateService,
     private activityLogService: ActivityLogService,
   ) {
     afterNextRender(() => {

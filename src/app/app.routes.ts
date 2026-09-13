@@ -1,8 +1,5 @@
 import { Routes } from '@angular/router';
-import { UsersListComponent } from './core/users-list-component/users-list-component';
-import { UserModalComponent } from './core/user-modal-component/user-modal-component';
-import { AccessibilityPlaygroundComponent } from './core/accessibility-playground-component/accessibility-playground-component';
-import { ActivityLogComponent } from './core/activity-log-component/activity-log-component';
+import { DisclosureSectionComponent } from './core/disclosure-components/disclosure-section-component/disclosure-section-component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'modal-dialog', pathMatch: 'full' },
@@ -38,6 +35,5 @@ export const routes: Routes = [
       import('./playground/ai-integration/ai-integration').then((c) => c.AiIntegration),
   },
   ///////////////////////////////////////////components
-  { path: 'access', component: AccessibilityPlaygroundComponent },
-  { path: 'log', component: ActivityLogComponent },
+  { path: 'sec', component: DisclosureSectionComponent },
 ];

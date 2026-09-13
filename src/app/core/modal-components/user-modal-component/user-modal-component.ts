@@ -13,7 +13,7 @@ import {
   afterNextRender,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { UserField, EditableUserFields, FocusableElement } from '../../types/generalTypes';
+import { UserField, EditableUserFields, FocusableElement } from '../../../types/generalTypes';
 import {
   FormBuilder,
   FormControl,
@@ -25,16 +25,16 @@ import {
   Validators,
   ValueChangeEvent,
 } from '@angular/forms';
-import { InputLabel } from '../../interfaces/user';
-import { UserService } from '../../services/modal-dialog-services/user-service/user-service';
+import { InputLabel } from '../../../interfaces/user';
+import { UserService } from '../../../services/modal-dialog-services/user-service/user-service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faTrashCan, faPencil, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { ERROR_MESSAGE } from '../../constants/error-message';
-import { UserModalStateService } from '../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
-import { ModalAccessibilityStateService } from '../../services/modal-dialog-services/modal-accessibility-state/modal-accessibility-state-service';
-import { CloseOnBackdropDirective } from '../../directives/mogal-dialog-directives/close-onbackdrop-click-directive/close-on-backdrop-directive';
-import { FocusTrapDirective } from '../../directives/mogal-dialog-directives/Focus-trap-directive/focus-trap-directive';
-import { ActivityLogService } from '../../services/activity-log/activity-log-service';
+import { ERROR_MESSAGE } from '../../../constants/error-message';
+import { UserModalStateService } from '../../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
+import { ModalAccessibilityStateService } from '../../../services/modal-dialog-services/modal-accessibility-state/modal-accessibility-state-service';
+import { CloseOnBackdropDirective } from '../../../directives/mogal-dialog-directives/close-onbackdrop-click-directive/close-on-backdrop-directive';
+import { FocusTrapDirective } from '../../../directives/mogal-dialog-directives/Focus-trap-directive/focus-trap-directive';
+import { ActivityLogService } from '../../../services/activity-log/activity-log-service';
 @Component({
   selector: 'app-user-modal-component',
   imports: [

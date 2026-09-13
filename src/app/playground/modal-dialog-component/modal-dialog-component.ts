@@ -11,9 +11,9 @@ import {
   ElementRef,
   afterNextRender,
 } from '@angular/core';
-import { UsersListComponent } from '../../core/users-list-component/users-list-component';
+import { UsersListComponent } from '../../core/modal-components/users-list-component/users-list-component';
 import { HeaderComponent } from '../../core/header-component/header-component';
-import { UserModalComponent } from '../../core/user-modal-component/user-modal-component';
+import { UserModalComponent } from '../../core/modal-components/user-modal-component/user-modal-component';
 import { AccessibilityPlaygroundComponent } from '../../core/accessibility-playground-component/accessibility-playground-component';
 import { ActivityLogComponent } from '../../core/activity-log-component/activity-log-component';
 import { UserModalStateService } from '../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
@@ -87,7 +87,7 @@ export class ModalDialogComponent {
   async uploadUserModal(): Promise<void> {
     this.userModalContainerRef()?.clear();
     const userModalComponent: typeof UserModalComponent =
-      await import('../../core/user-modal-component/user-modal-component').then(
+      await import('../../core/modal-components/user-modal-component/user-modal-component').then(
         (c) => c.UserModalComponent,
       );
     this.userModalContainerRef()?.createComponent(userModalComponent);
@@ -110,7 +110,7 @@ export class ModalDialogComponent {
   }
 
   onToggleOption(option: AccessibilityOption) {
-    this.modalAccessibilityStateService.toggleAccessibilityState(option.id);
+    this.modalAccessibilityStateService.toggleAccessibilityOptionState(option.id);
     const action = option.checked() ? 'Enabled' : 'Disabled';
     const message = option.label;
     this.activityLogService.addActivityLog(`${action} ${message}`);

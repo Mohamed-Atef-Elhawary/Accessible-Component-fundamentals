@@ -5,12 +5,13 @@ import { DisclosureAccessibilityStateService } from '../../services/disclosure-s
 import { AccessibilityOption } from '../../interfaces/accessibility-options';
 import { AccessibilityPlaygroundComponent } from '../../core/accessibility-playground-component/accessibility-playground-component';
 import { ActivityLogComponent } from '../../core/activity-log-component/activity-log-component';
+import { ActivityLogService } from '../../services/activity-log/activity-log-service';
 
 @Component({
   selector: 'app-disclosure-component',
   imports: [HeaderComponent, AccessibilityPlaygroundComponent, ActivityLogComponent],
   templateUrl: './disclosure-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './disclosure-component.css',
 })
 export class DisclosureComponent {
@@ -23,13 +24,19 @@ export class DisclosureComponent {
   accessibilityOptions = computed<AccessibilityOption[]>(() =>
     this.disclosureAccessibilityStateService.accessibilityOptions(),
   );
-  constructor(private disclosureAccessibilityStateService: DisclosureAccessibilityStateService) {}
-  ngOnInit() {
-    console.log(this.accessibilityOptions());
-    this.disclosureAccessibilityStateService.toggleAccessibilityState('multibleOpenSectionss');
-    console.log(this.accessibilityOptions());
-  }
+  constructor(
+    private disclosureAccessibilityStateService: DisclosureAccessibilityStateService,
+    private activityLogService: ActivityLogService,
+  ) {}
+
   saveSettings() {
     console.log('save');
+  }
+
+  onToggleOption(option: AccessibilityOption) {
+    this.disclosureAccessibilityStateService.toggleAccessibilityOptionState(option.id);
+    const action = option.checked() ? 'Enabled' : 'Disabled';
+    const message = option.label;
+    this.activityLogService.addActivityLog(`${action} ${message}`);
   }
 }

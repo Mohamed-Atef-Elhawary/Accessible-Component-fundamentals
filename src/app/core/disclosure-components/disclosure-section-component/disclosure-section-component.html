@@ -1,0 +1,31 @@
+<article
+  [class]="{
+    'grid-rows-[auto_1fr]': openState(),
+    'grid-rows-[auto_0fr]': !openState(),
+  }"
+  class="rounded overflow-hidden grid transition-all duration-custom"
+>
+  <h2 [id]="'headerId'" class="bg-blue-300">
+    <button
+      (click)="toggleState()"
+      class="bg-headerSectionbg flex gap-2 w-full h-full p-1"
+      [attr.aria-expended]="openState()"
+      [attr.aria-controls]="'settingId'"
+      type="button"
+    >
+      <fa-icon [class]="openState() ? 'block' : 'hidden'" [icon]="chevronDown"></fa-icon>
+      <fa-icon [class]="!openState() ? 'block' : 'hidden'" [icon]="chevronRight"></fa-icon>
+      <span>title</span>
+    </button>
+  </h2>
+  <div
+    class="overflow-hidden bg-green-700"
+    [id]="'settingId'"
+    role="region"
+    [attr.labelledby]="'headerId'"
+    [attr.aria-hidden]="!openState()"
+    [inert]="!openState()"
+  >
+    <p>content</p>
+  </div>
+</article>

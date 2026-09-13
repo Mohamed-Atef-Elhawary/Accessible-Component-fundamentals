@@ -37,9 +37,9 @@ export class DisclosureAccessibilityStateService {
     hideClosedSectionFromSR: this._hideClosedSectionFromSR,
   };
 
-  toggleAccessibilityState(accessibilityFeature: string) {
+  toggleAccessibilityOptionState(optionKey: string) {
     try {
-      this.optionsMap[accessibilityFeature].update((state) => !state);
+      this.optionsMap[optionKey].update((state) => !state);
     } catch {
       console.error('Accessibility ption does not exist');
     }

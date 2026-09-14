@@ -1,0 +1,38 @@
+<ul class="text-dark">
+  @for (setting of settingList(); track setting.id) {
+    <li class="flex items-center justify-between">
+      <span class="text-dark" [id]="setting.id">{{ setting.label }}</span>
+      <button
+        type="button"
+        role="switch"
+        [attr.aria-checked]="setting.checked()"
+        aria-labelledby="email-notif-label"
+        (click)="toggleCheckState(setting.id)"
+        [class]="{
+          'border-btnporder': setting.checked(),
+          'border-disbtnporder': !setting.checked(),
+        }"
+        class="w-[20px] h-[12px] border-2 rounded-full flex items-center px-[2px] cursor-pointer transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+      >
+        <span
+          [class]="{
+            'bg-btnporder': setting.checked(),
+            'translate-x-[7px]': setting.checked(),
+            'bg-disbtnporder': !setting.checked(),
+            'translate-x-[0px]': !setting.checked(),
+          }"
+          class="w-[5px] h-[5px] rounded-full transition-all duration-custom"
+        ></span>
+      </button>
+    </li>
+  }
+</ul>
+
+<!-- Display and appearance
+Preferred theme
+Light
+Compact mode -->
+
+<!-- Accessibility
+Reduce motion
+High contrast -->

@@ -1,4 +1,4 @@
-import { Component, signal, viewChild } from '@angular/core';
+import { Component, input, signal, viewChild } from '@angular/core';
 import { faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @Component({
@@ -8,9 +8,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   templateUrl: './disclosure-section-component.html',
 })
 export class DisclosureSectionComponent {
-  openState = signal<boolean>(true);
   chevronDown = faChevronDown;
   chevronRight = faChevronRight;
+  openState = signal<boolean>(true);
+  title = input.required<string>();
   toggleState() {
     this.openState.update((state) => !state);
   }

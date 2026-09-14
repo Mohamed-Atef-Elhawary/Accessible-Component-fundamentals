@@ -1,0 +1,66 @@
+<fieldset class="flex gap-2">
+  <legend class="mb-1">Who can see my profile?</legend>
+  <div class="flex items-center gap-1">
+    <input
+      type="radio"
+      id="public"
+      value="public"
+      class="sr-only peer"
+      name="privacy"
+      [formControl]="privacyValue"
+      (change)="logVal($event)"
+    />
+    <fa-icon
+      [class]="{
+        'text-btnporder': privacyValue.value === 'public',
+        'text-disbtnporder': privacyValue.value !== 'public',
+      }"
+      class="text-[15px] peer-focus-visible:ring-2 peer-focus-visible:ring-focusVisibleColor"
+      [icon]="circleDot"
+      aria-hidden="true"
+    ></fa-icon>
+    <label for="public">Public</label>
+  </div>
+  <div class="flex items-center gap-1">
+    <input
+      type="radio"
+      id="friends"
+      value="friends"
+      class="sr-only peer"
+      name="privacy"
+      [formControl]="privacyValue"
+      (change)="logVal($event)"
+    />
+    <fa-icon
+      [class]="{
+        'text-btnporder': privacyValue.value === 'friends',
+        'text-disbtnporder': privacyValue.value !== 'friends',
+      }"
+      class="text-[15px] peer-focus-visible:ring-2 peer-focus-visible:ring-focusVisibleColor"
+      [icon]="circleDot"
+      aria-hidden="true"
+    ></fa-icon>
+    <label for="friends">Friends</label>
+  </div>
+  <div class="flex items-center gap-1">
+    <input
+      type="radio"
+      id="private"
+      value="private"
+      class="sr-only peer"
+      name="privacy"
+      [formControl]="privacyValue"
+      (change)="logVal($event)"
+    />
+    <fa-icon
+      [class]="{
+        'text-btnporder': privacyValue.value === 'private',
+        'text-disbtnporder': privacyValue.value !== 'private',
+      }"
+      class="text-[15px] peer-focus-visible:ring-2 peer-focus-visible:ring-focusVisibleColor"
+      [icon]="circleDot"
+      aria-hidden="true"
+    ></fa-icon>
+    <label for="private">Private</label>
+  </div>
+</fieldset>

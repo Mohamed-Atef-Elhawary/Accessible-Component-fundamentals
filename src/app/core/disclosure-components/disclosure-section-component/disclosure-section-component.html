@@ -3,29 +3,31 @@
     'grid-rows-[auto_1fr]': openState(),
     'grid-rows-[auto_0fr]': !openState(),
   }"
-  class="rounded overflow-hidden grid transition-all duration-custom"
+  class="rounded grid transition-all duration-custom bg-whiteColor"
 >
-  <h2 [id]="'headerId'" class="bg-blue-300">
+  <h2 [id]="'headerId'">
     <button
-      (click)="toggleState()"
-      class="bg-headerSectionbg flex gap-2 w-full h-full p-1"
-      [attr.aria-expended]="openState()"
-      [attr.aria-controls]="'settingId'"
       type="button"
+      (click)="toggleState()"
+      class="flex gap-2 w-full h-full bg-headerSectionbg p-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+      [attr.aria-expanded]="openState()"
+      [attr.aria-controls]="'settingId'"
     >
       <fa-icon [class]="openState() ? 'block' : 'hidden'" [icon]="chevronDown"></fa-icon>
       <fa-icon [class]="!openState() ? 'block' : 'hidden'" [icon]="chevronRight"></fa-icon>
-      <span>title</span>
+      <span>{{ title() }}</span>
     </button>
   </h2>
+
   <div
-    class="overflow-hidden bg-green-700"
+    class="overflow-hidden"
+    [class.p-2]="openState()"
     [id]="'settingId'"
     role="region"
-    [attr.labelledby]="'headerId'"
+    [attr.aria-labelledby]="'headerId'"
     [attr.aria-hidden]="!openState()"
     [inert]="!openState()"
   >
-    <p>content</p>
+    <ng-content></ng-content>
   </div>
 </article>

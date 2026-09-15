@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import { DisclosureSettingsSectionsComponent } from './core/disclosure-components/disclosure-settings-sections-component/disclosure-settings-sections-component';
 import { DisplayAndAppearanceSettingsComponent } from './core/disclosure-components/setting-components/display-and-appearance-settings-component/display-and-appearance-settings-component';
+import { LanguageSettingsComponent } from './core/disclosure-components/setting-components/language-settings-component/language-settings-component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'modal-dialog', pathMatch: 'full' },
@@ -37,6 +38,6 @@ export const routes: Routes = [
       import('./playground/ai-integration/ai-integration').then((c) => c.AiIntegration),
   },
   ///////////////////////////////////////////components
-  { path: 'dis', component: DisplayAndAppearanceSettingsComponent },
+  { path: 'lang', component: LanguageSettingsComponent },
   { path: 'settings', component: DisclosureSettingsSectionsComponent },
 ];

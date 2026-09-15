@@ -1,1 +1,37 @@
-<p>language-settings-component works!</p>
+<!-- <title>Langauge and region</title> -->
+<div>
+  <!-- language -->
+  <div class="flex flex-col gap-1">
+    <div class="flex items-center justify-between">
+      <h3 id="language" class="text-dark">Language</h3>
+      <div
+        class="flex bg-mainbg rounded overflow-hidden"
+        role="radiogroup"
+        aria-labelledby="language"
+      >
+        @for (language of languages; track language.id) {
+          <div class="p-[2px]">
+            <input
+              type="radio"
+              [name]="language.name"
+              [id]="language.id"
+              [checked]="language.checked()"
+              class="sr-only peer"
+            />
+            <label
+              [for]="language.id"
+              class="p-1 block rounded text-light peer-checked:text-black peer-checked:bg-whiteColor peer-focus-visible:ring-2 peer-focus-visible:ring-focusVisibleColor"
+              >{{ getLang(language.value) }}</label
+            >
+          </div>
+        }
+      </div>
+    </div>
+    <p class="text-light">Changes text direction and layout across the app.</p>
+  </div>
+  <!-- date -->
+  <div class="flex items-center justify-between">
+    <p class="text-dark">Date format</p>
+    <span>{{ getDate() | date: 'shortDate' : 'Europe/London' : 'en-GB' }}</span>
+  </div>
+</div>

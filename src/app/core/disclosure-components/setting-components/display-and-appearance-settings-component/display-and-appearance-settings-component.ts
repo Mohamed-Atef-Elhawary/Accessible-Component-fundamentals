@@ -12,7 +12,7 @@ import { Appearance } from '../../../../interfaces/disclosure-settings';
   templateUrl: './display-and-appearance-settings-component.html',
 })
 export class DisplayAndAppearanceSettingsComponent {
-  appearance: Appearance[] = [
+  appearances: Appearance[] = [
     {
       id: crypto.randomUUID(),
       name: 'preferredTheme',
@@ -41,7 +41,5 @@ export class DisplayAndAppearanceSettingsComponent {
     this.compactMode.update((s) => !s);
   }
 
-  onChange() {
-    console.log('hhhhhhhhhhhhhhhhhhhhhhhhh');
-  }
+  onChange() {}
 }

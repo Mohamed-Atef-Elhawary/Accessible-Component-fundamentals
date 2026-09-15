@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { DisclosureSectionComponent } from '../disclosure-section-component/disclosure-section-component';
 import { PrivacySettingsComponent } from '../setting-components/privacy-settings-component/privacy-settings-component';
-import { ToggleSettingsListComponent } from '../toggle-settings-list-component/toggle-settings-list-component';
+import { ToggleSettingsListComponent } from '../setting-components/toggle-settings-list-component/toggle-settings-list-component';
 import { SettingList } from '../../../interfaces/disclosure-settings';
 import { DisplayAndAppearanceSettingsComponent } from '../setting-components/display-and-appearance-settings-component/display-and-appearance-settings-component';
+import { LanguageSettingsComponent } from '../setting-components/language-settings-component/language-settings-component';
 
 @Component({
   imports: [
@@ -11,6 +12,7 @@ import { DisplayAndAppearanceSettingsComponent } from '../setting-components/dis
     PrivacySettingsComponent,
     ToggleSettingsListComponent,
     DisplayAndAppearanceSettingsComponent,
+    LanguageSettingsComponent,
   ],
   selector: 'app-disclosure-settings-sections-component',
   styleUrl: './disclosure-settings-sections-component.css',

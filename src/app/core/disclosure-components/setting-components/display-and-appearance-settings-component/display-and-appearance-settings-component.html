@@ -6,22 +6,22 @@
       role="radiogroup"
       aria-labelledby="appearance"
     >
-      @for (appear of appearance; track $index) {
+      @for (appearance of appearances; track $index) {
         <div class="p-[2px]">
           <input
             type="radio"
-            [id]="appear.id"
-            [name]="appear.name"
-            [value]="appear.value"
-            [checked]="appear.checked()"
+            [id]="appearance.id"
+            [name]="appearance.name"
+            [value]="appearance.value"
+            [checked]="appearance.checked()"
             (change)="onChange()"
             class="sr-only peer"
           />
           <label
-            [for]="appear.id"
+            [for]="appearance.id"
             class="block rounded peer-focus-visible:ring-2 peer-focus-visible:ring-focusVisibleColor peer-checked:bg-whiteColor"
           >
-            <fa-icon aria-hidden="true" [icon]="appear.icon"></fa-icon>
+            <fa-icon aria-hidden="true" [icon]="appearance.icon"></fa-icon>
           </label>
         </div>
       }

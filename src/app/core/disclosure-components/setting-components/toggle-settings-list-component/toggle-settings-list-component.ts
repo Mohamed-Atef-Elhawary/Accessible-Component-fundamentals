@@ -1,5 +1,5 @@
 import { Component, input, signal } from '@angular/core';
-import { SettingList } from '../../../interfaces/disclosure-settings';
+import { SettingList } from '../../../../interfaces/disclosure-settings';
 
 @Component({
   imports: [],

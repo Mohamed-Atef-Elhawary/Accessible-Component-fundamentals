@@ -2,10 +2,16 @@ import { Component, signal } from '@angular/core';
 import { DisclosureSectionComponent } from '../disclosure-section-component/disclosure-section-component';
 import { PrivacySettingsComponent } from '../setting-components/privacy-settings-component/privacy-settings-component';
 import { ToggleSettingsListComponent } from '../toggle-settings-list-component/toggle-settings-list-component';
-import { SettingList } from '../../../interfaces/settings-list';
+import { SettingList } from '../../../interfaces/disclosure-settings';
+import { DisplayAndAppearanceSettingsComponent } from '../setting-components/display-and-appearance-settings-component/display-and-appearance-settings-component';
 
 @Component({
-  imports: [DisclosureSectionComponent, PrivacySettingsComponent, ToggleSettingsListComponent],
+  imports: [
+    DisclosureSectionComponent,
+    PrivacySettingsComponent,
+    ToggleSettingsListComponent,
+    DisplayAndAppearanceSettingsComponent,
+  ],
   selector: 'app-disclosure-settings-sections-component',
   styleUrl: './disclosure-settings-sections-component.css',
   templateUrl: './disclosure-settings-sections-component.html',

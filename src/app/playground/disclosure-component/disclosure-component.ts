@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, computed } from '@angular/core';
-import { HeaderData } from '../../interfaces/header';
+import { HeaderData } from '../../interfaces/header-data';
 import { HeaderComponent } from '../../core/header-component/header-component';
 import { DisclosureAccessibilityStateService } from '../../services/disclosure-services/asseccibility-state/disclosure-accessibility-state-service';
 import { AccessibilityOption } from '../../interfaces/accessibility-options';

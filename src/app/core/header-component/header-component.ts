@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { HeaderData } from '../../interfaces/header';
+import { HeaderData } from '../../interfaces/header-data';
 import { UserModalStateService } from '../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
 
 @Component({

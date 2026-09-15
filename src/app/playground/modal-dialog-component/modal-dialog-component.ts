@@ -18,7 +18,7 @@ import { AccessibilityPlaygroundComponent } from '../../core/accessibility-playg
 import { ActivityLogComponent } from '../../core/activity-log-component/activity-log-component';
 import { UserModalStateService } from '../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
 import { CloseOnEscapeDirective } from '../../directives/mogal-dialog-directives/close-onscape-directive/close-on-escape-directive';
-import { HeaderData } from '../../interfaces/header';
+import { HeaderData } from '../../interfaces/header-data';
 import { ActivityLogService } from '../../services/activity-log/activity-log-service';
 import { AccessibilityOption } from '../../interfaces/accessibility-options';
 import { ModalAccessibilityStateService } from '../../services/modal-dialog-services/modal-accessibility-state/modal-accessibility-state-service';

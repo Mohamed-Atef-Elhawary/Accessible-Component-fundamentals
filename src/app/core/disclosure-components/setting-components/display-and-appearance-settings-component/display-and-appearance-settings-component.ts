@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { PreferredTheme } from '../../../../types/generalTypes';
-import { faDisplay, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faDisplay } from '@fortawesome/free-solid-svg-icons';
 import { faSun, faMoon } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Appearance } from '../../../../interfaces/disclosure-settings';

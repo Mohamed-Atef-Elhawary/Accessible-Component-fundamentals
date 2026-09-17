@@ -1,5 +1,5 @@
 import { Signal } from '@angular/core';
-import { LanguageSelect, PreferredTheme } from '../types/generalTypes';
+import { SelectedLanguage, PreferredTheme } from '../types/generalTypes';
 import { IconDefinition } from '@fortawesome/angular-fontawesome';
 
 export interface SettingList {
@@ -18,5 +18,5 @@ export interface Appearance extends GeneralDisclosureSettings {
   icon: IconDefinition;
 }
 export interface Language extends GeneralDisclosureSettings {
-  value: LanguageSelect;
+  value: SelectedLanguage;
 }

@@ -1,9 +1,8 @@
-<!-- <title>Langauge and region</title> -->
-<div>
+<div [dir]="direction()">
   <!-- language -->
   <div class="flex flex-col gap-1">
     <div class="flex items-center justify-between">
-      <h3 id="language" class="text-dark">Language</h3>
+      <h3 id="language" class="text-dark">{{ settingData().langTitle }}</h3>
       <div
         class="flex bg-mainbg rounded overflow-hidden"
         role="radiogroup"
@@ -16,6 +15,7 @@
               [name]="language.name"
               [id]="language.id"
               [checked]="language.checked()"
+              (change)="onChange(language.value)"
               class="sr-only peer"
             />
             <label
@@ -27,11 +27,11 @@
         }
       </div>
     </div>
-    <p class="text-light">Changes text direction and layout across the app.</p>
+    <p class="text-light">{{ settingData().text }}</p>
   </div>
   <!-- date -->
   <div class="flex items-center justify-between">
-    <p class="text-dark">Date format</p>
-    <span>{{ getDate() | date: 'shortDate' : 'Europe/London' : 'en-GB' }}</span>
+    <p class="text-dark">{{ settingData().dateTitle }}</p>
+    <span>{{ dateFormatter() }}</span>
   </div>
 </div>

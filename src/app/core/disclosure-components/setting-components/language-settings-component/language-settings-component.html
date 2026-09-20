@@ -1,5 +1,4 @@
 <div [dir]="direction()">
-  <!-- language -->
   <div class="flex flex-col gap-1">
     <div class="flex items-center justify-between">
       <h3 id="language" class="text-dark">{{ settingData().langTitle }}</h3>
@@ -8,15 +7,16 @@
         role="radiogroup"
         aria-labelledby="language"
       >
+  
         @for (language of languages; track language.id) {
-          <div class="p-[2px]">
+          <div class="p-[2px] relative">
             <input
               type="radio"
+              class="sr-only peer"
               [name]="language.name"
               [id]="language.id"
               [checked]="language.checked()"
               (change)="onChange(language.value)"
-              class="sr-only peer"
             />
             <label
               [for]="language.id"
@@ -29,7 +29,6 @@
     </div>
     <p class="text-light">{{ settingData().text }}</p>
   </div>
-  <!-- date -->
   <div class="flex items-center justify-between">
     <p class="text-dark">{{ settingData().dateTitle }}</p>
     <span>{{ dateFormatter() }}</span>

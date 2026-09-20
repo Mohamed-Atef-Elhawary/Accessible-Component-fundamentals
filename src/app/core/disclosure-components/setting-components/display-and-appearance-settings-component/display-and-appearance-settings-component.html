@@ -22,6 +22,7 @@
             class="block rounded peer-focus-visible:ring-2 peer-focus-visible:ring-focusVisibleColor peer-checked:bg-whiteColor"
           >
             <fa-icon aria-hidden="true" [icon]="appearance.icon"></fa-icon>
+            <span class="sr-only" [attr.aria-label]="getLabel(appearance.value)"></span>
           </label>
         </div>
       }
@@ -36,16 +37,16 @@
       aria-labelledby="CompactMode"
       (click)="toggleCompactMode()"
       [class]="{
-        'border-btnporder': compactMode(),
-        'border-disbtnporder': !compactMode(),
+        'border-activeColor': compactMode(),
+        'border-inactiveColor': !compactMode(),
       }"
       class="w-[20px] h-[12px] border-2 rounded-full flex items-center px-[2px] cursor-pointer transition-all duration-custom focus-visible:outline-none focus-visible:border-focusVisibleColor focus-visible:ring-1 focus-visible:ring-focusVisibleColor"
     >
       <span
         [class]="{
-          'bg-btnporder': compactMode(),
+          'bg-activeColor': compactMode(),
           'translate-x-[7px]': compactMode(),
-          'bg-disbtnporder': !compactMode(),
+          'bg-inactiveColor': !compactMode(),
           'translate-x-[0px]': !compactMode(),
         }"
         class="w-[5px] h-[5px] rounded-full transition-all duration-custom"
@@ -53,3 +54,56 @@
     </button>
   </div>
 </div>
+
+<!-- <div>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
+    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
+    fugiat rem praesentium assumenda voluptatem.
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
+    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
+    fugiat rem praesentium assumenda voluptatem.
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
+    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
+    fugiat rem praesentium assumenda voluptatem.
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
+    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
+    fugiat rem praesentium assumenda voluptatem.
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
+    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
+    fugiat rem praesentium assumenda voluptatem.
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
+    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
+    fugiat rem praesentium assumenda voluptatem.
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
+    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
+    fugiat rem praesentium assumenda voluptatem.
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
+    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
+    fugiat rem praesentium assumenda voluptatem.
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
+    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
+    fugiat rem praesentium assumenda voluptatem.
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
+    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
+    fugiat rem praesentium assumenda voluptatem.
+  </p>
+</div> -->

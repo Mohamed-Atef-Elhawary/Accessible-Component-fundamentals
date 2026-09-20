@@ -39,7 +39,7 @@
         <button
           #firstFocusedButttonElement
           (click)="onCancel('Cancel')"
-          class="text-lg sm:text-xl font-semibold py-1 w-[45%] rounded cursor-pointer border hover:border-btnporder border-disbtnporder transition duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+          class="text-lg sm:text-xl font-semibold py-1 w-[45%] rounded cursor-pointer border hover:border-activeColor border-inactiveColor transition duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
         >
           Cancel
         </button>
@@ -83,7 +83,7 @@
             type="text "
             #firstFocusedInputElement
             formControlName="name"
-            class="bg-gray-100 outline-2 outline-disbtnporder rounded w-full hover:scale-104 hover:pl-2 transition-all duration-custom p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+            class="bg-gray-100 outline-2 outline-inactiveColor rounded w-full hover:scale-104 hover:pl-2 transition-all duration-custom p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
           />
           <span class="text-danger">{{ errorMessage.name() }}</span>
         </label>
@@ -93,7 +93,7 @@
             formControlName="email"
             id="userEmail"
             type="text "
-            class="bg-gray-100 outline-2 outline-disbtnporder rounded w-full hover:scale-104 hover:pl-2 transition-all duration-custom p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+            class="bg-gray-100 outline-2 outline-inactiveColor rounded w-full hover:scale-104 hover:pl-2 transition-all duration-custom p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
           />
           <span class="text-danger">{{ errorMessage.email() }}</span>
         </label>
@@ -103,7 +103,7 @@
             formControlName="role"
             id="userRole"
             type="text "
-            class="bg-gray-100 outline-2 outline-disbtnporder rounded w-full hover:scale-104 hover:pl-2 transition-all duration-custom p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+            class="bg-gray-100 outline-2 outline-inactiveColor rounded w-full hover:scale-104 hover:pl-2 transition-all duration-custom p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
           />
           <span class="text-danger">{{ errorMessage.role() }}</span>
         </label>
@@ -111,7 +111,7 @@
           <button
             type="button"
             (click)="onCancel('Cancel')"
-            class="border-2 text-lg sm:text-xl font-semibold py-1 w-[45%] rounded cursor-pointer border-btnporder hover:scale-102 transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+            class="border-2 text-lg sm:text-xl font-semibold py-1 w-[45%] rounded cursor-pointer border-activeColor hover:scale-102 transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
           >
             Cancel
           </button>

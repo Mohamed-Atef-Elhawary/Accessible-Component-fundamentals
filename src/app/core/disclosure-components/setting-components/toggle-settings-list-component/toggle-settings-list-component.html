@@ -6,19 +6,19 @@
         type="button"
         role="switch"
         [attr.aria-checked]="setting.checked()"
-        aria-labelledby="email-notif-label"
+        aria-label="email-notif-label"
         (click)="toggleCheckState(setting.id)"
         [class]="{
-          'border-btnporder': setting.checked(),
-          'border-disbtnporder': !setting.checked(),
+          'border-activeColor': setting.checked(),
+          'border-inactiveColor': !setting.checked(),
         }"
         class="w-[20px] h-[12px] border-2 rounded-full flex items-center px-[2px] cursor-pointer transition-all duration-custom focus-visible:outline-none focus-visible:border-focusVisibleColor focus-visible:ring-1 focus-visible:ring-focusVisibleColor"
       >
         <span
           [class]="{
-            'bg-btnporder': setting.checked(),
+            'bg-activeColor': setting.checked(),
             'translate-x-[7px]': setting.checked(),
-            'bg-disbtnporder': !setting.checked(),
+            'bg-inactiveColor': !setting.checked(),
             'translate-x-[0px]': !setting.checked(),
           }"
           class="w-[5px] h-[5px] rounded-full transition-all duration-custom"

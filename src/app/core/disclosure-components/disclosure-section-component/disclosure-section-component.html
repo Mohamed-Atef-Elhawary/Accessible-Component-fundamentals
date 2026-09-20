@@ -3,13 +3,13 @@
     'grid-rows-[auto_1fr]': openState(),
     'grid-rows-[auto_0fr]': !openState(),
   }"
-  class="rounded grid transition-all duration-custom bg-whiteColor"
+  class="grid transition-all duration-custom border-2 border-transparent bg-whiteColor"
 >
-  <h2 [id]="'headerId'">
+  <h2 [id]="'headerId'" class="">
     <button
       type="button"
       (click)="toggleState()"
-      class="flex gap-2 w-full h-full bg-headerSectionbg p-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+      class="flex gap-2 w-full h-full bg-headerSectionbg p-2 cursor-pointer focus-visible:outline-4 focus-visible:outline-focusVisibleColor"
       [attr.aria-expanded]="openState()"
       [attr.aria-controls]="'settingId'"
     >
@@ -21,13 +21,12 @@
 
   <div
     class="overflow-hidden"
-    [class.p-2]="openState()"
     [id]="'settingId'"
     role="region"
     [attr.aria-labelledby]="'headerId'"
     [attr.aria-hidden]="!openState()"
     [inert]="!openState()"
   >
-    <ng-content></ng-content>
+    <div class="p-2"><ng-content></ng-content></div>
   </div>
 </article>

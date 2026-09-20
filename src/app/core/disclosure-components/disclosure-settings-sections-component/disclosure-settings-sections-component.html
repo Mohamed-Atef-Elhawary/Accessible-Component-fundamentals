@@ -1,14 +1,6 @@
-<div class="m-2">
+<div class="flex flex-col gap-2">
   <app-disclosure-section-component title="Notification preferences">
-    <app-toggle-settings-list-component
-      [settingList]="notificationSettingList"
-    ></app-toggle-settings-list-component>
-  </app-disclosure-section-component>
-
-  <app-disclosure-section-component title="Accessibility">
-    <app-toggle-settings-list-component
-      [settingList]="accessibilitySettingList"
-    ></app-toggle-settings-list-component>
+    <app-toggle-settings-list-component [settingList]="notificationSettingList" />
   </app-disclosure-section-component>
 
   <app-disclosure-section-component title="Privacy and security">
@@ -18,7 +10,16 @@
   <app-disclosure-section-component title="Display and appearance">
     <app-display-and-appearance-settings-component />
   </app-disclosure-section-component>
-  <app-disclosure-section-component title="Display and appearance">
+
+  <app-disclosure-section-component title="Accessibility">
+    <app-toggle-settings-list-component [settingList]="accessibilitySettingList" />
+  </app-disclosure-section-component>
+
+  <app-disclosure-section-component title="Text size and readability">
+    <app-readability-settings-component />
+  </app-disclosure-section-component>
+
+  <app-disclosure-section-component title="Language and region">
     <app-language-settings-component />
   </app-disclosure-section-component>
 </div>

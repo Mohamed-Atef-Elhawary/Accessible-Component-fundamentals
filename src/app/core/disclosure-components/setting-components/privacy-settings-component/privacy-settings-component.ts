@@ -8,6 +8,7 @@ import { faCircleDot } from '@fortawesome/free-regular-svg-icons';
   selector: 'app-privacy-settings-component',
   styleUrl: './privacy-settings-component.css',
   templateUrl: './privacy-settings-component.html',
+  host: { class: 'block' },
 })
 export class PrivacySettingsComponent {
   privacyValue: FormControl = new FormControl('initial');

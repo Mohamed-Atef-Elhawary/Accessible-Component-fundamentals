@@ -18,7 +18,7 @@ import { UserModalStateService } from '../../services/modal-dialog-services/user
   selector: 'app-header-component',
   imports: [FontAwesomeModule],
   templateUrl: './header-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './header-component.css',
 })
 export class HeaderComponent {

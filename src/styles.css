@@ -4,23 +4,27 @@
 @theme {
   --color-mainbg: #d2d3d8;
   --color-sidebarbg: #eaeaea;
+
   --color-headerbg: #eeeefa;
   --color-secondarybg: #9198e8;
   --color-subHeading: #7d8aa1;
   --color-headerSectionbg: #f1f5f9;
-  --color-scrollbg: #9ca3af;
+  --color-borderColor: #9ca3af;
+
   --color-whiteColor: #fff;
-
-  --color-dark: #334155;
+  --color-dark: #000;
   --color-light: #64748b;
-
   --color-danger: #dc2626;
   --color-danger2: #e11d48;
-  --color-btnporder: #4f46e5;
-  --color-disbtnporder: #d1d5db;
+
+  --color-scrollbg: #9ca3af;
+
+  --color-activeColor: #4f46e5;
+  --color-inactiveColor: #d1d5db;
   --color-focusVisibleColor: #c7d2fe;
+
   --padding-innerCompPadding: 4px;
-  --duration-custom: 300ms;
+  --duration-custom: 500ms;
 }
 @import './utilities.css';
 
@@ -33,7 +37,7 @@
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--color-scrollbg);
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
 }
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--color-dark);

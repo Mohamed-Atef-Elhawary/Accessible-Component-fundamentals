@@ -6,6 +6,7 @@ import { SettingList } from '../../../../interfaces/disclosure-settings';
   selector: 'app-toggle-settings-list-component',
   styleUrl: './toggle-settings-list-component.css',
   templateUrl: './toggle-settings-list-component.html',
+  host: { class: 'block' },
 })
 export class ToggleSettingsListComponent {
   settingList = input.required<SettingList[]>();

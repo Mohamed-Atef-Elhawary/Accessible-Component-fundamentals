@@ -10,6 +10,7 @@ import { Appearance } from '../../../../interfaces/disclosure-settings';
   selector: 'app-display-and-appearance-settings-component',
   styleUrl: './display-and-appearance-settings-component.css',
   templateUrl: './display-and-appearance-settings-component.html',
+  host: { class: 'block' },
 })
 export class DisplayAndAppearanceSettingsComponent {
   appearances: Appearance[] = [
@@ -42,4 +43,7 @@ export class DisplayAndAppearanceSettingsComponent {
   }
 
   onChange() {}
+  getLabel(mode: string): string {
+    return `${mode} mode`;
+  }
 }

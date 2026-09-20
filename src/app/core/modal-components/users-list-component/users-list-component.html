@@ -52,7 +52,7 @@
               <button
                 (click)="openEditModal(user)"
                 [aria-label]="'Edit ' + user.name"
-                class="border border-disbtnporder hover:border-btnporder cursor-pointer py-1 px-4 rounded font-semibold transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+                class="border border-inactiveColor hover:border-activeColor cursor-pointer py-1 px-4 rounded font-semibold transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
               >
                 Edit
               </button>
@@ -100,7 +100,7 @@
     <button
       aria-label="add user"
       (click)="openAddModal()"
-      class="border-2 border-disbtnporder hover:border-secondarybg px-2 py-1 rounded-lg cursor-pointer transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+      class="border-2 border-inactiveColor hover:border-secondarybg px-2 py-1 rounded-lg cursor-pointer transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
     >
       <fa-icon [icon]="plus" aria-hidden="true"></fa-icon>
       <span class="font-semibold ml-1">Add user</span>

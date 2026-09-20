@@ -1,1 +1,92 @@
-<p>readability-settings-component works!</p>
+<div class="flex flex-col gap-4">
+  <div class="flex flex-col gap-2">
+    <div class="flex items-center justify-between">
+      <span id="text-size">Text size</span>
+      <span>Medium</span>
+    </div>
+    <input
+      type="range"
+      [value]="rangeValue()"
+      min="0"
+      max="100"
+      (input)="onInput($event)"
+      [style.--range-percent.%]="rangeValue()"
+      aria-labelledby="text-size"
+      [attr.aria-valuetext]="'Medium'"
+      class="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+    />
+  </div>
+  <hr class="border-inactiveColor" />
+  <div class="flex flex-col gap-2">
+    <div class="flex items-center justify-between">
+      <span id="line-hieght">Line height</span>
+      <span>Relaxed</span>
+    </div>
+    <input
+      type="range"
+      [value]="rangeValue()"
+      min="0"
+      max="100"
+      (input)="onInput($event)"
+      [style.--range-percent.%]="rangeValue()"
+      aria-labelledby="line-hieght"
+      class="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+    />
+    <p aria-live="polite">
+      This paragraph shows how the spacing between lines changes as the line height setting is
+      adjusted, making longer text easier to scan.
+    </p>
+  </div>
+</div>
+<!-- <div>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
+    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
+    fugiat rem praesentium assumenda voluptatem.
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
+    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
+    fugiat rem praesentium assumenda voluptatem.
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
+    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
+    fugiat rem praesentium assumenda voluptatem.
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
+    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
+    fugiat rem praesentium assumenda voluptatem.
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
+    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
+    fugiat rem praesentium assumenda voluptatem.
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
+    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
+    fugiat rem praesentium assumenda voluptatem.
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
+    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
+    fugiat rem praesentium assumenda voluptatem.
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
+    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
+    fugiat rem praesentium assumenda voluptatem.
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
+    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
+    fugiat rem praesentium assumenda voluptatem.
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
+    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
+    fugiat rem praesentium assumenda voluptatem.
+  </p>
+</div> -->

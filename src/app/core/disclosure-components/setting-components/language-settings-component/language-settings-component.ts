@@ -1,23 +1,13 @@
-import {
-  afterNextRender,
-  Component,
-  computed,
-  DestroyRef,
-  effect,
-  Signal,
-  signal,
-  WritableSignal,
-} from '@angular/core';
+import { afterNextRender, Component, computed, DestroyRef, signal } from '@angular/core';
 import { Language } from '../../../../interfaces/disclosure-settings';
 import { SelectedLanguage } from '../../../../types/generalTypes';
-import { DatePipe } from '@angular/common';
-import { retry, single } from 'rxjs';
 
 @Component({
-  imports: [DatePipe],
+  imports: [],
   selector: 'app-language-settings-component',
   styleUrl: './language-settings-component.css',
   templateUrl: './language-settings-component.html',
+  host: { class: 'block' },
 })
 export class LanguageSettingsComponent {
   selectedLanguage = signal<SelectedLanguage>('arabic');

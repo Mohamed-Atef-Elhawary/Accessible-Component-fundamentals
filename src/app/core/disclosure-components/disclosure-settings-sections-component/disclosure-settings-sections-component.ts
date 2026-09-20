@@ -5,6 +5,7 @@ import { ToggleSettingsListComponent } from '../setting-components/toggle-settin
 import { SettingList } from '../../../interfaces/disclosure-settings';
 import { DisplayAndAppearanceSettingsComponent } from '../setting-components/display-and-appearance-settings-component/display-and-appearance-settings-component';
 import { LanguageSettingsComponent } from '../setting-components/language-settings-component/language-settings-component';
+import { ReadabilitySettingsComponent } from '../setting-components/readability-settings-component/readability-settings-component';
 
 @Component({
   imports: [
@@ -13,6 +14,7 @@ import { LanguageSettingsComponent } from '../setting-components/language-settin
     ToggleSettingsListComponent,
     DisplayAndAppearanceSettingsComponent,
     LanguageSettingsComponent,
+    ReadabilitySettingsComponent,
   ],
   selector: 'app-disclosure-settings-sections-component',
   styleUrl: './disclosure-settings-sections-component.css',

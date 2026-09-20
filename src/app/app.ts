@@ -6,7 +6,7 @@ import { SidebarComponent } from './core/sidebar-component/sidebar-component';
   selector: 'app-root',
   imports: [RouterOutlet, SidebarComponent],
   templateUrl: './app.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './app.css',
 })
 export class App {}

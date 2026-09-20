@@ -6,10 +6,16 @@ import { AccessibilityOption } from '../../interfaces/accessibility-options';
 import { AccessibilityPlaygroundComponent } from '../../core/accessibility-playground-component/accessibility-playground-component';
 import { ActivityLogComponent } from '../../core/activity-log-component/activity-log-component';
 import { ActivityLogService } from '../../services/activity-log/activity-log-service';
+import { DisclosureSettingsSectionsComponent } from '../../core/disclosure-components/disclosure-settings-sections-component/disclosure-settings-sections-component';
 
 @Component({
   selector: 'app-disclosure-component',
-  imports: [HeaderComponent, AccessibilityPlaygroundComponent, ActivityLogComponent],
+  imports: [
+    HeaderComponent,
+    AccessibilityPlaygroundComponent,
+    ActivityLogComponent,
+    DisclosureSettingsSectionsComponent,
+  ],
   templateUrl: './disclosure-component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './disclosure-component.css',

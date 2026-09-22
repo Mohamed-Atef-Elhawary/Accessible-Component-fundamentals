@@ -41,7 +41,7 @@ export class DisclosureAccessibilityStateService {
     try {
       this.optionsMap[optionKey].update((state) => !state);
     } catch {
-      console.error('Accessibility ption does not exist');
+      console.error('Accessibility option does not exist');
     }
   }
 }

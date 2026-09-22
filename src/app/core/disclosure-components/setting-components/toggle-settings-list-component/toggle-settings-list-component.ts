@@ -1,5 +1,5 @@
-import { Component, input, signal } from '@angular/core';
-import { SettingList } from '../../../../interfaces/disclosure-settings';
+import { Component, input, output } from '@angular/core';
+import { NotificationSetting } from '../../../../stors/setting-stores/NotificationSettingsStore';
 
 @Component({
   imports: [],
@@ -9,6 +9,10 @@ import { SettingList } from '../../../../interfaces/disclosure-settings';
   host: { class: 'block' },
 })
 export class ToggleSettingsListComponent {
-  settingList = input.required<SettingList[]>();
-  toggleCheckState(id: string) {}
+  notificationSettings = input.required<NotificationSetting[]>();
+  toggleCheckState = output<string>();
+
+  onToggleCheckState(notificationName: string) {
+    this.toggleCheckState.emit(notificationName);
+  }
 }

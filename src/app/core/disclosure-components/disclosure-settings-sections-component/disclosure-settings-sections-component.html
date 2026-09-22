@@ -1,6 +1,10 @@
+<p>{{ notificationSettings() | json }}</p>
 <div class="flex flex-col gap-2">
   <app-disclosure-section-component title="Notification preferences">
-    <app-toggle-settings-list-component [settingList]="notificationSettingList" />
+    <app-toggle-settings-list-component
+      [notificationSettings]="notificationSettings()"
+      (toggleCheckState)="onToggleCheckState($event)"
+    />
   </app-disclosure-section-component>
 
   <app-disclosure-section-component title="Privacy and security">
@@ -11,9 +15,9 @@
     <app-display-and-appearance-settings-component />
   </app-disclosure-section-component>
 
-  <app-disclosure-section-component title="Accessibility">
+  <!-- <app-disclosure-section-component title="Accessibility">
     <app-toggle-settings-list-component [settingList]="accessibilitySettingList" />
-  </app-disclosure-section-component>
+  </app-disclosure-section-component> -->
 
   <app-disclosure-section-component title="Text size and readability">
     <app-readability-settings-component />

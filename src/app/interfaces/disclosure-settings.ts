@@ -2,11 +2,7 @@ import { Signal } from '@angular/core';
 import { SelectedLanguage, PreferredTheme } from '../types/generalTypes';
 import { IconDefinition } from '@fortawesome/angular-fontawesome';
 
-export interface SettingList {
-  id: string;
-  label: string;
-  checked: Signal<boolean>;
-}
+////////////////////////////////////////////////////////
 
 export interface GeneralDisclosureSettings {
   id: string;

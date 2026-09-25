@@ -1,48 +1,39 @@
-import { Component, signal } from '@angular/core';
-import { PreferredTheme } from '../../../../types/generalTypes';
-import { faDisplay } from '@fortawesome/free-solid-svg-icons';
-import { faSun, faMoon } from '@fortawesome/free-regular-svg-icons';
+import { Component, computed, inject } from '@angular/core';
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { Appearance } from '../../../../interfaces/disclosure-settings';
+import {
+  DISPLAY_SETTINGS_METADATA,
+  displaySettingsStore,
+} from '../../../../stors/setting-stores/display-settings-store/display-settings-store';
+import {
+  AppearanceData,
+  Theme,
+} from '../../../../interfaces/disclosure/display-disclosure-settings';
 
 @Component({
   imports: [FontAwesomeModule],
   selector: 'app-display-and-appearance-settings-component',
   styleUrl: './display-and-appearance-settings-component.css',
   templateUrl: './display-and-appearance-settings-component.html',
-  host: { class: 'block' },
 })
 export class DisplayAndAppearanceSettingsComponent {
-  appearances: Appearance[] = [
-    {
-      id: crypto.randomUUID(),
-      name: 'preferredTheme',
-      value: 'system',
-      icon: faDisplay,
-      checked: signal<boolean>(true),
-    },
-    {
-      id: crypto.randomUUID(),
-      name: 'preferredTheme',
-      value: 'light',
-      icon: faSun,
-      checked: signal<boolean>(false),
-    },
-    {
-      id: crypto.randomUUID(),
-      name: 'preferredTheme',
-      value: 'dark',
-      icon: faMoon,
-      checked: signal<boolean>(false),
-    },
-  ];
-  preferredTheme = signal<PreferredTheme>('system');
-  compactMode = signal<boolean>(false);
-  toggleCompactMode() {
-    this.compactMode.update((s) => !s);
+  displayStore = inject(displaySettingsStore);
+  appearanceOptions = computed<AppearanceData[]>(() => {
+    const appearance = this.displayStore.appearance();
+    const system = { ...DISPLAY_SETTINGS_METADATA.system, checked: appearance === 'system' };
+    const light = { ...DISPLAY_SETTINGS_METADATA.light, checked: appearance === 'light' };
+    const dark = { ...DISPLAY_SETTINGS_METADATA.dark, checked: appearance === 'dark' };
+    return [system, light, dark];
+  });
+  compactMode = computed(() => this.displayStore.compact());
+
+  onChange(appearance: Theme) {
+    this.displayStore.updateAppearanceState(appearance);
   }
 
-  onChange() {}
+  toggleCompactMode() {
+    this.displayStore.toggleCompactState();
+  }
   getLabel(mode: string): string {
     return `${mode} mode`;
   }

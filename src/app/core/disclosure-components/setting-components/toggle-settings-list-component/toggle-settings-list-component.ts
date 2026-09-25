@@ -1,5 +1,9 @@
 import { Component, input, output } from '@angular/core';
-import { NotificationSetting } from '../../../../stors/setting-stores/NotificationSettingsStore';
+import {
+  AccessibilitySettingName,
+  NotificationSettingName,
+  ToggleSettingMetaData,
+} from '../../../../interfaces/disclosure/toggle-disclosure-settings';
 
 @Component({
   imports: [],
@@ -9,10 +13,11 @@ import { NotificationSetting } from '../../../../stors/setting-stores/Notificati
   host: { class: 'block' },
 })
 export class ToggleSettingsListComponent {
-  notificationSettings = input.required<NotificationSetting[]>();
+  settingsMetaData =
+    input.required<ToggleSettingMetaData<NotificationSettingName | AccessibilitySettingName>[]>();
   toggleCheckState = output<string>();
 
-  onToggleCheckState(notificationName: string) {
-    this.toggleCheckState.emit(notificationName);
+  onToggleCheckState(setitngName: string) {
+    this.toggleCheckState.emit(setitngName);
   }
 }

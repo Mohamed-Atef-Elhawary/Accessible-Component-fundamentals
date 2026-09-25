@@ -3,24 +3,23 @@
     <div class="flex items-center justify-between">
       <h3 id="language" class="text-dark">{{ settingData().langTitle }}</h3>
       <div
-        class="flex bg-mainbg rounded overflow-hidden"
         role="radiogroup"
         aria-labelledby="language"
+        class="flex bg-mainbg rounded overflow-hidden"
       >
-  
         @for (language of languages; track language.id) {
           <div class="p-[2px] relative">
             <input
               type="radio"
-              class="sr-only peer"
               [name]="language.name"
               [id]="language.id"
               [checked]="language.checked()"
               (change)="onChange(language.value)"
+              class="sr-only peer"
             />
             <label
               [for]="language.id"
-              class="p-1 block rounded text-light peer-checked:text-black peer-checked:bg-whiteColor peer-focus-visible:ring-2 peer-focus-visible:ring-focusVisibleColor"
+              class="p-1 block rounded text-light peer-checked:text-black bg-whiteColor/50 peer-checked:bg-whiteColor peer-focus-visible:ring-2 peer-focus-visible:ring-focusVisibleColor"
               >{{ getLang(language.value) }}</label
             >
           </div>

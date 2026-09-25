@@ -1,20 +1,23 @@
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Component, computed, inject } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCircleDot } from '@fortawesome/free-regular-svg-icons';
+import { PrivacyOption } from '../../../../interfaces/disclosure/privacy-disclosure-settings';
+import { privacySettingsStore } from '../../../../stors/setting-stores/privacy-settings-store/privacy-settings-store';
 
 @Component({
-  imports: [ReactiveFormsModule, FontAwesomeModule],
+  imports: [FontAwesomeModule],
   selector: 'app-privacy-settings-component',
   styleUrl: './privacy-settings-component.css',
   templateUrl: './privacy-settings-component.html',
-  host: { class: 'block' },
+  providers: [privacySettingsStore],
 })
 export class PrivacySettingsComponent {
-  privacyValue: FormControl = new FormControl('initial');
   circleDot = faCircleDot;
+  privacyList: PrivacyOption[] = ['public', 'friends', 'private'];
+  selectedOption = computed<PrivacyOption>(() => this.privacySettingsStore.selectedOption());
+  privacySettingsStore = inject(privacySettingsStore);
 
-  logVal(event: Event) {
-    console.log((event.target as HTMLInputElement).value);
+  uodatePrivacyState(selectedOption: PrivacyOption) {
+    this.privacySettingsStore.updatePrivacyState({ selectedOption });
   }
 }

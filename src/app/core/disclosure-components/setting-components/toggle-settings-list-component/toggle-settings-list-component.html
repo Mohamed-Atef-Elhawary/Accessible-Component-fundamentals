@@ -1,25 +1,25 @@
 <ul class="text-dark">
-  @for (notification of notificationSettings(); track notification.id) {
+  @for (setting of settingsMetaData(); track setting.id) {
     <li class="flex items-center justify-between">
-      <span class="text-dark" [id]="notification.id">{{ notification.label }}</span>
+      <span class="text-dark" [id]="setting.id">{{ setting.label }}</span>
       <button
         type="button"
         role="switch"
-        [attr.aria-checked]="notification.checked"
+        [attr.aria-checked]="setting.checked"
         aria-label="email-notif-label"
-        (click)="onToggleCheckState(notification.notificationName)"
+        (click)="onToggleCheckState(setting.settingName)"
         [class]="{
-          'border-activeColor': notification.checked,
-          'border-inactiveColor': !notification.checked,
+          'border-activeColor': setting.checked,
+          'border-inactiveColor': !setting.checked,
         }"
         class="w-[20px] h-[12px] border-2 rounded-full flex items-center px-[2px] cursor-pointer transition-all duration-custom focus-visible:outline-none focus-visible:border-focusVisibleColor focus-visible:ring-1 focus-visible:ring-focusVisibleColor"
       >
         <span
           [class]="{
-            'bg-activeColor': notification.checked,
-            'translate-x-[7px]': notification.checked,
-            'bg-inactiveColor': !notification.checked,
-            'translate-x-[0px]': !notification.checked,
+            'bg-activeColor': setting.checked,
+            'translate-x-[7px]': setting.checked,
+            'bg-inactiveColor': !setting.checked,
+            'translate-x-[0px]': !setting.checked,
           }"
           class="w-[5px] h-[5px] rounded-full transition-all duration-custom"
         ></span>

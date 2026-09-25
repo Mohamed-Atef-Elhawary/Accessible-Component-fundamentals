@@ -1,13 +1,15 @@
 <nav aria-label="main navigation">
-  <ul class="flex flex-col gap-4">
+  <ul role="list" class="flex flex-col gap-4">
     @for (link of navigationLinks; track $index) {
-      <li class="">
+      <li role="listitem">
         <a
           [routerLink]="link.key"
           routerLinkActive="active  bg-slate-200"
+          #currentLink="routerLinkActive"
+          [attr.aria-current]="currentLink.isActive ? 'page' : null"
           class="flex gap-2 text-slate-700 hover:text-slate-900 not-[.active]:hover:bg-slate-100 hover:scale-102 transition duration-custom px-2 py-1.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
         >
-          <fa-icon class="hidden md:block" [icon]="link.icon"></fa-icon>
+          <fa-icon aria-hidden="true" class="hidden md:block" [icon]="link.icon"></fa-icon>
 
           <span>{{ link.value }}</span>
         </a>

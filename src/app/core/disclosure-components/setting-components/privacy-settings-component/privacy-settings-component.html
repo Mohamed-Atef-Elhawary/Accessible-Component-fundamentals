@@ -1,119 +1,27 @@
+<!-- PrivacySettingsComponent.html -->
 <fieldset class="flex gap-2">
   <legend class="mb-1">Who can see my profile?</legend>
+  @for (privacy of privacyList; track privacy) {
+    <label [for]="privacy" class="flex items-center gap-1 cursor-pointer">
+      <input
+        type="radio"
+        [id]="privacy"
+        [value]="privacy"
+        class="sr-only peer"
+        name="privacySetting"
+        (change)="uodatePrivacyState(privacy)"
+      />
+      <fa-icon
+        [class]="{
+          'text-activeColor': selectedOption() === privacy,
+          'text-inactiveColor': selectedOption() !== privacy,
+        }"
+        class="text-[15px] peer-focus-visible:ring-2 peer-focus-visible:ring-focusVisibleColor"
+        [icon]="circleDot"
+        aria-hidden="true"
+      ></fa-icon>
 
-  <div class="flex items-center gap-1">
-    <input
-      type="radio"
-      id="public"
-      value="public"
-      class="sr-only peer"
-      name="privacy"
-      [formControl]="privacyValue"
-      (change)="logVal($event)"
-    />
-    <fa-icon
-      [class]="{
-        'text-activeColor': privacyValue.value === 'public',
-        'text-inactiveColor': privacyValue.value !== 'public',
-      }"
-      class="text-[15px] peer-focus-visible:ring-2 peer-focus-visible:ring-focusVisibleColor"
-      [icon]="circleDot"
-      aria-hidden="true"
-    ></fa-icon>
-    <label for="public">Public</label>
-  </div>
-  <div class="flex items-center gap-1">
-    <input
-      type="radio"
-      id="friends"
-      value="friends"
-      class="sr-only peer"
-      name="privacy"
-      [formControl]="privacyValue"
-      (change)="logVal($event)"
-    />
-    <fa-icon
-      [class]="{
-        'text-activeColor': privacyValue.value === 'friends',
-        'text-inactiveColor': privacyValue.value !== 'friends',
-      }"
-      class="text-[15px] peer-focus-visible:ring-2 peer-focus-visible:ring-focusVisibleColor"
-      [icon]="circleDot"
-      aria-hidden="true"
-    ></fa-icon>
-    <label for="friends">Friends</label>
-  </div>
-  <div class="flex items-center gap-1">
-    <input
-      type="radio"
-      id="private"
-      value="private"
-      class="sr-only peer"
-      name="privacy"
-      [formControl]="privacyValue"
-      (change)="logVal($event)"
-    />
-    <fa-icon
-      [class]="{
-        'text-activeColor': privacyValue.value === 'private',
-        'text-inactiveColor': privacyValue.value !== 'private',
-      }"
-      class="text-[15px] peer-focus-visible:ring-2 peer-focus-visible:ring-focusVisibleColor"
-      [icon]="circleDot"
-      aria-hidden="true"
-    ></fa-icon>
-    <label for="private">Private</label>
-  </div>
+      <span>{{ privacy }}</span>
+    </label>
+  }
 </fieldset>
-<!-- <div>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
-    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
-    fugiat rem praesentium assumenda voluptatem.
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
-    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
-    fugiat rem praesentium assumenda voluptatem.
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
-    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
-    fugiat rem praesentium assumenda voluptatem.
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
-    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
-    fugiat rem praesentium assumenda voluptatem.
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
-    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
-    fugiat rem praesentium assumenda voluptatem.
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
-    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
-    fugiat rem praesentium assumenda voluptatem.
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
-    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
-    fugiat rem praesentium assumenda voluptatem.
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
-    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
-    fugiat rem praesentium assumenda voluptatem.
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
-    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
-    fugiat rem praesentium assumenda voluptatem.
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
-    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
-    fugiat rem praesentium assumenda voluptatem.
-  </p>
-</div> -->

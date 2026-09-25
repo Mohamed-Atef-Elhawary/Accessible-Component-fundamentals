@@ -1,5 +1,5 @@
 import { afterNextRender, Component, computed, DestroyRef, signal } from '@angular/core';
-import { Language } from '../../../../interfaces/disclosure-settings';
+import { Language } from '../../../../interfaces/disclosure/general-disclosure-settings';
 import { SelectedLanguage } from '../../../../types/generalTypes';
 
 @Component({

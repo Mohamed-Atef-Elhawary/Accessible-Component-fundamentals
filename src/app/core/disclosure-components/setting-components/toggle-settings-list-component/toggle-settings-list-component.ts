@@ -3,7 +3,7 @@ import {
   AccessibilitySettingName,
   NotificationSettingName,
   ToggleSettingMetaData,
-} from '../../../../interfaces/disclosure/toggle-disclosure-settings';
+} from '../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 
 @Component({
   imports: [],

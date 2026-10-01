@@ -13,8 +13,3 @@ export interface DisplaySettingState {
   appearance: Theme;
   compact: boolean;
 }
-
-export interface DisplayService {
-  loadSettings(): Promise<DisplaySettingState>;
-  saveSettings(displaySettingState: DisplaySettingState): Promise<void>;
-}

@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import {
-  PrivacyService,
-  PrivacySettingsState,
-} from '../../../interfaces/disclosure/privacy-disclosure-settings';
+import { PrivacySettingsState } from '../../../interfaces/disclosure/settings-interfaces/privacy-disclosure-settings';
+import { SettingsService } from '../../../interfaces/disclosure/global-interfaces/settings-service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PrivacySettingsService implements PrivacyService {
+export class PrivacySettingsService implements SettingsService<PrivacySettingsState> {
   async loadSettings(): Promise<PrivacySettingsState> {
     return { selectedOption: 'friends' };
   }

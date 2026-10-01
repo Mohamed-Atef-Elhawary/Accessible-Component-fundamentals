@@ -10,7 +10,7 @@ import {
   AppearanceData,
   DisplaySettingState,
   Theme,
-} from '../../../interfaces/disclosure/display-disclosure-settings';
+} from '../../../interfaces/disclosure/settings-interfaces/display-disclosure-settings';
 import { inject } from '@angular/core';
 import { DisplaySettingsService } from '../../../services/setting-services/display-settings-service/display-settings-service';
 

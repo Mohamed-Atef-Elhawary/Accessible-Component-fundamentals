@@ -2,7 +2,7 @@ import {
   AccessibilitySettingName,
   ToggleSettingMetaData,
   ToggleSettingsState,
-} from '../../../interfaces/disclosure/toggle-disclosure-settings';
+} from '../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 import { AccessibilitySettingsService } from '../../../services/setting-services/accessibility-settings-service/accessibility-settings-service';
 import { createToggleSettingsStore } from '../factories/toggle-settings-store.factory';
 

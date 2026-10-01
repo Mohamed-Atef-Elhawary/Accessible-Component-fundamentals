@@ -15,6 +15,7 @@
             [value]="appearance.value"
             [checked]="appearance.checked"
             (change)="onChange(appearance.value)"
+            [attr.aria-label]="getLabel(appearance.value)"
             class="sr-only peer"
           />
           <label
@@ -22,7 +23,7 @@
             class="block rounded peer-focus-visible:ring-2 peer-focus-visible:ring-focusVisibleColor peer-checked:bg-whiteColor"
           >
             <fa-icon aria-hidden="true" [icon]="appearance.icon"></fa-icon>
-            <span class="sr-only" [attr.aria-label]="getLabel(appearance.value)"></span>
+            <!-- <span class="sr-only" >{{getLabel(appearance.value)}}</span> -->
           </label>
         </div>
       }

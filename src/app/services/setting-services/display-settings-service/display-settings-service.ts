@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import {
-  DisplayService,
-  DisplaySettingState,
-} from '../../../interfaces/disclosure/display-disclosure-settings';
+import { DisplaySettingState } from '../../../interfaces/disclosure/settings-interfaces/display-disclosure-settings';
+import { SettingsService } from '../../../interfaces/disclosure/global-interfaces/settings-service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DisplaySettingsService implements DisplayService {
+export class DisplaySettingsService implements SettingsService<DisplaySettingState> {
   async loadSettings(): Promise<DisplaySettingState> {
     return { appearance: 'system', compact: true };
   }

@@ -1,92 +1,59 @@
-<div class="flex flex-col gap-4">
-  <div class="flex flex-col gap-2">
-    <div class="flex items-center justify-between">
-      <span id="text-size">Text size</span>
-      <span>Medium</span>
-    </div>
-    <input
-      type="range"
-      [value]="rangeValue()"
-      min="0"
-      max="100"
-      (input)="onInput($event)"
-      [style.--range-percent.%]="rangeValue()"
-      aria-labelledby="text-size"
-      [attr.aria-valuetext]="'Medium'"
-      class="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
-    />
-  </div>
-  <hr class="border-inactiveColor" />
-  <div class="flex flex-col gap-2">
-    <div class="flex items-center justify-between">
-      <span id="line-hieght">Line height</span>
-      <span>Relaxed</span>
-    </div>
-    <input
-      type="range"
-      [value]="rangeValue()"
-      min="0"
-      max="100"
-      (input)="onInput($event)"
-      [style.--range-percent.%]="rangeValue()"
-      aria-labelledby="line-hieght"
-      class="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
-    />
-    <p aria-live="polite">
-      This paragraph shows how the spacing between lines changes as the line height setting is
-      adjusted, making longer text easier to scan.
+<div class="flex flex-col gap-8 bg-whiteColor pt-1">
+  <div
+    class="flex flex-col gap-1 min-[100px] overflow-hidden text-[1em] border border-inactiveColor p-2"
+  >
+    <h3 class="font-medium text-dark">
+      {{ readabilitySettingData().previewTitle }}
+    </h3>
+    <p [style]="previewStyle()" class="text-light">
+      {{ readabilitySettingData().previewDescription }}
     </p>
   </div>
+  <div class="flex gap-4 items-center">
+    <fa-icon [icon]="readabilitySettingData().icon" class="text-[30px]"></fa-icon>
+    <div class="grow flex flex-col lg:flex-row lg:justify-between gap-1">
+      <div>
+        <div class="flex items-center gap-1">
+          <span> {{ readabilitySettingData().settingTitle }}</span>
+          <span
+            class="block w-[60px] h-[30px] rounded-[5px] px-[2px] text-center leading-[30px] line border-2 border-inactiveColor bg-whiteColor"
+            >{{ settingScaleFactore() }}
+          </span>
+        </div>
+        <p class="text-light text-sm">{{ readabilitySettingData().settingSubtitle }}</p>
+      </div>
+
+      <div class="self-center sm:self-end flex items-center w-[300px]">
+        <fa-icon [icon]="readabilitySettingData().icon" class=""></fa-icon>
+
+        <label for="textZise" class="relative grow px-3">
+          <input
+            type="range"
+            id="textZise"
+            [value]="readabilitySettingData().settingRangeValue()"
+            min="0"
+            max="100"
+            #rangeInputRef
+            (input)="onRangeValue($event)"
+            [style.--range-percent.%]="readabilitySettingData().settingRangeValue()"
+            [style.--range-value]="settingScaleFactore()"
+            aria-label="text size"
+            [attr.aria-valuetext]="'Medium'"
+            class="text-end focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-focusVisibleColor"
+          />
+          <span
+            #spanToolTip
+            [style.left]="readabilitySettingData().settingRangeValue() + '%'"
+            [style.transform]="`translate(${-readabilitySettingData().settingRangeValue()}%,-150%)`"
+            class="absolute top-[50%] text-[1rem] w-[60px] h-[30px] rounded-[5px] px-[2px] text-center leading-[30px] line border-2 border-inactiveColor bg-whiteColor hidden"
+            >{{ settingScaleFactore() }}</span
+          >
+        </label>
+        <fa-icon
+          [icon]="readabilitySettingData().icon"
+          class="relative right-[5px] text-[30px]"
+        ></fa-icon>
+      </div>
+    </div>
+  </div>
 </div>
-<!-- <div>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
-    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
-    fugiat rem praesentium assumenda voluptatem.
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
-    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
-    fugiat rem praesentium assumenda voluptatem.
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
-    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
-    fugiat rem praesentium assumenda voluptatem.
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
-    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
-    fugiat rem praesentium assumenda voluptatem.
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
-    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
-    fugiat rem praesentium assumenda voluptatem.
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
-    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
-    fugiat rem praesentium assumenda voluptatem.
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
-    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
-    fugiat rem praesentium assumenda voluptatem.
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
-    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
-    fugiat rem praesentium assumenda voluptatem.
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
-    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
-    fugiat rem praesentium assumenda voluptatem.
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis nam voluptatibus vel,
-    omnis, odit delectus harum id odio ipsum totam deserunt doloribus, minima consequatur velit
-    fugiat rem praesentium assumenda voluptatem.
-  </p>
-</div> -->

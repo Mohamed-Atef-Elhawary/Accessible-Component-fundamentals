@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { DisclosureSectionComponent } from '../disclosure-section-component/disclosure-section-component';
 import { PrivacySettingsComponent } from '../setting-components/privacy-settings-component/privacy-settings-component';
 import { ToggleSettingsListComponent } from '../setting-components/toggle-settings-list-component/toggle-settings-list-component';
@@ -6,13 +6,11 @@ import { DisplayAndAppearanceSettingsComponent } from '../setting-components/dis
 import { LanguageSettingsComponent } from '../setting-components/language-settings-component/language-settings-component';
 import { ReadabilitySettingsComponent } from '../setting-components/readability-settings-component/readability-settings-component';
 
-import { JsonPipe } from '@angular/common';
-
 import {
   AccessibilitySettingName,
   NotificationSettingName,
   ToggleSettingMetaData,
-} from '../../../interfaces/disclosure/toggle-disclosure-settings';
+} from '../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 import {
   NOTIFICATION_SETTINGS_METADATA,
   notificationSettingsStore,
@@ -21,14 +19,9 @@ import {
   ACCESSIBILITY_SETTINGS_METADATA,
   accessibilitySettingsStore,
 } from '../../../stors/setting-stores/accessibility-settings-store/accessibility-settings.store';
-
-type AccssibilityName = 'motion' | 'contrast';
-export interface AccssibilitySetting {
-  id: string;
-  notificationName: AccssibilityName;
-  label: string;
-  checked: boolean;
-}
+import { ReadabilitySettingData } from '../../../interfaces/disclosure/settings-interfaces/readability-disclosure-settings';
+import { faA } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   imports: [
@@ -97,4 +90,27 @@ export class DisclosureSettingsSectionsComponent {
   ): settingname is TName {
     return availableNames.includes(settingname as TName);
   }
+
+  ///////////////////////////////////////////////////////////////////////
+  textSizeSettings = signal<ReadabilitySettingData>({
+    settingRangeValue: signal(0),
+    previewTitle: 'Text size preview',
+    previewDescription:
+      'The size of these words will change as you adjust the slider. Changes you make here will apply to most of the text on your device.',
+    settingTitle: 'Text size',
+    settingSubtitle: 'Text size that appears throughout the app',
+    cssProperty: 'fontSize',
+    icon: faA,
+  });
+
+  lineHeightSettings = signal<ReadabilitySettingData>({
+    settingRangeValue: signal(50),
+    previewTitle: 'Line height preview',
+    previewDescription:
+      'This paragraph shows how the spacing between lines changes as the line height setting is adjusted, making longer text easier to scan.',
+    settingTitle: 'Line height',
+    settingSubtitle: 'Spacing between lines of text throughout the app',
+    cssProperty: 'lineHeight',
+    icon: faBars,
+  });
 }

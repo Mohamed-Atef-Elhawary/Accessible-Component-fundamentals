@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
   NotificationSettingName,
-  ToggleService,
   ToggleSettingsState,
-} from '../../../interfaces/disclosure/toggle-disclosure-settings';
+} from '../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
+import { SettingsService } from '../../../interfaces/disclosure/global-interfaces/settings-service';
 
 export interface NotificationState {
   email: boolean;
@@ -13,7 +13,9 @@ export interface NotificationState {
 @Injectable({
   providedIn: 'root',
 })
-export class NotificationSettingsService implements ToggleService<NotificationSettingName> {
+export class NotificationSettingsService implements SettingsService<
+  ToggleSettingsState<NotificationSettingName>
+> {
   async loadSettings(): Promise<ToggleSettingsState<NotificationSettingName>> {
     return { email: false, push: false };
   }

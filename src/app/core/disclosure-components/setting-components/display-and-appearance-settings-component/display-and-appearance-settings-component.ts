@@ -8,7 +8,7 @@ import {
 import {
   AppearanceData,
   Theme,
-} from '../../../../interfaces/disclosure/display-disclosure-settings';
+} from '../../../../interfaces/disclosure/settings-interfaces/display-disclosure-settings';
 
 @Component({
   imports: [FontAwesomeModule],

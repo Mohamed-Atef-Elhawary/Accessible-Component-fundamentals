@@ -6,10 +6,7 @@ import {
   withProps,
   withState,
 } from '@ngrx/signals';
-import {
-  PrivacyOption,
-  PrivacySettingsState,
-} from '../../../interfaces/disclosure/privacy-disclosure-settings';
+import { PrivacySettingsState } from '../../../interfaces/disclosure/settings-interfaces/privacy-disclosure-settings';
 import { PrivacySettingsService } from '../../../services/setting-services/privacy-settings-service/privacy-settings-service';
 import { inject } from '@angular/core';
 

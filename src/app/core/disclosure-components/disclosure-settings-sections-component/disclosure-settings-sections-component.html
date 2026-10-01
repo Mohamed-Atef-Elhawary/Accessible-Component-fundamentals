@@ -22,7 +22,11 @@
   </app-disclosure-section-component>
 
   <app-disclosure-section-component title="Text size and readability">
-    <app-readability-settings-component />
+    <app-readability-settings-component [readabilitySettingData]="textSizeSettings()" />
+  </app-disclosure-section-component>
+
+  <app-disclosure-section-component title="Text size and readability">
+    <app-readability-settings-component [readabilitySettingData]="lineHeightSettings()" />
   </app-disclosure-section-component>
 
   <app-disclosure-section-component title="Language and region">

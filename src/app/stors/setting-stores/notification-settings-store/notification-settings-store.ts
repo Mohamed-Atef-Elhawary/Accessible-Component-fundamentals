@@ -2,7 +2,7 @@ import {
   ToggleSettingsState,
   NotificationSettingName,
   ToggleSettingMetaData,
-} from '../../../interfaces/disclosure/toggle-disclosure-settings';
+} from '../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 import { NotificationSettingsService } from '../../../services/setting-services/notification-settings-service/notification-settings-service';
 import { createToggleSettingsStore } from '../factories/toggle-settings-store.factory';
 

@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import {
   AccessibilitySettingName,
-  ToggleService,
   ToggleSettingsState,
-} from '../../../interfaces/disclosure/toggle-disclosure-settings';
+} from '../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
+import { SettingsService } from '../../../interfaces/disclosure/global-interfaces/settings-service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AccessibilitySettingsService implements ToggleService<AccessibilitySettingName> {
+export class AccessibilitySettingsService implements SettingsService<
+  ToggleSettingsState<AccessibilitySettingName>
+> {
   async loadSettings(): Promise<ToggleSettingsState<AccessibilitySettingName>> {
     return { contrast: false, motion: false };
   }

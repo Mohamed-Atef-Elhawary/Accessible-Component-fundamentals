@@ -1,8 +1,5 @@
 import { inject, Type } from '@angular/core';
-import {
-  ToggleService,
-  ToggleSettingsState,
-} from '../../../interfaces/disclosure/toggle-disclosure-settings';
+import { ToggleSettingsState } from '../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 import {
   getState,
   patchState,
@@ -12,9 +9,10 @@ import {
   withProps,
   withState,
 } from '@ngrx/signals';
+import { SettingsService } from '../../../interfaces/disclosure/global-interfaces/settings-service';
 
 export function createToggleSettingsStore<TName extends string>(
-  ServiceType: Type<ToggleService<TName>>,
+  ServiceType: Type<SettingsService<ToggleSettingsState<TName>>>,
   initialState: ToggleSettingsState<TName>,
 ) {
   return signalStore(

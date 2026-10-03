@@ -4,7 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   DISPLAY_SETTINGS_METADATA,
   displaySettingsStore,
-} from '../../../../stors/setting-stores/display-settings-store/display-settings-store';
+} from '../../../../stors/setting-stores/settings/display-settings-store/display-settings-store';
 import {
   AppearanceData,
   Theme,

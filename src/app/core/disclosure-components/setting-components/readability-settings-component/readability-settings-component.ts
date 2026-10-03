@@ -5,6 +5,7 @@ import {
   DestroyRef,
   ElementRef,
   input,
+  output,
   Renderer2,
   viewChild,
 } from '@angular/core';
@@ -24,7 +25,7 @@ import {
 } from 'rxjs';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ReadabilitySettingData } from '../../../../interfaces/disclosure/settings-interfaces/readability-disclosure-settings';
+import { ReadabilitySettingsText } from '../../../../interfaces/disclosure/settings-interfaces/readability-disclosure-settings';
 
 @Component({
   imports: [FontAwesomeModule],
@@ -34,14 +35,12 @@ import { ReadabilitySettingData } from '../../../../interfaces/disclosure/settin
   host: { class: 'block' },
 })
 export class ReadabilitySettingsComponent {
-  readabilitySettingData = input.required<ReadabilitySettingData>();
-
-  settingScaleFactore = computed(
-    () => `${this.readabilitySettingData().settingRangeValue() + 100}%`,
-  );
+  readabilitySettingData = input.required<ReadabilitySettingsText>();
+  onSettingRangeValue = output<number>();
+  left = computed(() => `${this.readabilitySettingData().settingRangeValue - 100}%`);
 
   previewStyle = computed(() => {
-    const value = this.settingScaleFactore();
+    const value = `${this.readabilitySettingData().settingRangeValue}%`;
     const key = this.readabilitySettingData().cssProperty;
     return {
       [key]: value,
@@ -110,13 +109,12 @@ export class ReadabilitySettingsComponent {
         });
     });
   }
-
   isThumbTouched(clientX: number): boolean {
     const trackWidth = this.rangeInputRef()?.nativeElement.getBoundingClientRect()['width'];
     const trackLeftPosition = this.rangeInputRef()?.nativeElement.getBoundingClientRect()['left'];
     const thumbWidth = 24 as const;
     const thumbHalfWidth = 12 as const;
-    const rangePercent = this.readabilitySettingData().settingRangeValue() / 100;
+    const rangePercent = (this.readabilitySettingData().settingRangeValue - 100) / 100;
     const thumbXPositionOnRangeInput = thumbHalfWidth + rangePercent * (trackWidth - thumbWidth);
     const exactMouseXPosition = clientX - trackLeftPosition;
     return Math.abs(exactMouseXPosition - thumbXPositionOnRangeInput) <= thumbHalfWidth;
@@ -131,6 +129,6 @@ export class ReadabilitySettingsComponent {
 
   onRangeValue(event: InputEvent) {
     const value: number = Number((event.target as HTMLInputElement).value);
-    this.readabilitySettingData().settingRangeValue.set(value);
+    this.onSettingRangeValue.emit(value);
   }
 }

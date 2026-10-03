@@ -9,12 +9,12 @@ import {
 } from '@ngrx/signals';
 import {
   Language,
-  LanguageData,
   LanguageSettingsText,
   LanguageSettingsState,
-} from '../../../interfaces/disclosure/settings-interfaces/language-disclosure-settings';
+  LanguageSettingsData,
+} from '../../../../interfaces/disclosure/settings-interfaces/language-disclosure-settings';
 import { computed, inject } from '@angular/core';
-import { LanguageSettingsService } from '../../../services/setting-services/language-settings-service/language-settings-service';
+import { LanguageSettingsService } from '../../../../services/setting-services/language-settings-service/language-settings-service';
 
 const languageSettingsState: LanguageSettingsState = { selectedLanguage: 'arabic' };
 export const languageSettingsStore = signalStore(
@@ -28,14 +28,14 @@ export const languageSettingsStore = signalStore(
     },
   })),
   withComputed(({ selectedLanguage }) => ({
-    languageDataList: computed<LanguageData[]>(() => {
-      const arabicLang: LanguageData = {
+    languageDataList: computed<LanguageSettingsData[]>(() => {
+      const arabicLang: LanguageSettingsData = {
         name: 'language',
         value: 'arabic',
         checked: selectedLanguage() === 'arabic',
       };
 
-      const englishLang: LanguageData = {
+      const englishLang: LanguageSettingsData = {
         name: 'language',
         value: 'english',
         checked: selectedLanguage() === 'english',

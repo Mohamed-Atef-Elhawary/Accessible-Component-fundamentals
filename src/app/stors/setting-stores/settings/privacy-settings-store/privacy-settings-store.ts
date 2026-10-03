@@ -6,8 +6,8 @@ import {
   withProps,
   withState,
 } from '@ngrx/signals';
-import { PrivacySettingsState } from '../../../interfaces/disclosure/settings-interfaces/privacy-disclosure-settings';
-import { PrivacySettingsService } from '../../../services/setting-services/privacy-settings-service/privacy-settings-service';
+import { PrivacySettingsState } from '../../../../interfaces/disclosure/settings-interfaces/privacy-disclosure-settings';
+import { PrivacySettingsService } from '../../../../services/setting-services/privacy-settings-service/privacy-settings-service';
 import { inject } from '@angular/core';
 
 const initialState: PrivacySettingsState = { selectedOption: 'public' };

@@ -1,5 +1,5 @@
 import { afterNextRender, Component, computed, DestroyRef, inject, signal } from '@angular/core';
-import { languageSettingsStore } from '../../../../stors/setting-stores/language-settings-store/language-settings-store';
+import { languageSettingsStore } from '../../../../stors/setting-stores/settings/language-settings-store/language-settings-store';
 import { Language } from '../../../../interfaces/disclosure/settings-interfaces/language-disclosure-settings';
 
 @Component({

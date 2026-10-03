@@ -2,7 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCircleDot } from '@fortawesome/free-regular-svg-icons';
 import { PrivacyOption } from '../../../../interfaces/disclosure/settings-interfaces/privacy-disclosure-settings';
-import { privacySettingsStore } from '../../../../stors/setting-stores/privacy-settings-store/privacy-settings-store';
+import { privacySettingsStore } from '../../../../stors/setting-stores/settings/privacy-settings-store/privacy-settings-store';
 
 @Component({
   imports: [FontAwesomeModule],

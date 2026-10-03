@@ -8,8 +8,6 @@ import {
   WritableSignal,
   DestroyRef,
   OnInit,
-  AfterViewInit,
-  ChangeDetectorRef,
   afterNextRender,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -19,7 +17,6 @@ import {
   FormControl,
   FormGroup,
   FormsModule,
-  NgModel,
   ReactiveFormsModule,
   ValidationErrors,
   Validators,
@@ -29,7 +26,6 @@ import { InputLabel } from '../../../interfaces/user';
 import { UserService } from '../../../services/modal-dialog-services/user-service/user-service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faTrashCan, faPencil, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { ERROR_MESSAGE } from '../../../constants/error-message';
 import { UserModalStateService } from '../../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
 import { ModalAccessibilityStateService } from '../../../services/modal-dialog-services/modal-accessibility-state/modal-accessibility-state-service';
 import { CloseOnBackdropDirective } from '../../../directives/mogal-dialog-directives/close-onbackdrop-click-directive/close-on-backdrop-directive';
@@ -94,6 +90,14 @@ export class UserModalComponent implements OnInit {
       };
     }
   });
+
+  ERROR_MESSAGE: Record<string, (field: string, config?: any) => string> = {
+    required: (field: string) => `${field} is required`,
+    pattern: (field: string) => `${field} is invalid`,
+    minlength: (field: string, config: any) => `min length is ${config.requiredLength}`,
+    maxlength: (field: string, config: any) => `max length is ${config.requiredLength}`,
+    email: (field: string) => `${field} is invalid`,
+  };
 
   errorMessage: Record<UserField, WritableSignal<string | null>> = {
     name: signal<string | null>(null),
@@ -183,10 +187,10 @@ export class UserModalComponent implements OnInit {
     if (error) {
       const key = Object.keys(error)[0];
       if (key === 'required' || key === 'pattern') {
-        const message = ERROR_MESSAGE[key](field);
+        const message = this.ERROR_MESSAGE[key](field);
         this.errorMessage[field].set(message);
       } else {
-        const message = ERROR_MESSAGE[key](field, error[key]);
+        const message = this.ERROR_MESSAGE[key](field, error[key]);
         this.errorMessage[field].set(message);
       }
     } else {

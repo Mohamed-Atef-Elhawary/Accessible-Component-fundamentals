@@ -5,11 +5,6 @@ import {
 } from '../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 import { SettingsService } from '../../../interfaces/disclosure/global-interfaces/settings-service';
 
-export interface NotificationState {
-  email: boolean;
-  push: boolean;
-}
-
 @Injectable({
   providedIn: 'root',
 })

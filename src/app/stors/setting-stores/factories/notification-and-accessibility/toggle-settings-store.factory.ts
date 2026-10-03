@@ -1,5 +1,4 @@
 import { inject, Type } from '@angular/core';
-import { ToggleSettingsState } from '../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 import {
   getState,
   patchState,
@@ -9,16 +8,17 @@ import {
   withProps,
   withState,
 } from '@ngrx/signals';
-import { SettingsService } from '../../../interfaces/disclosure/global-interfaces/settings-service';
+import { SettingsService } from '../../../../interfaces/disclosure/global-interfaces/settings-service';
+import { ToggleSettingsState } from '../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 
-export function createToggleSettingsStore<TName extends string>(
-  ServiceType: Type<SettingsService<ToggleSettingsState<TName>>>,
+export function buildToggleSettingsStore<TName extends string>(
+  serviceType: Type<SettingsService<ToggleSettingsState<TName>>>,
   initialState: ToggleSettingsState<TName>,
 ) {
   return signalStore(
     { providedIn: 'root' },
     withState(initialState),
-    withProps(() => ({ service: inject(ServiceType) })),
+    withProps(() => ({ service: inject(serviceType) })),
 
     withHooks((store) => ({
       async onInit() {
@@ -28,13 +28,15 @@ export function createToggleSettingsStore<TName extends string>(
     })),
 
     withMethods((store) => ({
+      // toggleSettingState(settingName: TName) {
+      //   patchState(
+      //     store,
+      //     (state) =>
+      //       ({ [settingName]: !state[settingName] }) as Partial<ToggleSettingsState<TName>>,
+      //   );
+      // },
       toggleSettingState(settingName: TName) {
-        const currentState = getState(store);
-        const current = currentState[settingName] as boolean;
-        patchState(
-          store,
-          (state) => ({ [settingName]: !current }) as Partial<ToggleSettingsState<TName>>,
-        );
+        patchState(store, (state) => ({ ...state, [settingName]: !state[settingName] }));
       },
 
       async saveState() {

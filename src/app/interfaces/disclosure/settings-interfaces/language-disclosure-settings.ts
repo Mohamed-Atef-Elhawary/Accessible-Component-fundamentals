@@ -5,7 +5,7 @@ export interface LanguageSettingsState {
   selectedLanguage: Language;
 }
 
-export interface LanguageData {
+export interface LanguageSettingsData {
   name: 'language';
   value: Language;
   checked: boolean;

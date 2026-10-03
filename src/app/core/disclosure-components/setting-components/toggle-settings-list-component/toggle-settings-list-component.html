@@ -1,29 +1,40 @@
-<ul class="text-dark">
-  @for (setting of settingsMetaData(); track setting.id) {
-    <li class="flex items-center justify-between">
-      <span class="text-dark" [id]="setting.id">{{ setting.label }}</span>
-      <button
-        type="button"
-        role="switch"
-        [attr.aria-checked]="setting.checked"
-        aria-label="email-notif-label"
-        (click)="onToggleCheckState(setting.settingName)"
-        [class]="{
-          'border-activeColor': setting.checked,
-          'border-inactiveColor': !setting.checked,
-        }"
-        class="w-[20px] h-[12px] border-2 rounded-full flex items-center px-[2px] cursor-pointer transition-all duration-custom focus-visible:outline-none focus-visible:border-focusVisibleColor focus-visible:ring-1 focus-visible:ring-focusVisibleColor"
-      >
-        <span
-          [class]="{
-            'bg-activeColor': setting.checked,
-            'translate-x-[7px]': setting.checked,
-            'bg-inactiveColor': !setting.checked,
-            'translate-x-[0px]': !setting.checked,
-          }"
-          class="w-[5px] h-[5px] rounded-full transition-all duration-custom"
-        ></span>
-      </button>
+<ul class="text-dark flex flex-col gap-8">
+  @for (setting of settingsMetaData(); track setting.settingName) {
+    <li class="">
+      <div class="flex items-center justify-between">
+        <p class="text-dark" [id]="setting.label">{{ setting.label }}</p>
+
+        <div class="flex gap-1 items-center">
+          <span>{{ setting.checked ? 'on' : 'off' }}</span>
+          <button
+            type="button"
+            role="switch"
+            [attr.aria-label]="setting.label"
+            [attr.aria-describedby]="setting.settingName"
+            [attr.aria-checked]="setting.checked"
+            (click)="onToggleCheckState(setting.settingName)"
+            [class]="{
+              'border-activeColor': setting.checked,
+              'bg-activeColor': setting.checked,
+              'hover:border-secondarybg': setting.checked,
+              'hover:bg-secondarybg': setting.checked,
+              'border-inactiveColor': !setting.checked,
+              'bg-whiteColor': !setting.checked,
+              'hover:bg-gray': !setting.checked,
+            }"
+            class="group w-[40px] h-[20px] border-2 rounded-full flex items-center px-[2px] hover:bg-gray cursor-pointer transition-all duration-custom focus-visible:outline-none focus-visible:border-focusVisibleColor focus-visible:ring-1 focus-visible:ring-focusVisibleColor"
+          >
+            <span
+              [class]="{
+                'bg-whiteColor': setting.checked,
+                'translate-x-[18px]': setting.checked,
+              }"
+              class="w-[14px] h-[14px] bg-light translate-x-[0px] group-hover:w-[15px] group-hover:h-[15px] rounded-full transition-transform duration-custom"
+            ></span>
+          </button>
+        </div>
+      </div>
+      <p [id]="setting.settingName" class="text-light">{{ setting.description }}</p>
     </li>
   }
 </ul>

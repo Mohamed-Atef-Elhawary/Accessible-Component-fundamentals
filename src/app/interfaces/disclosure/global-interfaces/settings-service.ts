@@ -1,4 +1,4 @@
-export interface SettingsService<TName> {
-  loadSettings(): Promise<TName>;
-  saveSettings(settingState: TName): Promise<void>;
+export interface SettingsService<TState> {
+  loadSettings(): Promise<TState>;
+  saveSettings(settingState: TState): Promise<void>;
 }

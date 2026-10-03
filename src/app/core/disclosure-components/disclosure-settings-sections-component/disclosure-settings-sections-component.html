@@ -21,12 +21,18 @@
     />
   </app-disclosure-section-component>
 
-  <app-disclosure-section-component title="Text size and readability">
-    <app-readability-settings-component [readabilitySettingData]="textSizeSettings()" />
+  <app-disclosure-section-component title="Text size">
+    <app-readability-settings-component
+      [readabilitySettingData]="textSizeSettings()"
+      (onSettingRangeValue)="onTextSizeRangeValue($event)"
+    />
   </app-disclosure-section-component>
 
-  <app-disclosure-section-component title="Text size and readability">
-    <app-readability-settings-component [readabilitySettingData]="lineHeightSettings()" />
+  <app-disclosure-section-component title="Line height">
+    <app-readability-settings-component
+      [readabilitySettingData]="lineHeightSettings()"
+      (onSettingRangeValue)="onLineHeightRangeValue($event)"
+    />
   </app-disclosure-section-component>
 
   <app-disclosure-section-component title="Language and region">

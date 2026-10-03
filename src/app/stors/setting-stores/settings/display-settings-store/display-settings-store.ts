@@ -10,9 +10,9 @@ import {
   AppearanceData,
   DisplaySettingState,
   Theme,
-} from '../../../interfaces/disclosure/settings-interfaces/display-disclosure-settings';
+} from '../../../../interfaces/disclosure/settings-interfaces/display-disclosure-settings';
 import { inject } from '@angular/core';
-import { DisplaySettingsService } from '../../../services/setting-services/display-settings-service/display-settings-service';
+import { DisplaySettingsService } from '../../../../services/setting-services/display-settings-service/display-settings-service';
 
 import { faDisplay } from '@fortawesome/free-solid-svg-icons';
 import { faSun, faMoon } from '@fortawesome/free-regular-svg-icons';

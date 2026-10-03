@@ -5,9 +5,12 @@ export type ToggleSettingsState<TName extends string> = {
   [K in TName]: boolean;
 };
 
+type FeadbackType = 'statusText' | 'microPreview' | 'motionDemo';
+
 export interface ToggleSettingMetaData<TName extends string> {
   settingName: TName;
-  id: string;
+  description: string;
   checked: boolean;
   label: string;
+  feadbackType?: FeadbackType;
 }

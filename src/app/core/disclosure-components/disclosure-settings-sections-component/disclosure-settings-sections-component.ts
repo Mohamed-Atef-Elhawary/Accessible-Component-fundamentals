@@ -14,14 +14,26 @@ import {
 import {
   NOTIFICATION_SETTINGS_METADATA,
   notificationSettingsStore,
-} from '../../../stors/setting-stores/notification-settings-store/notification-settings-store';
+} from '../../../stors/setting-stores/settings/toggle-settings-stores/notification-settings-store/notification-settings-store';
+
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import {
+  LineHeightSettingsState,
+  ReadabilitySettingsText,
+  TextSizeSettingsState,
+} from '../../../interfaces/disclosure/settings-interfaces/readability-disclosure-settings';
+import {
+  TEXT_SIZE_SETTINGS_METADATA,
+  TextSizeSettingsStore,
+} from '../../../stors/setting-stores/settings/readability-settings-stores/text-size-settings-store/text-size-settings-store';
 import {
   ACCESSIBILITY_SETTINGS_METADATA,
   accessibilitySettingsStore,
-} from '../../../stors/setting-stores/accessibility-settings-store/accessibility-settings.store';
-import { ReadabilitySettingData } from '../../../interfaces/disclosure/settings-interfaces/readability-disclosure-settings';
-import { faA } from '@fortawesome/free-solid-svg-icons';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+} from '../../../stors/setting-stores/settings/toggle-settings-stores/accessibility-settings-store/accessibility-settings.store';
+import {
+  LINE_HEIGHT_SETTINGS_METADATA,
+  LineHeightSettingsStore,
+} from '../../../stors/setting-stores/settings/readability-settings-stores/line-height-settings-store/line-height-settings-store';
 
 @Component({
   imports: [
@@ -92,25 +104,31 @@ export class DisclosureSettingsSectionsComponent {
   }
 
   ///////////////////////////////////////////////////////////////////////
-  textSizeSettings = signal<ReadabilitySettingData>({
-    settingRangeValue: signal(0),
-    previewTitle: 'Text size preview',
-    previewDescription:
-      'The size of these words will change as you adjust the slider. Changes you make here will apply to most of the text on your device.',
-    settingTitle: 'Text size',
-    settingSubtitle: 'Text size that appears throughout the app',
-    cssProperty: 'fontSize',
-    icon: faA,
+
+  textSizeSettingsStore = inject(TextSizeSettingsStore);
+  lineHeightSettingsStore = inject(LineHeightSettingsStore);
+
+  textSizeSettings = computed<ReadabilitySettingsText>(() => {
+    return {
+      ...TEXT_SIZE_SETTINGS_METADATA,
+      settingRangeValue: this.textSizeSettingsStore.textSizePercent(),
+    };
   });
 
-  lineHeightSettings = signal<ReadabilitySettingData>({
-    settingRangeValue: signal(50),
-    previewTitle: 'Line height preview',
-    previewDescription:
-      'This paragraph shows how the spacing between lines changes as the line height setting is adjusted, making longer text easier to scan.',
-    settingTitle: 'Line height',
-    settingSubtitle: 'Spacing between lines of text throughout the app',
-    cssProperty: 'lineHeight',
-    icon: faBars,
+  lineHeightSettings = computed<ReadabilitySettingsText>(() => {
+    return {
+      ...LINE_HEIGHT_SETTINGS_METADATA,
+      settingRangeValue: this.lineHeightSettingsStore.lineHeightPercent(),
+    };
   });
+
+  onTextSizeRangeValue(value: number) {
+    const newTextSizeRangeValue: TextSizeSettingsState = { textSizePercent: value };
+    this.textSizeSettingsStore.updateSettingState(newTextSizeRangeValue);
+  }
+  onLineHeightRangeValue(value: number) {
+    const newLineHeightRangeValue: LineHeightSettingsState = { lineHeightPercent: value };
+
+    this.lineHeightSettingsStore.updateSettingState(newLineHeightRangeValue);
+  }
 }

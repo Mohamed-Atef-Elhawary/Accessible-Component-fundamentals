@@ -8,7 +8,7 @@ import {
   withProps,
   withState,
 } from '@ngrx/signals';
-import { SettingsService } from '../../../../interfaces/disclosure/global-interfaces/settings-service';
+import { SettingsService } from '../../../../interfaces/disclosure/global-interfaces/global-settings';
 import { ToggleSettingsState } from '../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 
 export function buildToggleSettingsStore<TName extends string>(
@@ -28,13 +28,6 @@ export function buildToggleSettingsStore<TName extends string>(
     })),
 
     withMethods((store) => ({
-      // toggleSettingState(settingName: TName) {
-      //   patchState(
-      //     store,
-      //     (state) =>
-      //       ({ [settingName]: !state[settingName] }) as Partial<ToggleSettingsState<TName>>,
-      //   );
-      // },
       toggleSettingState(settingName: TName) {
         patchState(store, (state) => ({ ...state, [settingName]: !state[settingName] }));
       },

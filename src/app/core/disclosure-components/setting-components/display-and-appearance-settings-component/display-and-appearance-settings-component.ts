@@ -9,6 +9,7 @@ import {
   AppearanceData,
   Theme,
 } from '../../../../interfaces/disclosure/settings-interfaces/display-disclosure-settings';
+import { FeedbackData } from '../../../../interfaces/disclosure/global-interfaces/global-settings';
 
 @Component({
   imports: [FontAwesomeModule],
@@ -20,21 +21,29 @@ export class DisplayAndAppearanceSettingsComponent {
   displayStore = inject(displaySettingsStore);
   appearanceOptions = computed<AppearanceData[]>(() => {
     const appearance = this.displayStore.appearance();
+
     const system = { ...DISPLAY_SETTINGS_METADATA.system, checked: appearance === 'system' };
+
     const light = { ...DISPLAY_SETTINGS_METADATA.light, checked: appearance === 'light' };
+
     const dark = { ...DISPLAY_SETTINGS_METADATA.dark, checked: appearance === 'dark' };
+
     return [system, light, dark];
   });
-  compactMode = computed(() => this.displayStore.compact());
+
+  appearanceFeedbackData = computed<FeedbackData<Theme>>(() => ({
+    feedback: 'appearance',
+    payload: this.displayStore.appearance(),
+  }));
 
   onChange(appearance: Theme) {
     this.displayStore.updateAppearanceState(appearance);
   }
 
-  toggleCompactMode() {
-    this.displayStore.toggleCompactState();
-  }
-  getLabel(mode: string): string {
+  getLabel(mode: Theme): string {
     return `${mode} mode`;
+  }
+  capitalizeTitle(mode: Theme): string {
+    return `${mode[0].toUpperCase()}${mode.slice(1)}`;
   }
 }

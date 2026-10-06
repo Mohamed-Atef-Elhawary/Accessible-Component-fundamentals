@@ -1,0 +1,6 @@
+<button (click)="updateNotificationStoreEmail()">change</button>
+@switch (emailnotificationFeedbackData().feedback) {
+  @case ('status') {
+    <app-setting-status-feedback-component [payload]="emailnotificationFeedbackData().payload" />
+  }
+}

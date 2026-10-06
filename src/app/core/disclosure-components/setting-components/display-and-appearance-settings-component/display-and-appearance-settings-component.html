@@ -1,13 +1,10 @@
 <div class="text-dark bg-whiteColor">
-  <div class="flex items-center justify-between">
-    <h3 class="block" id="appearance">Appearance</h3>
-    <div
-      class="flex bg-mainbg rounded overflow-hidden"
-      role="radiogroup"
-      aria-labelledby="appearance"
-    >
+  <div class="flex flex-col gap-1">
+    <h3 class="" id="appearance">Appearance</h3>
+    <div role="radiogroup" aria-labelledby="appearance" class="flex rounded w-full overflow-hidden">
       @for (appearance of appearanceOptions(); track appearance.value) {
-        <div class="p-[2px]">
+        <!-- <div class="p-[2px] grow bg-amber-500"> -->
+        <div class="p-[2px] flex-1">
           <input
             type="radio"
             [id]="appearance.value"
@@ -20,38 +17,14 @@
           />
           <label
             [for]="appearance.value"
-            class="block rounded peer-focus-visible:ring-2 peer-focus-visible:ring-focusVisibleColor peer-checked:bg-whiteColor"
+            class="block rounded flex flex-col gap-1 items-center justify-center p-1 border-2 border-inactiveColor peer-checked:bg-whiteColor peer-checked:border-primary peer-focus-visible:ring-4 peer-focus-visible:ring-focusVisibleColor"
           >
-            <fa-icon aria-hidden="true" [icon]="appearance.icon"></fa-icon>
+            <fa-icon aria-hidden="true" [icon]="appearance.icon" class=""></fa-icon>
             <!-- <span class="sr-only" >{{getLabel(appearance.value)}}</span> -->
+            <span class="">{{ capitalizeTitle(appearance.value) }}</span>
           </label>
         </div>
       }
     </div>
-  </div>
-  <div class="flex items-center justify-between">
-    <span class="text-dark" id="CompactMode">Compact mode</span>
-    <button
-      type="button"
-      role="switch"
-      [attr.aria-checked]="compactMode()"
-      aria-labelledby="CompactMode"
-      (click)="toggleCompactMode()"
-      [class]="{
-        'border-activeColor': compactMode(),
-        'border-inactiveColor': !compactMode(),
-      }"
-      class="w-[20px] h-[12px] border-2 rounded-full flex items-center px-[2px] cursor-pointer transition-all duration-custom focus-visible:outline-none focus-visible:border-focusVisibleColor focus-visible:ring-1 focus-visible:ring-focusVisibleColor"
-    >
-      <span
-        [class]="{
-          'bg-activeColor': compactMode(),
-          'translate-x-[7px]': compactMode(),
-          'bg-inactiveColor': !compactMode(),
-          'translate-x-[0px]': !compactMode(),
-        }"
-        class="w-[5px] h-[5px] rounded-full transition-all duration-custom"
-      ></span>
-    </button>
   </div>
 </div>

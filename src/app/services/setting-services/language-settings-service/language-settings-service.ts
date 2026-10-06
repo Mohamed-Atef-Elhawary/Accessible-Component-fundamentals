@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LanguageSettingsState } from '../../../interfaces/disclosure/settings-interfaces/language-disclosure-settings';
-import { SettingsService } from '../../../interfaces/disclosure/global-interfaces/settings-service';
+import { SettingsService } from '../../../interfaces/disclosure/global-interfaces/global-settings';
 
 @Injectable({
   providedIn: 'root',

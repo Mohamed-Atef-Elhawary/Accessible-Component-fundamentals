@@ -1,17 +1,26 @@
 <div class="flex flex-col gap-2">
+  <!-- in toggles we have to build the data into disclosure-section itself -->
   <app-disclosure-section-component title="Notification preferences">
     <app-toggle-settings-list-component
       [settingsMetaData]="notificationSettings()"
       (toggleCheckState)="notificationSettingsToggler($event)"
+      /* resolverComponent */
     />
   </app-disclosure-section-component>
-
+  <!-- here we will build the data in privacy settings-->
   <app-disclosure-section-component title="Privacy and security">
     <app-privacy-settings-component />
   </app-disclosure-section-component>
 
   <app-disclosure-section-component title="Display and appearance">
     <app-display-and-appearance-settings-component />
+  </app-disclosure-section-component>
+
+  <app-disclosure-section-component title="Layout density">
+    <app-toggle-settings-list-component
+      [settingsMetaData]="compactSettings()"
+      (toggleCheckState)="compactSettingsToggler($event)"
+    />
   </app-disclosure-section-component>
 
   <app-disclosure-section-component title="Accessibility">

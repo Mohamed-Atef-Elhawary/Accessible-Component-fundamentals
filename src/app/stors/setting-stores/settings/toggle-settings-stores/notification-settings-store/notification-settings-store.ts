@@ -4,10 +4,10 @@ import {
   ToggleSettingMetaData,
 } from '../../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 import { NotificationSettingsService } from '../../../../../services/setting-services/notification-settings-service/notification-settings-service';
-import { buildToggleSettingsStore } from '../../../factories/notification-and-accessibility/toggle-settings-store.factory';
+import { buildToggleSettingsStore } from '../../../factories/toggle-settings-store.factory/toggle-settings-store.factory';
 
 const initialState: ToggleSettingsState<NotificationSettingName> = { email: false, push: false };
-export const notificationSettingsStore = buildToggleSettingsStore<NotificationSettingName>(
+export const NotificationSettingsStore = buildToggleSettingsStore<NotificationSettingName>(
   NotificationSettingsService,
   initialState,
 );
@@ -18,14 +18,14 @@ export const NOTIFICATION_SETTINGS_METADATA: Record<
 > = {
   email: {
     settingName: 'email',
+    feedback: 'status',
     description: 'Receive updates and alerts via email.',
-
     label: 'Email Notification',
   },
   push: {
     settingName: 'push',
+    feedback: 'status',
     description: 'Get real-time alerts sent directly to your device.',
-
     label: 'Push Notification',
   },
 };

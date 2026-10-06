@@ -1,5 +1,5 @@
 import { inject, Type } from '@angular/core';
-import { SettingsService } from '../../../../interfaces/disclosure/global-interfaces/settings-service';
+import { SettingsService } from '../../../../interfaces/disclosure/global-interfaces/global-settings';
 import {
   patchState,
   signalStore,

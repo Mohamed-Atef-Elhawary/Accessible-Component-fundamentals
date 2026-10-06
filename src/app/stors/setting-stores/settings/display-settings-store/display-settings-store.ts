@@ -19,7 +19,6 @@ import { faSun, faMoon } from '@fortawesome/free-regular-svg-icons';
 
 const displaySettingState: DisplaySettingState = {
   appearance: 'system',
-  compact: true,
 };
 export const displaySettingsStore = signalStore(
   { providedIn: 'root' },
@@ -34,9 +33,6 @@ export const displaySettingsStore = signalStore(
   withMethods((store) => ({
     updateAppearanceState(appearance: Theme): void {
       patchState(store, { appearance });
-    },
-    toggleCompactState(): void {
-      patchState(store, (state) => ({ compact: !state.compact }));
     },
   })),
 );

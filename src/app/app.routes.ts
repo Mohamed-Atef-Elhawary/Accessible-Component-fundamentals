@@ -1,8 +1,5 @@
 import { Routes } from '@angular/router';
-
-import { DisclosureSettingsSectionsComponent } from './core/disclosure-components/disclosure-settings-sections-component/disclosure-settings-sections-component';
-
-import { ReadabilitySettingsComponent } from './core/disclosure-components/setting-components/readability-settings-component/readability-settings-component';
+import { SettingsFeedbackResolverComponent } from './core/disclosure-components/setting-components/feedbacks/settings-feedback-resolver-component/settings-feedback-resolver-component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'modal-dialog', pathMatch: 'full' },
@@ -38,6 +35,5 @@ export const routes: Routes = [
       import('./playground/ai-integration/ai-integration').then((c) => c.AiIntegration),
   },
   ///////////////////////////////////////////components
-  { path: 'read', component: ReadabilitySettingsComponent },
-  { path: 'settings', component: DisclosureSettingsSectionsComponent },
+  { path: 'res', component: SettingsFeedbackResolverComponent },
 ];

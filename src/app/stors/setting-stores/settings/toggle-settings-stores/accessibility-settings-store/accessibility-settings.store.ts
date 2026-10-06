@@ -4,14 +4,14 @@ import {
   ToggleSettingsState,
 } from '../../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 import { AccessibilitySettingsService } from '../../../../../services/setting-services/accessibility-settings-service/accessibility-settings-service';
-import { buildToggleSettingsStore } from '../../../factories/notification-and-accessibility/toggle-settings-store.factory';
+import { buildToggleSettingsStore } from '../../../factories/toggle-settings-store.factory/toggle-settings-store.factory';
 
 const initialState: ToggleSettingsState<AccessibilitySettingName> = {
   motion: false,
   contrast: false,
 };
 
-export const accessibilitySettingsStore = buildToggleSettingsStore<AccessibilitySettingName>(
+export const AccessibilitySettingsStore = buildToggleSettingsStore<AccessibilitySettingName>(
   AccessibilitySettingsService,
   initialState,
 );
@@ -22,11 +22,13 @@ export const ACCESSIBILITY_SETTINGS_METADATA: Record<
 > = {
   motion: {
     settingName: 'motion',
+    feedback: 'motion',
     description: 'Turns off animations and transitions throughout the app.',
     label: 'Reduce Motion',
   },
   contrast: {
     settingName: 'contrast',
+    feedback: 'contrast',
     description: 'Increases color contrast to make text and controls easier to see.',
     label: 'High Contrast',
   },

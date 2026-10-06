@@ -3,7 +3,7 @@ import {
   AccessibilitySettingName,
   ToggleSettingsState,
 } from '../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
-import { SettingsService } from '../../../interfaces/disclosure/global-interfaces/settings-service';
+import { SettingsService } from '../../../interfaces/disclosure/global-interfaces/global-settings';
 
 @Injectable({
   providedIn: 'root',

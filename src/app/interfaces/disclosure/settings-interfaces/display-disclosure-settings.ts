@@ -8,8 +8,6 @@ export interface AppearanceData {
   checked: boolean;
   icon: IconDefinition;
 }
-
 export interface DisplaySettingState {
   appearance: Theme;
-  compact: boolean;
 }

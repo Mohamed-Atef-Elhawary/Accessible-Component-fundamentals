@@ -1,9 +1,10 @@
 import { ChangeDetectorRef, Component, inject, input, output } from '@angular/core';
 import {
   AccessibilitySettingName,
+  CompactSettingName,
   NotificationSettingName,
   ToggleSettingMetaData,
-} from '../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
+} from '../../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 
 @Component({
   imports: [],
@@ -13,14 +14,14 @@ import {
 })
 export class ToggleSettingsListComponent {
   settingsMetaData =
-    input.required<ToggleSettingMetaData<NotificationSettingName | AccessibilitySettingName>[]>();
+    input.required<
+      ToggleSettingMetaData<
+        NotificationSettingName | AccessibilitySettingName | CompactSettingName
+      >[]
+    >();
   toggleCheckState = output<string>();
 
-  cdr = inject(ChangeDetectorRef);
   onToggleCheckState(setitngName: string) {
-    console.log('this.settingsMetaData()', this.settingsMetaData()[0]);
     this.toggleCheckState.emit(setitngName);
-    this.cdr.detectChanges();
-    console.log('this.settingsMetaData()', this.settingsMetaData()[0]);
   }
 }

@@ -1,0 +1,18 @@
+@let stableFeedBack = feedbackData();
+@switch (stableFeedBack.feedbackType) {
+  @case ('status') {
+    <app-setting-status-feedback-component [statusPayload]="stableFeedBack.payload" />
+  }
+  @case ('appearance') {
+    <app-setting-appearance-feedback-component [appearancePayload]="stableFeedBack.payload" />
+  }
+  @case ('compact') {
+    <app-setting-compact-feedback-component [compactPayload]="stableFeedBack.payload" />
+  }
+  @case ('motion') {
+    <app-setting-motion-feedback-component [motionPayload]="stableFeedBack.payload" />
+  }
+  @case ('contrast') {
+    <app-setting-contrast-feedback-component [contrastPayload]="stableFeedBack.payload" />
+  }
+}

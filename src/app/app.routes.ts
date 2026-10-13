@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { SettingsFeedbackResolverComponent } from './core/disclosure-components/setting-components/feedbacks/settings-feedback-resolver-component/settings-feedback-resolver-component';
+import { RadioGroupSettingsComponent } from './core/disclosure-components/setting-components/shared/radio-group/radio-group-settings-component/radio-group-settings-component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'modal-dialog', pathMatch: 'full' },
@@ -35,5 +35,5 @@ export const routes: Routes = [
       import('./playground/ai-integration/ai-integration').then((c) => c.AiIntegration),
   },
   ///////////////////////////////////////////components
-  { path: 'res', component: SettingsFeedbackResolverComponent },
+  { path: 'r', component: RadioGroupSettingsComponent },
 ];

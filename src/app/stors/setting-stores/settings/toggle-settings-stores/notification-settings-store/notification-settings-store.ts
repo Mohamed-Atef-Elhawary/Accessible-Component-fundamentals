@@ -14,17 +14,16 @@ export const NotificationSettingsStore = buildToggleSettingsStore<NotificationSe
 
 export const NOTIFICATION_SETTINGS_METADATA: Record<
   NotificationSettingName,
-  Omit<ToggleSettingMetaData<NotificationSettingName>, 'checked'>
+  Omit<ToggleSettingMetaData<NotificationSettingName>, 'checked' | 'preview'>
 > = {
   email: {
     settingName: 'email',
-    feedback: 'status',
     description: 'Receive updates and alerts via email.',
     label: 'Email Notification',
   },
   push: {
     settingName: 'push',
-    feedback: 'status',
+
     description: 'Get real-time alerts sent directly to your device.',
     label: 'Push Notification',
   },

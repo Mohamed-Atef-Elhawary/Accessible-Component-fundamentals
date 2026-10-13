@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { DisplaySettingState } from '../../../interfaces/disclosure/settings-interfaces/display-disclosure-settings';
 import { SettingsService } from '../../../interfaces/disclosure/global-interfaces/global-settings';
+import { DisplaySettingValues } from '../../../interfaces/disclosure/settings-interfaces/display-disclosure-settings';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DisplaySettingsService implements SettingsService<DisplaySettingState> {
-  async loadSettings(): Promise<DisplaySettingState> {
-    return { appearance: 'system' };
+export class DisplaySettingsService implements SettingsService<DisplaySettingValues> {
+  async loadSettings(): Promise<DisplaySettingValues> {
+    return { selectedOption: 'system' };
   }
-  async saveSettings(displaySettingState: DisplaySettingState): Promise<void> {
-    console.log('displaySettingState', displaySettingState);
+  async saveSettings(displaySettingValues: DisplaySettingValues): Promise<void> {
+    console.log('displaySettingState', displaySettingValues);
   }
 }

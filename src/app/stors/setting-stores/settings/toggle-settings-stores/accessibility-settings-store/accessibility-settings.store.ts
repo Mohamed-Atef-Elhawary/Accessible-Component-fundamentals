@@ -18,17 +18,15 @@ export const AccessibilitySettingsStore = buildToggleSettingsStore<Accessibility
 
 export const ACCESSIBILITY_SETTINGS_METADATA: Record<
   AccessibilitySettingName,
-  Omit<ToggleSettingMetaData<AccessibilitySettingName>, 'checked'>
+  Omit<ToggleSettingMetaData<AccessibilitySettingName>, 'checked' | 'preview'>
 > = {
   motion: {
     settingName: 'motion',
-    feedback: 'motion',
     description: 'Turns off animations and transitions throughout the app.',
     label: 'Reduce Motion',
   },
   contrast: {
     settingName: 'contrast',
-    feedback: 'contrast',
     description: 'Increases color contrast to make text and controls easier to see.',
     label: 'High Contrast',
   },

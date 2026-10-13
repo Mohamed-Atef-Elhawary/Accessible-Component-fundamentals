@@ -1,0 +1,17 @@
+<div
+  [class.compact]="compactPayload()"
+  class="flex flex-col gap-3 compact:gap-1 border border-inactiveColor p-3 compact:p-1 rounded transition-all duration-custom"
+>
+  @for (elements of [1, 2, 3]; track $index) {
+    <div
+      class="w-full flex items-center gap-2 bg-whiteColor border border-inactiveColor p-[inherit] rounded"
+    >
+      <span class="shrink-0 w-[20px] h-[20px] rounded-full block bg-activeColor opacity-50"></span>
+
+      <div class="flex-1 flex flex-col gap-1">
+        <span class="block w-[60%] h-[5px] bg-inactiveColor rounded"></span>
+        <span class="block w-[80%] h-[5px] bg-inactiveColor rounded opacity-50"></span>
+      </div>
+    </div>
+  }
+</div>

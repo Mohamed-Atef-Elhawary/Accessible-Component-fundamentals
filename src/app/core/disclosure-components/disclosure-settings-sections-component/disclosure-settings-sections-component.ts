@@ -1,7 +1,6 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { DisclosureSectionComponent } from '../disclosure-section-component/disclosure-section-component';
 import { PrivacySettingsComponent } from '../setting-components/privacy-settings-component/privacy-settings-component';
-import { ToggleSettingsListComponent } from '../setting-components/toggle/toggle-settings-list-component/toggle-settings-list-component';
 import { DisplayAndAppearanceSettingsComponent } from '../setting-components/display-and-appearance-settings-component/display-and-appearance-settings-component';
 import { LanguageSettingsComponent } from '../setting-components/language-settings-component/language-settings-component';
 import { ReadabilitySettingsComponent } from '../setting-components/readability-settings-component/readability-settings-component';
@@ -17,7 +16,6 @@ import {
   NotificationSettingsStore,
 } from '../../../stors/setting-stores/settings/toggle-settings-stores/notification-settings-store/notification-settings-store';
 
-import { faBars } from '@fortawesome/free-solid-svg-icons';
 import {
   LineHeightSettingsState,
   ReadabilitySettingsText,
@@ -39,7 +37,7 @@ import {
   COMPACT_SETTINGS_METADATA,
   CompactSettingsStore,
 } from '../../../stors/setting-stores/settings/toggle-settings-stores/compact-settings-store/compact-settings-store';
-import { FeedbackData } from '../../../interfaces/disclosure/global-interfaces/global-settings';
+import { ToggleSettingsListComponent } from '../setting-components/shared/toggle/toggle-settings-list-component/toggle-settings-list-component';
 
 @Component({
   imports: [
@@ -60,52 +58,54 @@ export class DisclosureSettingsSectionsComponent {
   compactSettingsStore = inject(CompactSettingsStore);
 
   notificationSettings = computed<ToggleSettingMetaData<NotificationSettingName>[]>(() => {
-    const email = {
+    const email: ToggleSettingMetaData<NotificationSettingName> = {
       ...NOTIFICATION_SETTINGS_METADATA.email,
-      checked: this.notificationStore.email(),
+      checked: this.notificationStore.draftedState.email(),
+      preview: {
+        feedbackType: 'status',
+        payload: `Email notifications turned ${this.notificationStore.draftedState.email() ? 'on' : 'off'}`,
+      },
     };
-    const push = {
+    const push: ToggleSettingMetaData<NotificationSettingName> = {
       ...NOTIFICATION_SETTINGS_METADATA.push,
-      checked: this.notificationStore.push(),
+      checked: this.notificationStore.draftedState.push(),
+      preview: {
+        feedbackType: 'status',
+        payload: `Push notifications turned ${this.notificationStore.draftedState.push() ? 'on' : 'off'}`,
+      },
     };
     return [email, push];
   });
 
-  EmailnotificationFeedbackData = computed<FeedbackData<string>>(() => ({
-    feedback: 'status',
-    payload: `Email notifications turned ${this.notificationStore.email() ? 'on' : 'off'}`,
-  }));
-
-  pushnotificationFeedbackData = computed<FeedbackData<string>>(() => ({
-    feedback: 'status',
-    payload: `Push notifications turned ${this.notificationStore.push() ? 'on' : 'off'}`,
-  }));
-
   accessibilitySettings = computed<ToggleSettingMetaData<AccessibilitySettingName>[]>(() => {
-    const motion = {
+    const motion: ToggleSettingMetaData<AccessibilitySettingName> = {
       ...ACCESSIBILITY_SETTINGS_METADATA.motion,
-      checked: this.accessibilityStore.motion(),
+      checked: this.accessibilityStore.draftedState.motion(),
+      preview: {
+        feedbackType: 'motion',
+        payload: this.accessibilityStore.draftedState.motion(),
+      },
     };
 
-    const Contrast = {
+    const contrast: ToggleSettingMetaData<AccessibilitySettingName> = {
       ...ACCESSIBILITY_SETTINGS_METADATA.contrast,
-      checked: this.accessibilityStore.contrast(),
+      checked: this.accessibilityStore.draftedState.contrast(),
+      preview: {
+        feedbackType: 'contrast',
+        payload: this.accessibilityStore.draftedState.contrast(),
+      },
     };
-    return [motion, Contrast];
+    return [motion, contrast];
   });
-  motionAccessibilitySettingsFeedbackData = computed<FeedbackData<boolean>>(() => ({
-    feedback: 'motion',
-    payload: this.accessibilityStore.motion(),
-  }));
-  contrastAccessibilitySettingsFeedbackData = computed<FeedbackData<boolean>>(() => ({
-    feedback: 'motion',
-    payload: this.accessibilityStore.contrast(),
-  }));
   compactSettings = computed<ToggleSettingMetaData<CompactSettingName>[]>(() => {
     return [
       {
-        checked: this.compactSettingsStore.compact(),
+        checked: this.compactSettingsStore.draftedState.compact(),
         ...COMPACT_SETTINGS_METADATA.compact,
+        preview: {
+          feedbackType: 'compact',
+          payload: this.compactSettingsStore.draftedState.compact(),
+        },
       },
     ];
   });

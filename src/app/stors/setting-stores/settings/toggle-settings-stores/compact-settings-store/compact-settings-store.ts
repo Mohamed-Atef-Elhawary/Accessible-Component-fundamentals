@@ -15,11 +15,10 @@ export const CompactSettingsStore = buildToggleSettingsStore<CompactSettingName>
 
 export const COMPACT_SETTINGS_METADATA: Record<
   CompactSettingName,
-  Omit<ToggleSettingMetaData<CompactSettingName>, 'checked'>
+  Omit<ToggleSettingMetaData<CompactSettingName>, 'checked' | 'preview'>
 > = {
   compact: {
     settingName: 'compact',
-    feedback: 'compact',
     label: 'Compact spacing',
     description: 'Reduces spacing and padding to fit more content on screen.',
   },

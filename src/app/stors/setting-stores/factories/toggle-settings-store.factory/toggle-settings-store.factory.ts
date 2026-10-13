@@ -17,23 +17,28 @@ export function buildToggleSettingsStore<TName extends string>(
 ) {
   return signalStore(
     { providedIn: 'root' },
-    withState(initialState),
+    withState({ draftedState: { ...initialState }, savedState: { ...initialState } }),
     withProps(() => ({ service: inject(serviceType) })),
 
     withHooks((store) => ({
       async onInit() {
         const loadedState: ToggleSettingsState<TName> = await store.service.loadSettings();
-        patchState(store, loadedState as Partial<ToggleSettingsState<TName>>);
+        patchState(store, (state) => ({
+          draftedState: { ...state.draftedState, ...loadedState },
+          savedState: { ...state.savedState, ...loadedState },
+        }));
       },
     })),
 
     withMethods((store) => ({
       toggleSettingState(settingName: TName) {
-        patchState(store, (state) => ({ ...state, [settingName]: !state[settingName] }));
+        patchState(store, (state) => ({
+          draftedState: { ...state.draftedState, [settingName]: !state.draftedState[settingName] },
+        }));
       },
 
       async saveState() {
-        await store.service.saveSettings(getState(store));
+        // await store.service.saveSettings(getState(store));
       },
     })),
   );

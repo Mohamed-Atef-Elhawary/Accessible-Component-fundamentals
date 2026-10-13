@@ -1,0 +1,50 @@
+<ul class="text-dark flex flex-col gap-4">
+  @for (setting of positionedSettingMetaData(); track setting.settingName) {
+    <li>
+      <ng-template #preview>
+        <div class="py-1">
+          <app-settings-feedback-resolver-component [feedbackData]="setting.preview" />
+        </div>
+      </ng-template>
+      @if (setting.previewPosition === 'top') {
+        <ng-container [ngTemplateOutlet]="preview" />
+      }
+      <div class="flex items-center justify-between">
+        <p class="text-dark" [id]="setting.settingName + 'lable'">{{ setting.label }}</p>
+
+        <div class="flex gap-1 items-center">
+          <span>{{ setting.checked ? 'on' : 'off' }}</span>
+          <button
+            type="button"
+            role="switch"
+            [attr.aria-label]="setting.settingName + 'lable'"
+            [attr.aria-describedby]="setting.settingName"
+            [attr.aria-checked]="setting.checked"
+            (click)="onToggleCheckState(setting.settingName)"
+            [class]="{
+              'border-activeColor': setting.checked,
+              'bg-activeColor': setting.checked,
+              'hover:border-secondarybg': setting.checked,
+              'hover:bg-secondarybg': setting.checked,
+              'border-inactiveColor': !setting.checked,
+              'bg-whiteColor': !setting.checked,
+            }"
+            class="group w-[40px] h-[20px] border-2 rounded-full flex items-center px-[2px] cursor-pointer transition-all duration-custom focus-visible:outline-none focus-visible:border-focusVisibleColor focus-visible:ring-1 focus-visible:ring-focusVisibleColor"
+          >
+            <span
+              [class]="{
+                'bg-whiteColor': setting.checked,
+                'translate-x-[18px]': setting.checked,
+              }"
+              class="w-[14px] h-[14px] bg-light translate-x-[0px] group-hover:w-[16px] group-hover:h-[16px] rounded-full transition-transform duration-custom"
+            ></span>
+          </button>
+        </div>
+      </div>
+      <p [id]="setting.settingName" class="text-light">{{ setting.description }}</p>
+      @if (setting.previewPosition === 'bottom') {
+        <ng-container [ngTemplateOutlet]="preview" />
+      }
+    </li>
+  }
+</ul>

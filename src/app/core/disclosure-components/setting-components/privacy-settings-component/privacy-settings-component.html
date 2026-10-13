@@ -1,29 +1,4 @@
-<!-- PrivacySettingsComponent.html -->
-<fieldset class="flex gap-2">
-  <legend class="mb-1">Who can see my profile?</legend>
-  @for (privacy of privacyList; track privacy) {
-    <label [for]="privacy" class="flex items-center gap-1 cursor-pointer">
-      <input
-        type="radio"
-        [id]="privacy"
-        [value]="privacy"
-        class="sr-only peer"
-        name="privacySetting"
-        (change)="uodatePrivacyState(privacy)"
-      />
-      <fa-icon
-        [class]="{
-          'text-activeColor': selectedOption() === privacy,
-          'text-inactiveColor': selectedOption() !== privacy,
-        }"
-        class="text-[15px] peer-focus-visible:ring-2 peer-focus-visible:ring-focusVisibleColor"
-        [icon]="circleDot"
-        aria-hidden="true"
-      ></fa-icon>
-
-      <span>{{ privacy }}</span>
-    </label>
-  }
-</fieldset>
-
-<!--  resolverComponent-->
+<!-- <app-radio-group-settings-component
+  [radioSettingsData]="privacySettingsData()"
+  (changeSetting)="updatePrivacyState($event)"
+></app-radio-group-settings-component> -->

@@ -1,0 +1,21 @@
+<fieldset class="flex flex-col gap-2">
+  <legend class="mb-1">Who can see my profile?</legend>
+  <div class="flex gap-2">
+    @for (setting of radioSettingsData().settings; track setting.option) {
+      <label
+        class="flex-1 flex flex-col justify-center items-center cursor-pointer p-1 border-2 border-inactiveColor has-checked:border-activeColor has-checked:bg-activeColor/50 rounded"
+      >
+        <input
+          type="radio"
+          name="privacy"
+          [checked]="setting.checked"
+          (change)="settingDataChanged(setting.option)"
+          class="sr-only peer"
+        />
+        <fa-icon [icon]="setting.icon" aria-hidden="true"></fa-icon>
+        <span class="block">{{ setting.option }}</span>
+      </label>
+    }
+  </div>
+  <div><app-settings-feedback-resolver-component [feedbackData]="radioFeedbackData()" /></div>
+</fieldset>

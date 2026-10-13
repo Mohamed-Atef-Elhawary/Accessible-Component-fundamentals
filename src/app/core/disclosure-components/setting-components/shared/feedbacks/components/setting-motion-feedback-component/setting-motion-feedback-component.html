@@ -1,0 +1,14 @@
+<div class="w-full h-[45px] overflow-hidden">
+  <div class="h-full flex flex-col justify-between">
+    <span
+      aria-hidden="true"
+      [hidden]="!isVisible()"
+      [class.reduce]="motionPayload()"
+      [class.high]="!motionPayload()"
+      class="block w-[20px] h-[20px] shrink-0 rounded-full bg-activeColor motion"
+    ></span>
+    <p [hidden]="!isVisible()" class="truncate text-activeColor">
+      {{ motionPreviewDescription() }}
+    </p>
+  </div>
+</div>

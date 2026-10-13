@@ -55,7 +55,7 @@ export const languageSettingsStore = signalStore(
       }
       return {
         direction: 'ltr',
-        langTitle: 'Langauge',
+        langTitle: 'Language',
         notificationText: `Text direction and page layout change throughout the application based on the selected language.`,
         dateTitle: 'Date format',
       };

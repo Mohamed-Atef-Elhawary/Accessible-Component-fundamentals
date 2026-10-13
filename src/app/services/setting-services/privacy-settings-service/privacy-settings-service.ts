@@ -7,7 +7,7 @@ import { SettingsService } from '../../../interfaces/disclosure/global-interface
 })
 export class PrivacySettingsService implements SettingsService<PrivacySettingsState> {
   async loadSettings(): Promise<PrivacySettingsState> {
-    return { selectedOption: 'friends' };
+    return { selectedOption: 'public' };
   }
   async saveSettings(privacySettingsState: PrivacySettingsState): Promise<void> {
     console.log('privacySettingsState', privacySettingsState);

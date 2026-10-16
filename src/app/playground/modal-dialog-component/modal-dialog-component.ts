@@ -44,7 +44,6 @@ export class ModalDialogComponent {
   userModalContainerRef = viewChild<ViewContainerRef, ViewContainerRef>('userModalContainer', {
     read: ViewContainerRef,
   });
-  addBtn = viewChild<ElementRef>('addBtn');
 
   userModalNativeElement!: HTMLElement;
   isModalOpen = computed<boolean>(() => this.userModalStateService.isModalOpen());
@@ -62,10 +61,6 @@ export class ModalDialogComponent {
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
   ) {
-    afterNextRender(() => {
-      this.addBtn()?.nativeElement.focus();
-    });
-
     effect(() => {
       if (this.isModalOpen()) {
         this.uploadUserModal();

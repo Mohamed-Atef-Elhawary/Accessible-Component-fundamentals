@@ -1,4 +1,5 @@
 import { Theme } from '../settings-interfaces/display-disclosure-settings';
+import { PrivacyOption } from '../settings-interfaces/privacy-disclosure-settings';
 
 export interface SettingsService<TState> {
   loadSettings(): Promise<TState>;
@@ -11,7 +12,8 @@ export type FeedbackPayloadMap = {
   compact: boolean;
   motion: boolean;
   contrast: boolean;
-  appearance: Theme;
+  theme: Theme;
+  privacy: PrivacyOption;
 };
 
 export type FeedbackType = keyof FeedbackPayloadMap;

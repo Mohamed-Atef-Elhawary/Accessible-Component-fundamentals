@@ -5,16 +5,15 @@ import {
   PrivacyOption,
   PrivacySettingsData,
   PrivacySettingsState,
+  PrivacySettingsValue,
 } from '../../../../interfaces/disclosure/settings-interfaces/privacy-disclosure-settings';
 import {
   PRIVACY_SETTINGS_METADATA,
   privacySettingsStore,
 } from '../../../../stors/setting-stores/settings/privacy-settings-store/privacy-settings-store';
-import {
-  RadioSettingsData,
-  RadioSettingsGroup,
-} from '../../../../interfaces/disclosure/settings-interfaces/radio-group-disclosure-settings';
+import { RadioSettingsData } from '../../../../interfaces/disclosure/settings-interfaces/radio-group-disclosure-settings';
 import { RadioGroupSettingsComponent } from '../shared/radio-group/radio-group-settings-component/radio-group-settings-component';
+import { FeedbackData } from '../../../../interfaces/disclosure/global-interfaces/global-settings';
 
 @Component({
   imports: [FontAwesomeModule, RadioGroupSettingsComponent],
@@ -27,7 +26,7 @@ export class PrivacySettingsComponent {
   privacyStore = inject(privacySettingsStore);
 
   privacySettingsData = computed<RadioSettingsData<PrivacyOption>>(() => {
-    const selectedOption = this.privacyStore.selectedOption();
+    const selectedOption = this.privacyStore.draftedState.selectedOption();
     const publicOption = {
       ...PRIVACY_SETTINGS_METADATA.public,
       checked: selectedOption === 'public',
@@ -45,14 +44,18 @@ export class PrivacySettingsComponent {
       settings: [publicOption, friends, privateOption],
     };
   });
+  privacyFeedbackData = computed<FeedbackData>(() => {
+    const selectedOption = this.privacyStore.draftedState.selectedOption();
+    return { feedbackType: 'privacy', payload: selectedOption };
+  });
 
   updatePrivacyState(option: string) {
     const options = ['public', 'friends', 'private'] as const;
     if (this.isPrivacySettingsState(option, options)) {
-      const privacySettingsState: PrivacySettingsState = {
+      const rivacySettingsValue: PrivacySettingsValue = {
         selectedOption: option,
       };
-      this.privacyStore.updatePrivacyState(privacySettingsState);
+      this.privacyStore.updatePrivacyState(rivacySettingsValue);
     }
   }
   isPrivacySettingsState(option: string, options: readonly string[]): option is PrivacyOption {

@@ -1,0 +1,52 @@
+<div class="flex flex-col gap-2 mt-1">
+  <div class="flex gap-2 items-center">
+    <span class="text-light text-[.9rem]">Viewing as</span>
+    <button
+      type="button"
+      (click)="setVisitor()"
+      class="border border-inactiveColor py-1 px-4 rounded-lg text-[1rem] cursor-pointer transition duration-custom active:bg-inactiveColor active:scale-95"
+    >
+      Visitor
+    </button>
+    <button
+      type="button"
+      (click)="setFriend()"
+      class="border border-inactiveColor py-1 px-4 rounded-lg text-[1rem] cursor-pointer transition duration-custom active:bg-inactiveColor active:scale-95"
+    >
+      Friend
+    </button>
+  </div>
+  <!-- <article class="border border-inactiveColor p-4 rounded-lg h-[14.5rem] flex flex-col gap-2"> -->
+  <article class="border border-inactiveColor p-4 rounded-lg flex flex-col basis-[200px] gap-2">
+    <header class="flex gap-2 items-center">
+      <span
+        [style.backgroundColor]="bgColor"
+        class="p-1.5 rounded-full text-whiteColor font-semibold"
+        >{{ userInit }}</span
+      >
+      <div>
+        <h4 class="font-semibold text-[1rem]">{{ userName() }}</h4>
+        <p class="text-light text-[.9rem]">Member since 2026</p>
+      </div>
+    </header>
+
+    <div [hidden]="!isAllow()" class="flex flex-col justify-between grow">
+      <div class="flex flex-col gap-2">
+        <h5 class="text-[1rem]">About</h5>
+        <span class="block h-[.4rem] w-[80%] bg-inactiveColor rounded"></span>
+        <span class="block h-[.4rem] w-[50%] bg-inactiveColor rounded"></span>
+      </div>
+      <div class="flex flex-col gap-2">
+        <h5 class="text-[.9rem]">Recent activity</h5>
+        <span class="block h-[.4rem] w-[70%] bg-inactiveColor rounded"></span>
+        <span class="block h-[.4rem] w-[40%] bg-inactiveColor rounded"></span
+        ><span class="block h-[.4rem] w-[60%] bg-inactiveColor rounded"></span>
+      </div>
+    </div>
+    <div [hidden]="isAllow()" class="flex flex-col justify-center items-center grow gap-1">
+      <fa-icon [icon]="lock().icon" class="text-[2rem] text-light"></fa-icon>
+      <p class="text-light">{{ lock().message }}</p>
+    </div>
+  </article>
+  <p>{{ description() }}</p>
+</div>

@@ -8,11 +8,11 @@ export type Theme = 'system' | 'light' | 'dark';
 //   checked: boolean;
 //   icon: IconDefinition;
 // }
-export interface DisplaySettingValues {
+export interface DisplaySettingValue {
   selectedOption: Theme;
 }
 
 export interface DisplaySettingsState {
-  draftedState: DisplaySettingValues;
-  savedState: DisplaySettingValues;
+  draftedState: DisplaySettingValue;
+  savedState: DisplaySettingValue;
 }

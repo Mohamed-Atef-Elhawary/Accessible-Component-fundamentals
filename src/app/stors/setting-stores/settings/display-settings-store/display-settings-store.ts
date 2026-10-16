@@ -8,7 +8,7 @@ import {
 } from '@ngrx/signals';
 import {
   DisplaySettingsState,
-  DisplaySettingValues,
+  DisplaySettingValue,
   Theme,
 } from '../../../../interfaces/disclosure/settings-interfaces/display-disclosure-settings';
 import { inject } from '@angular/core';
@@ -18,7 +18,7 @@ import { faDisplay } from '@fortawesome/free-solid-svg-icons';
 import { faSun, faMoon } from '@fortawesome/free-regular-svg-icons';
 import { RadioSettingsGroup } from '../../../../interfaces/disclosure/settings-interfaces/radio-group-disclosure-settings';
 
-const displaySettingValues: DisplaySettingValues = {
+const displaySettingValues: DisplaySettingValue = {
   selectedOption: 'system',
 };
 
@@ -49,14 +49,18 @@ export const DISPLAY_SETTINGS_METADATA: Record<
 > = {
   system: {
     option: 'system',
+    name: 'theme',
     icon: faDisplay,
   },
   light: {
     option: 'light',
+    name: 'theme',
+
     icon: faSun,
   },
   dark: {
     option: 'dark',
+    name: 'theme',
     icon: faMoon,
   },
 };

@@ -8,5 +8,8 @@ import { SidebarComponent } from './core/sidebar-component/sidebar-component';
   templateUrl: './app.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './app.css',
+  host: {
+    '[style.display]': '"block"',
+  },
 })
 export class App {}

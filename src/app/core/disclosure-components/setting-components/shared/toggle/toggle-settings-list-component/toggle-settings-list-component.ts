@@ -25,7 +25,9 @@ export class ToggleSettingsListComponent {
     });
   });
   toggleCheckState = output<string>();
-  ngOnChanges() {}
+  ngOnChanges() {
+    console.log('settingsMetaData', this.settingsMetaData());
+  }
 
   onToggleCheckState(setitngName: string) {
     this.toggleCheckState.emit(setitngName);

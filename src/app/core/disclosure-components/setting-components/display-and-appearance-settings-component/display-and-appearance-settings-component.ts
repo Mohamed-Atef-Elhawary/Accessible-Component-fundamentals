@@ -13,12 +13,7 @@ import { RadioSettingsData } from '../../../../interfaces/disclosure/settings-in
 import { RadioGroupSettingsComponent } from '../shared/radio-group/radio-group-settings-component/radio-group-settings-component';
 
 @Component({
-  imports: [
-    FontAwesomeModule,
-    SettingsFeedbackResolverComponent,
-    RadioGroupSettingsComponent,
-    RadioGroupSettingsComponent,
-  ],
+  imports: [FontAwesomeModule, RadioGroupSettingsComponent, RadioGroupSettingsComponent],
   selector: 'app-display-and-appearance-settings-component',
   styleUrl: './display-and-appearance-settings-component.css',
   templateUrl: './display-and-appearance-settings-component.html',
@@ -39,10 +34,13 @@ export class DisplayAndAppearanceSettingsComponent {
     };
   });
 
-  appearanceFeedbackData = computed<FeedbackData>(() => ({
-    feedbackType: 'appearance',
-    payload: this.displayStore.draftedState.selectedOption(),
-  }));
+  appearanceFeedbackData = computed<FeedbackData>(() => {
+    const selectedOption = this.displayStore.draftedState.selectedOption();
+    return {
+      feedbackType: 'theme',
+      payload: selectedOption,
+    };
+  });
 
   updateAppearanceValue(theme: string) {
     const themes: Theme[] = ['system', 'light', 'dark'] as const;

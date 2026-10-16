@@ -4,15 +4,17 @@ import { SettingStatusFeedbackComponent } from '../components/setting-status-fee
 import { SettingCompactFeedbackComponent } from '../components/setting-compact-feedback-component/setting-compact-feedback-component';
 import { SettingMotionFeedbackComponent } from '../components/setting-motion-feedback-component/setting-motion-feedback-component';
 import { SettingContrastFeedbackComponent } from '../components/setting-contrast-feedback-component/setting-contrast-feedback-component';
-import { SettingAppearanceFeedbackComponent } from '../components/setting-appearance-feedback-component/setting-appearance-feedback-component';
 import { FeedbackData } from '../../../../../../interfaces/disclosure/global-interfaces/global-settings';
+import { SettingThemeFeedbackComponent } from '../components/setting-theme-feedback-component/setting-theme-feedback-component';
+import { SettingPrivacyFeedbackComponent } from '../components/setting-privacy-feedback-component/setting-privacy-feedback-component';
 
 @Component({
   imports: [
     SettingStatusFeedbackComponent,
-    SettingAppearanceFeedbackComponent,
-    SettingCompactFeedbackComponent,
+    SettingPrivacyFeedbackComponent,
+    SettingThemeFeedbackComponent,
     SettingMotionFeedbackComponent,
+    SettingCompactFeedbackComponent,
     SettingContrastFeedbackComponent,
   ],
   selector: 'app-settings-feedback-resolver-component',

@@ -1,16 +1,20 @@
-<div class="flex flex-col gap-2">
-  <div class="">
+<!-- //disclosure.html -->
+
+<div class="grid grid-rows-[auto_1fr_auto] content-between gap-2 h-full">
+  <div class="sticky top-0 z-100 lg:h-[80px] overflow-hidden flex items-center">
     <app-header-component [headerData]="headerData" (actionClicked)="saveSettings()" />
   </div>
-  <div class="flex flex-col xl:flex-row gap-2 xl:h-[550px]">
-    <div class="xl:w-[75%] overflow-y-auto">
+  <div class="flex flex-col xl:flex-row gap-1">
+    <div class="flex-1">
       <app-disclosure-settings-sections-component />
     </div>
-    <div class="xl:w-[25%]">
-      <app-accessibility-playground-component
-        [accessibilityOptions]="accessibilityOptions()"
-        (toggleOption)="onToggleOption($event)"
-      />
+    <div class="xl:h-full xl:w-[300px] bg-whiteColor">
+      <div class="xl:sticky top-[80px]">
+        <app-accessibility-playground-component
+          [accessibilityOptions]="accessibilityOptions()"
+          (toggleOption)="onToggleOption($event)"
+        />
+      </div>
     </div>
   </div>
   <div class="">

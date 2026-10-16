@@ -9,7 +9,8 @@ export const FEEDBACK_PREVIEW_POSITION: Record<FeedbackType, PreviewPosition> = 
   motion: 'bottom',
   contrast: 'bottom',
   compact: 'bottom',
-  appearance: 'top',
+  theme: 'bottom',
+  privacy: 'bottom',
 };
 
 export type MotionLevel = 'full' | 'reduced';

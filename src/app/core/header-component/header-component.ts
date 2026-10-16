@@ -20,6 +20,11 @@ import { UserModalStateService } from '../../services/modal-dialog-services/user
   templateUrl: './header-component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './header-component.css',
+  host: {
+    '[style.display]': '"block"',
+    '[style.width]': '"100%"',
+    '[style.height]': '"100%"',
+  },
 })
 export class HeaderComponent {
   headerData = input.required<HeaderData>();

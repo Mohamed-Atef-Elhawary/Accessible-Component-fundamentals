@@ -3,8 +3,11 @@
   @case ('status') {
     <app-setting-status-feedback-component [statusPayload]="stableFeedBack.payload" />
   }
-  @case ('appearance') {
-    <app-setting-appearance-feedback-component [appearancePayload]="stableFeedBack.payload" />
+  @case ('privacy') {
+    <app-setting-privacy-feedback-component [privacyPayload]="stableFeedBack.payload" />
+  }
+  @case ('theme') {
+    <app-setting-theme-feedback-component [appearancePayload]="stableFeedBack.payload" />
   }
   @case ('compact') {
     <app-setting-compact-feedback-component [compactPayload]="stableFeedBack.payload" />

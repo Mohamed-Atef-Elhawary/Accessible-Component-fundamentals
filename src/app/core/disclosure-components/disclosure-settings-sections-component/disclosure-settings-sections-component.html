@@ -1,48 +1,88 @@
 <div class="flex flex-col gap-2">
-  <app-disclosure-section-component title="Notification preferences">
+  <app-disclosure-section-component
+    appMultipleOpenSectionsDirective
+    #notificationOpenDirectiveRef="MultipleOpenSectionsDirective"
+    [isOpenState]="notificationOpenDirectiveRef.isOpenState()"
+    title="Notification preferences"
+  >
     <app-toggle-settings-list-component
       [settingsMetaData]="notificationSettings()"
       (toggleCheckState)="notificationSettingsToggler($event)"
     />
   </app-disclosure-section-component>
 
-  <app-disclosure-section-component title="Privacy and security">
+  <app-disclosure-section-component
+    appMultipleOpenSectionsDirective
+    #privacyOpenDirectiveRef="MultipleOpenSectionsDirective"
+    [isOpenState]="privacyOpenDirectiveRef.isOpenState()"
+    title="Privacy and security"
+  >
     <app-privacy-settings-component />
   </app-disclosure-section-component>
 
-  <app-disclosure-section-component title="Display and appearance">
+  <app-disclosure-section-component
+    appMultipleOpenSectionsDirective
+    #appearanceOpenDirectiveRef="MultipleOpenSectionsDirective"
+    [isOpenState]="appearanceOpenDirectiveRef.isOpenState()"
+    title="Display and appearance"
+  >
     <app-display-and-appearance-settings-component />
   </app-disclosure-section-component>
 
-  <app-disclosure-section-component title="Layout density">
+  <app-disclosure-section-component
+    appMultipleOpenSectionsDirective
+    #densityOpenDirectiveRef="MultipleOpenSectionsDirective"
+    [isOpenState]="densityOpenDirectiveRef.isOpenState()"
+    title="Layout density"
+  >
     <app-toggle-settings-list-component
       [settingsMetaData]="compactSettings()"
       (toggleCheckState)="compactSettingsToggler($event)"
     />
   </app-disclosure-section-component>
 
-  <app-disclosure-section-component title="Accessibility">
+  <app-disclosure-section-component
+    appMultipleOpenSectionsDirective
+    #accessibilityOpenDirectiveRef="MultipleOpenSectionsDirective"
+    [isOpenState]="accessibilityOpenDirectiveRef.isOpenState()"
+    title="Accessibility"
+  >
     <app-toggle-settings-list-component
       [settingsMetaData]="accessibilitySettings()"
       (toggleCheckState)="accessibilitySettingsToggler($event)"
     />
   </app-disclosure-section-component>
 
-  <app-disclosure-section-component title="Text size">
+  <app-disclosure-section-component
+    appMultipleOpenSectionsDirective
+    #textSizeOpenDirectiveRef="MultipleOpenSectionsDirective"
+    [isOpenState]="textSizeOpenDirectiveRef.isOpenState()"
+    title="Text size"
+  >
     <app-readability-settings-component
       [readabilitySettingData]="textSizeSettings()"
       (onSettingRangeValue)="onTextSizeRangeValue($event)"
     />
   </app-disclosure-section-component>
 
-  <app-disclosure-section-component title="Line height">
+  <app-disclosure-section-component
+    appMultipleOpenSectionsDirective
+    #lineHeightOpenDirectiveRef="MultipleOpenSectionsDirective"
+    [isOpenState]="lineHeightOpenDirectiveRef.isOpenState()"
+    title="Line height"
+  >
     <app-readability-settings-component
       [readabilitySettingData]="lineHeightSettings()"
       (onSettingRangeValue)="onLineHeightRangeValue($event)"
     />
   </app-disclosure-section-component>
 
-  <app-disclosure-section-component title="Language and region">
+  <app-disclosure-section-component
+    appMultipleOpenSectionsDirective
+    #languageOpenDirectiveRef="MultipleOpenSectionsDirective"
+    [isOpenState]="languageOpenDirectiveRef.isOpenState()"
+    title="Language and region"
+  >
     <app-language-settings-component />
   </app-disclosure-section-component>
 </div>

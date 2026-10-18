@@ -38,6 +38,7 @@ import {
   CompactSettingsStore,
 } from '../../../stors/setting-stores/settings/toggle-settings-stores/compact-settings-store/compact-settings-store';
 import { ToggleSettingsListComponent } from '../setting-components/shared/toggle/toggle-settings-list-component/toggle-settings-list-component';
+import { MultipleOpenSectionsDirective } from '../../../directives/disclosure-directives/multiple-open-sections-directive/multiple-open-sections-directive';
 
 @Component({
   imports: [
@@ -47,6 +48,7 @@ import { ToggleSettingsListComponent } from '../setting-components/shared/toggle
     DisplayAndAppearanceSettingsComponent,
     LanguageSettingsComponent,
     ReadabilitySettingsComponent,
+    MultipleOpenSectionsDirective,
   ],
   selector: 'app-disclosure-settings-sections-component',
   styleUrl: './disclosure-settings-sections-component.css',
@@ -128,10 +130,10 @@ export class DisclosureSettingsSectionsComponent {
   }
 
   isSettingName<TName extends string>(
-    settingname: string,
+    settingName: string,
     availableNames: TName[],
-  ): settingname is TName {
-    return availableNames.includes(settingname as TName);
+  ): settingName is TName {
+    return availableNames.includes(settingName as TName);
   }
 
   ///////////////////////////////////////////////////////////////////////

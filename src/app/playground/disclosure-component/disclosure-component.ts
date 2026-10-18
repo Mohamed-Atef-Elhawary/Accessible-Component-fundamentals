@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, computed } from '@angular/core';
 import { HeaderData } from '../../interfaces/header-data';
 import { HeaderComponent } from '../../core/header-component/header-component';
-import { DisclosureAccessibilityStateService } from '../../services/disclosure-services/asseccibility-state/disclosure-accessibility-state-service';
+import { DisclosureAccessibilityStateService } from '../../services/disclosure-services/disclosure-accessibility-state/disclosure-accessibility-state-service';
 import { AccessibilityOption } from '../../interfaces/accessibility-options';
 import { AccessibilityPlaygroundComponent } from '../../core/accessibility-playground-component/accessibility-playground-component';
 import { ActivityLogComponent } from '../../core/activity-log-component/activity-log-component';

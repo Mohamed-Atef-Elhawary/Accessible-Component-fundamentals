@@ -5,23 +5,23 @@ import { AccessibilityOption } from '../../../interfaces/accessibility-options';
   providedIn: 'root',
 })
 export class DisclosureAccessibilityStateService {
-  private _multibleOpenSections = signal<boolean>(true);
-  private _trapFocusInExpecndedSection = signal<boolean>(true);
+  private _multipleOpenSections = signal<boolean>(true);
+  private _trapFocusInExpandedSection = signal<boolean>(true);
   private _hideClosedSectionFromSR = signal<boolean>(true);
 
-  multibleOpenSections = this._multibleOpenSections.asReadonly();
-  trapFocusInExpecndedSection = this._trapFocusInExpecndedSection.asReadonly();
+  multipleOpenSections = this._multipleOpenSections.asReadonly();
+  trapFocusInExpandedSection = this._trapFocusInExpandedSection.asReadonly();
   hideClosedSectionFromSR = this._hideClosedSectionFromSR.asReadonly();
 
   accessibilityOptions = signal<AccessibilityOption[]>([
     {
-      id: 'multibleOpenSections',
-      checked: this.multibleOpenSections,
+      id: 'multipleOpenSections',
+      checked: this.multipleOpenSections,
       label: 'Allow Multiple Open',
     },
     {
-      id: 'trapFocusInExpecndedSection',
-      checked: this.trapFocusInExpecndedSection,
+      id: 'trapFocusInExpandedSection',
+      checked: this.trapFocusInExpandedSection,
       label: 'Trap Focus When Open',
     },
     {
@@ -32,8 +32,8 @@ export class DisclosureAccessibilityStateService {
   ]);
 
   private optionsMap: Record<string, WritableSignal<boolean>> = {
-    multibleOpenSections: this._multibleOpenSections,
-    trapFocusInExpecndedSection: this._trapFocusInExpecndedSection,
+    multipleOpenSections: this._multipleOpenSections,
+    trapFocusInExpandedSection: this._trapFocusInExpandedSection,
     hideClosedSectionFromSR: this._hideClosedSectionFromSR,
   };
 

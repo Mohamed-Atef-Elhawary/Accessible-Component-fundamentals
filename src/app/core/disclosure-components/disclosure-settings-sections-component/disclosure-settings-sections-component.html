@@ -2,7 +2,7 @@
   <app-disclosure-section-component
     appMultipleOpenSectionsDirective
     #notificationOpenDirectiveRef="MultipleOpenSectionsDirective"
-    [isOpenState]="notificationOpenDirectiveRef.isOpenState()"
+    [hasOpenState]="notificationOpenDirectiveRef.isOpenState()"
     title="Notification preferences"
   >
     <app-toggle-settings-list-component
@@ -11,10 +11,10 @@
     />
   </app-disclosure-section-component>
 
-  <app-disclosure-section-component
+  <!-- <app-disclosure-section-component
     appMultipleOpenSectionsDirective
     #privacyOpenDirectiveRef="MultipleOpenSectionsDirective"
-    [isOpenState]="privacyOpenDirectiveRef.isOpenState()"
+    [hasOpenState]="privacyOpenDirectiveRef.isOpenState()"
     title="Privacy and security"
   >
     <app-privacy-settings-component />
@@ -23,7 +23,7 @@
   <app-disclosure-section-component
     appMultipleOpenSectionsDirective
     #appearanceOpenDirectiveRef="MultipleOpenSectionsDirective"
-    [isOpenState]="appearanceOpenDirectiveRef.isOpenState()"
+    [hasOpenState]="appearanceOpenDirectiveRef.isOpenState()"
     title="Display and appearance"
   >
     <app-display-and-appearance-settings-component />
@@ -32,7 +32,7 @@
   <app-disclosure-section-component
     appMultipleOpenSectionsDirective
     #densityOpenDirectiveRef="MultipleOpenSectionsDirective"
-    [isOpenState]="densityOpenDirectiveRef.isOpenState()"
+    [hasOpenState]="densityOpenDirectiveRef.isOpenState()"
     title="Layout density"
   >
     <app-toggle-settings-list-component
@@ -44,7 +44,7 @@
   <app-disclosure-section-component
     appMultipleOpenSectionsDirective
     #accessibilityOpenDirectiveRef="MultipleOpenSectionsDirective"
-    [isOpenState]="accessibilityOpenDirectiveRef.isOpenState()"
+    [hasOpenState]="accessibilityOpenDirectiveRef.isOpenState()"
     title="Accessibility"
   >
     <app-toggle-settings-list-component
@@ -56,7 +56,7 @@
   <app-disclosure-section-component
     appMultipleOpenSectionsDirective
     #textSizeOpenDirectiveRef="MultipleOpenSectionsDirective"
-    [isOpenState]="textSizeOpenDirectiveRef.isOpenState()"
+    [hasOpenState]="textSizeOpenDirectiveRef.isOpenState()"
     title="Text size"
   >
     <app-readability-settings-component
@@ -68,7 +68,7 @@
   <app-disclosure-section-component
     appMultipleOpenSectionsDirective
     #lineHeightOpenDirectiveRef="MultipleOpenSectionsDirective"
-    [isOpenState]="lineHeightOpenDirectiveRef.isOpenState()"
+    [hasOpenState]="lineHeightOpenDirectiveRef.isOpenState()"
     title="Line height"
   >
     <app-readability-settings-component
@@ -80,9 +80,9 @@
   <app-disclosure-section-component
     appMultipleOpenSectionsDirective
     #languageOpenDirectiveRef="MultipleOpenSectionsDirective"
-    [isOpenState]="languageOpenDirectiveRef.isOpenState()"
+    [hasOpenState]="languageOpenDirectiveRef.isOpenState()"
     title="Language and region"
   >
     <app-language-settings-component />
-  </app-disclosure-section-component>
+  </app-disclosure-section-component> -->
 </div>

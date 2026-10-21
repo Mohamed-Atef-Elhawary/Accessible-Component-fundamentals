@@ -29,7 +29,7 @@ import { faTrashCan, faPencil, faXmark } from '@fortawesome/free-solid-svg-icons
 import { UserModalStateService } from '../../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
 import { ModalAccessibilityStateService } from '../../../services/modal-dialog-services/modal-accessibility-state/modal-accessibility-state-service';
 import { CloseOnBackdropDirective } from '../../../directives/mogal-dialog-directives/close-onbackdrop-click-directive/close-on-backdrop-directive';
-import { FocusTrapDirective } from '../../../directives/mogal-dialog-directives/Focus-trap-directive/focus-trap-directive';
+import { FocusTrapDirective } from '../../../directives/mogal-dialog-directives/focus-trap-directive/focus-trap-directive';
 import { ActivityLogService } from '../../../services/activity-log/activity-log-service';
 @Component({
   selector: 'app-user-modal-component',

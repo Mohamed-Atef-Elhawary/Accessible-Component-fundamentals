@@ -32,9 +32,10 @@
 
   --color-activeColor: #4f46e5;
   --color-inactiveColor: #d1d5db;
-  --color-focusVisibleColor: #c7d2fe;
+  --color-focusVisibleColor: #4338ca;
 
-  --padding-innerCompPadding: 4px;
+  --focus-focusVisibleSpace: 4px;
+
   --duration-custom: 500ms;
 }
 

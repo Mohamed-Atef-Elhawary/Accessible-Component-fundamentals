@@ -1,5 +1,5 @@
 import { Injectable, signal, WritableSignal } from '@angular/core';
-import { AccessibilityOption } from '../../../interfaces/accessibility-options';
+import { AccessibilityOption } from '../../../../interfaces/accessibility-options';
 
 @Injectable({
   providedIn: 'root',

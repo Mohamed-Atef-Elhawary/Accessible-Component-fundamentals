@@ -1,20 +1,21 @@
 <article
   [class]="{
-    'grid-rows-[auto_1fr]': isOpenState(),
-    'grid-rows-[auto_0fr]': !isOpenState(),
+    'grid-rows-[auto_1fr]': hasOpenState(),
+    'grid-rows-[auto_0fr]': !hasOpenState(),
   }"
   class="grid transition-all duration-custom border-2 border-transparent bg-whiteColor"
 >
   <h2 [id]="sectionId">
     <button
       type="button"
-      (click)="toggleState()"
-      [attr.aria-expanded]="isOpenState()"
+      [attr.aria-expanded]="hasOpenState()"
       [attr.aria-controls]="contentId"
-      class="flex gap-2 w-full h-full bg-headerSectionbg p-2 cursor-pointer focus-visible:outline-4 focus-visible:outline-focusVisibleColor"
+      #headerButton
+      (click)="toggleState()"
+      class="flex gap-2 w-full h-full bg-headerSectionbg p-2 cursor-pointer focus-visible:outline-(length:--focus-focusVisibleSpace) focus-visible:outline-focusVisibleColor"
     >
-      <fa-icon [class]="isOpenState() ? 'block' : 'hidden'" [icon]="chevronDown"></fa-icon>
-      <fa-icon [class]="!isOpenState() ? 'block' : 'hidden'" [icon]="chevronRight"></fa-icon>
+      <fa-icon [class]="hasOpenState() ? 'block' : 'hidden'" [icon]="chevronDown"></fa-icon>
+      <fa-icon [class]="!hasOpenState() ? 'block' : 'hidden'" [icon]="chevronRight"></fa-icon>
       <span>{{ title() }}</span>
     </button>
   </h2>
@@ -23,10 +24,15 @@
     [id]="contentId"
     role="region"
     [attr.aria-labelledby]="sectionId"
-    [attr.aria-hidden]="!isOpenState()"
-    [inert]="!isOpenState()"
+    [attr.aria-hidden]="!hasOpenState()"
+    [inert]="!hasOpenState()"
+    appFocusTrapInExpandedSectionDirective
+    [enable]="enableTrapFocus()"
+    (close)="toggleState()"
     class="overflow-hidden"
   >
-    <div class="p-2"><ng-content></ng-content></div>
+    <div class="p-2">
+      <ng-content></ng-content>
+    </div>
   </div>
 </article>

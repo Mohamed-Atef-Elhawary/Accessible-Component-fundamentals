@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { MultipleOpenSectionsDirective } from '../../../directives/disclosure-directives/multiple-open-sections-directive/multiple-open-sections-directive';
+import { MultipleOpenSectionsDirective } from '../../../../directives/disclosure-directives/multiple-open-sections-directive/multiple-open-sections-directive';
 
 @Injectable({
   providedIn: 'root',

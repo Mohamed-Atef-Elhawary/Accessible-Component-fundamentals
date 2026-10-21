@@ -60,7 +60,7 @@ export class DisclosureSettingsSectionsComponent {
   compactSettingsStore = inject(CompactSettingsStore);
 
   notificationSettings = computed<ToggleSettingMetaData<NotificationSettingName>[]>(() => {
-    const email: ToggleSettingMetaData<NotificationSettingName> = {
+    const email1: ToggleSettingMetaData<NotificationSettingName> = {
       ...NOTIFICATION_SETTINGS_METADATA.email,
       checked: this.notificationStore.draftedState.email(),
       preview: {
@@ -68,7 +68,7 @@ export class DisclosureSettingsSectionsComponent {
         payload: `Email notifications turned ${this.notificationStore.draftedState.email() ? 'on' : 'off'}`,
       },
     };
-    const push: ToggleSettingMetaData<NotificationSettingName> = {
+    const push1: ToggleSettingMetaData<NotificationSettingName> = {
       ...NOTIFICATION_SETTINGS_METADATA.push,
       checked: this.notificationStore.draftedState.push(),
       preview: {
@@ -76,7 +76,23 @@ export class DisclosureSettingsSectionsComponent {
         payload: `Push notifications turned ${this.notificationStore.draftedState.push() ? 'on' : 'off'}`,
       },
     };
-    return [email, push];
+    const email2: ToggleSettingMetaData<NotificationSettingName> = {
+      ...NOTIFICATION_SETTINGS_METADATA.email,
+      checked: this.notificationStore.draftedState.email(),
+      preview: {
+        feedbackType: 'status',
+        payload: `Email notifications turned ${this.notificationStore.draftedState.email() ? 'on' : 'off'}`,
+      },
+    };
+    const push2: ToggleSettingMetaData<NotificationSettingName> = {
+      ...NOTIFICATION_SETTINGS_METADATA.push,
+      checked: this.notificationStore.draftedState.push(),
+      preview: {
+        feedbackType: 'status',
+        payload: `Push notifications turned ${this.notificationStore.draftedState.push() ? 'on' : 'off'}`,
+      },
+    };
+    return [email1, push1, email2, push2];
   });
 
   accessibilitySettings = computed<ToggleSettingMetaData<AccessibilitySettingName>[]>(() => {

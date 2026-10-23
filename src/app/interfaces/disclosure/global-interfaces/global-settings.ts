@@ -1,5 +1,9 @@
 import { Theme } from '../settings-interfaces/display-disclosure-settings';
 import { PrivacyOption } from '../settings-interfaces/privacy-disclosure-settings';
+import {
+  LineHeightSetting,
+  TextSizeSetting,
+} from '../settings-interfaces/readability-disclosure-settings';
 
 export interface SettingsService<TState> {
   loadSettings(): Promise<TState>;
@@ -14,6 +18,8 @@ export type FeedbackPayloadMap = {
   contrast: boolean;
   theme: Theme;
   privacy: PrivacyOption;
+  textSize: number;
+  lineHeight: number;
 };
 
 export type FeedbackType = keyof FeedbackPayloadMap;

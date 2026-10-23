@@ -1,0 +1,27 @@
+@let stableFeedBack = feedbackData();
+@switch (stableFeedBack.feedbackType) {
+  @case ('status') {
+    <app-setting-status-feedback-component [statusPayload]="stableFeedBack.payload" />
+  }
+  @case ('privacy') {
+    <app-setting-privacy-feedback-component [privacyPayload]="stableFeedBack.payload" />
+  }
+  @case ('theme') {
+    <app-setting-theme-feedback-component [appearancePayload]="stableFeedBack.payload" />
+  }
+  @case ('compact') {
+    <app-setting-compact-feedback-component [compactPayload]="stableFeedBack.payload" />
+  }
+  @case ('motion') {
+    <app-setting-motion-feedback-component [motionPayload]="stableFeedBack.payload" />
+  }
+  @case ('contrast') {
+    <app-setting-contrast-feedback-component [contrastPayload]="stableFeedBack.payload" />
+  }
+  @case ('textSize') {
+    <app-setting-text-size-feedback-component [textSizePayload]="stableFeedBack.payload" />
+  }
+  @case ('lineHeight') {
+    <app-setting-line-height-feedback-component [lineHeightPayload]="stableFeedBack.payload" />
+  }
+}

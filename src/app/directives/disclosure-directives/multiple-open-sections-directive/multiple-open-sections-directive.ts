@@ -4,10 +4,7 @@ import { DisclosureSectionsRegistryService } from '../../../services/disclosure-
 
 @Directive({
   selector: '[appMultipleOpenSectionsDirective]',
-  exportAs: 'MultipleOpenSectionsDirective',
-  host: {
-    '(switchOpenState)': 'updateOpenState()',
-  },
+  standalone: true,
 })
 export class MultipleOpenSectionsDirective {
   private _disclosureAccessibilityStateService = inject(DisclosureAccessibilityStateService);
@@ -15,6 +12,7 @@ export class MultipleOpenSectionsDirective {
 
   private _isOpenState = signal(false);
   readonly isOpenState = this._isOpenState.asReadonly();
+
   multipleOpenSections = computed(() =>
     this._disclosureAccessibilityStateService.multipleOpenSections(),
   );
@@ -23,11 +21,15 @@ export class MultipleOpenSectionsDirective {
     this._disclosureSectionsRegistryService.addRegistry(this);
   }
 
-  updateOpenState() {
+  toggleOpenState() {
     this._isOpenState.update((state) => !state);
     if (this._isOpenState() && !this.multipleOpenSections()) {
-      this._disclosureSectionsRegistryService.closeOtherRegistries(this);
+      this.closeOtherRegistries();
     }
+  }
+
+  closeOtherRegistries() {
+    this._disclosureSectionsRegistryService.closeOtherRegistries(this);
   }
   setOpenStateToFalse() {
     this._isOpenState.set(false);

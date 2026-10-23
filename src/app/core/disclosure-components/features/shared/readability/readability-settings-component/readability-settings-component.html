@@ -1,0 +1,62 @@
+<div class="flex flex-col gap-8 bg-whiteColor pt-1">
+  @if (previewPosition() === 'top') {
+    <ng-container [ngTemplateOutlet]="preview" />
+  }
+
+  <div class="flex gap-4 items-center">
+    <fa-icon [icon]="readabilitySettingData().icon" class="text-[20px]"></fa-icon>
+    <div class="grow flex flex-col lg:flex-row lg:justify-between gap-1">
+      <div>
+        <div class="flex items-center gap-1">
+          <span> {{ readabilitySettingData().settingTitle }}</span>
+          <span
+            class="block w-[60px] h-[30px] rounded-[5px] px-[2px] text-center leading-[30px] line border-2 border-inactiveColor bg-whiteColor"
+            >{{ this.readabilitySettingData().settingRangeValue }}%
+          </span>
+        </div>
+        <p class="text-light text-sm">{{ readabilitySettingData().settingSubtitle }}</p>
+      </div>
+
+      <div class="self-center sm:self-end flex items-center w-[300px]">
+        <fa-icon aria-hidden="true" [icon]="readabilitySettingData().icon" class=""></fa-icon>
+
+        <label [for]="readabilitySettingData().settingTitle" class="relative grow px-3">
+          <input
+            type="range"
+            [id]="readabilitySettingData().settingTitle"
+            [min]="readabilitySettingData().min"
+            [max]="readabilitySettingData().max"
+            [value]="readabilitySettingData().settingRangeValue"
+            (input)="onRangeValue($event)"
+            #rangeInputRef
+            aria-label="text size"
+            [attr.aria-valuetext]="'Medium'"
+            [style.--range-percent.%]="readabilitySettingData().settingRangeValue"
+            [style.--range-value]="this.readabilitySettingData().settingRangeValue + '%'"
+            class="text-end focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-focusVisibleColor"
+          />
+          <span
+            #spanToolTip
+            [style.left]="left()"
+            [style.transform]="`translate(-${left()},-150%)`"
+            class="absolute top-[50%] text-[1rem] w-[60px] h-[30px] rounded-[5px] px-[2px] text-center leading-[30px] line border-2 border-inactiveColor bg-whiteColor hidden"
+            >{{ this.readabilitySettingData().settingRangeValue }}%</span
+          >
+        </label>
+        <fa-icon
+          aria-hidden="true"
+          [icon]="readabilitySettingData().icon"
+          class="relative right-[5px] text-[30px]"
+        ></fa-icon>
+      </div>
+    </div>
+  </div>
+
+  @if (previewPosition() === 'bottom') {
+    <ng-container [ngTemplateOutlet]="preview" />
+  }
+</div>
+
+<ng-template #preview>
+  <app-settings-feedback-resolver-component [feedbackData]="readabilityFeedbackData()" />
+</ng-template>

@@ -11,6 +11,8 @@ export const FEEDBACK_PREVIEW_POSITION: Record<FeedbackType, PreviewPosition> = 
   compact: 'bottom',
   theme: 'bottom',
   privacy: 'bottom',
+  textSize: 'top',
+  lineHeight: 'top',
 };
 
 export type MotionLevel = 'full' | 'reduced';

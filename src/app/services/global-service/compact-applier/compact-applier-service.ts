@@ -1,5 +1,5 @@
 import { DOCUMENT, effect, inject, Injectable } from '@angular/core';
-import { CompactSettingsStore } from '../../../stors/setting-stores/settings/toggle-settings-stores/compact-settings-store/compact-settings-store';
+import { CompactSettingsStore } from '../../../stores/setting-stores/settings/toggle-settings-stores/compact-settings-store/compact-settings-store';
 
 @Injectable({
   providedIn: 'root',

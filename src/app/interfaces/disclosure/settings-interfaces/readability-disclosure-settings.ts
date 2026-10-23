@@ -1,12 +1,12 @@
 import { IconDefinition } from '@fortawesome/angular-fontawesome';
 
-export interface TextSizeSettingsState {
+export interface TextSizeSetting {
   textSizePercent: number;
 }
-export interface LineHeightSettingsState {
+export interface LineHeightSetting {
   lineHeightPercent: number;
 }
-export interface ReadabilitySettingsText {
+export interface ReadabilitySettingsMetaData {
   settingRangeValue: number;
   previewTitle: string;
   previewDescription: string;

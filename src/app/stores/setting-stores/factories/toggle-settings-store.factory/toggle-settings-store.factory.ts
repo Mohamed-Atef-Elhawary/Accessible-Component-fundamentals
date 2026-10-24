@@ -1,6 +1,5 @@
 import { inject, Type } from '@angular/core';
 import {
-  getState,
   patchState,
   signalStore,
   withHooks,
@@ -23,10 +22,7 @@ export function buildToggleSettingsStore<TName extends string>(
     withHooks((store) => ({
       async onInit() {
         const loadedState: ToggleSettingsState<TName> = await store.service.loadSettings();
-        patchState(store, (state) => ({
-          draftedState: { ...state.draftedState, ...loadedState },
-          savedState: { ...state.savedState, ...loadedState },
-        }));
+        patchState(store, { draftedState: { ...loadedState }, savedState: { ...loadedState } });
       },
     })),
 

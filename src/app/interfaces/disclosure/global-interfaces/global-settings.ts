@@ -1,15 +1,11 @@
 import { Theme } from '../settings-interfaces/display-disclosure-settings';
 import { PrivacyOption } from '../settings-interfaces/privacy-disclosure-settings';
-import {
-  LineHeightSetting,
-  TextSizeSetting,
-} from '../settings-interfaces/readability-disclosure-settings';
 
 export interface SettingsService<TState> {
   loadSettings(): Promise<TState>;
   saveSettings(settingState: TState): Promise<void>;
 }
-export type PreviewPosition = 'top' | 'bottom';
+export type FeedbackPosition = 'top' | 'bottom';
 
 export type FeedbackPayloadMap = {
   status: string;

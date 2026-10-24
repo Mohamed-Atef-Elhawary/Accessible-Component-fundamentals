@@ -1,12 +1,7 @@
 <ul class="text-dark flex flex-col gap-4">
   @for (setting of positionedSettingMetaData(); track setting.settingName; let i = $index) {
     <li>
-      <ng-template #preview>
-        <div class="py-1">
-          <app-settings-feedback-resolver-component [feedbackData]="setting.preview" />
-        </div>
-      </ng-template>
-      @if (setting.previewPosition === 'top') {
+      @if (setting.feedbackPosition === 'top') {
         <ng-container [ngTemplateOutlet]="preview" />
       }
       <div class="flex items-center justify-between">
@@ -24,8 +19,8 @@
             [class]="{
               'border-activeColor': setting.checked,
               'bg-activeColor': setting.checked,
-              'hover:border-secondarybg': setting.checked,
-              'hover:bg-secondarybg': setting.checked,
+              'hover:border-secondaryBg': setting.checked,
+              'hover:bg-secondaryBg': setting.checked,
               'border-inactiveColor': !setting.checked,
               'bg-whiteColor': !setting.checked,
             }"
@@ -42,9 +37,14 @@
         </div>
       </div>
       <p [id]="setting.settingName" class="text-light">{{ setting.description }}</p>
-      @if (setting.previewPosition === 'bottom') {
+      @if (setting.feedbackPosition === 'bottom') {
         <ng-container [ngTemplateOutlet]="preview" />
       }
     </li>
+    <ng-template #preview>
+      <div class="py-1">
+        <app-settings-feedback-resolver-component [feedbackData]="setting.feedbackData" />
+      </div>
+    </ng-template>
   }
 </ul>

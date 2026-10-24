@@ -7,8 +7,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { SettingsFeedbackResolverComponent } from '../../feedbacks/settings-feedback-resolver-component/settings-feedback-resolver-component';
 import { FeedbackData } from '../../../../../../interfaces/disclosure/global-interfaces/global-settings';
-import { FEEDBACK_PREVIEW_POSITION } from '../../../../../../constants/feedback-preview-position';
+import {} from '../../../../../../constants/feedback-preview-position';
 import { NgTemplateOutlet } from '@angular/common';
+import { FEEDBACK_POSITION } from '../../constants-feedback-position';
 @Component({
   imports: [FontAwesomeModule, SettingsFeedbackResolverComponent, NgTemplateOutlet],
   selector: 'app-radio-group-settings-component',
@@ -19,7 +20,7 @@ export class RadioGroupSettingsComponent {
   radioSettingsData = input.required<RadioSettingsData<RadioGroup>>();
   radioFeedbackData = input.required<FeedbackData>();
   previewPosition = computed<'top' | 'bottom'>(
-    () => FEEDBACK_PREVIEW_POSITION[this.radioFeedbackData().feedbackType],
+    () => FEEDBACK_POSITION[this.radioFeedbackData().feedbackType],
   );
   changeSetting = output<RadioGroup>();
   settingDataChanged(option: RadioGroup) {

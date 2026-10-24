@@ -1,6 +1,31 @@
 import { IconDefinition } from '@fortawesome/angular-fontawesome';
-import { PrivacyOption } from './privacy-disclosure-settings';
-import { Theme } from './display-disclosure-settings';
+
+export type Theme = 'system' | 'light' | 'dark';
+
+export type PrivacyOption = 'public' | 'friends' | 'private';
+
+export interface DisplaySettingValue {
+  selectedOption: Theme;
+}
+
+export interface DisplaySettingsState {
+  draftedState: DisplaySettingValue;
+  savedState: DisplaySettingValue;
+}
+
+export interface PrivacySettingsValue {
+  selectedOption: PrivacyOption;
+}
+
+export interface PrivacySettingsState {
+  draftedState: PrivacySettingsValue;
+  savedState: PrivacySettingsValue;
+}
+
+export interface PrivacySettingsData {
+  option: PrivacyOption;
+  icon: IconDefinition;
+}
 
 export type RadioGroup = PrivacyOption | Theme;
 export type RadioGroupName = 'privacy' | 'theme';

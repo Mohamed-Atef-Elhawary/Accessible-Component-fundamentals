@@ -3,11 +3,9 @@ import {
   ToggleSettingMetaData,
   AccessibilitySettingName,
 } from '../../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
-import {
-  AccessibilitySettingsStore,
-  ACCESSIBILITY_SETTINGS_METADATA,
-} from '../../../../../stores/setting-stores/settings/toggle-settings-stores/accessibility-settings-store/accessibility-settings.store';
+import { AccessibilitySettingsStore } from '../../../../../stores/setting-stores/settings/toggle-settings-stores/accessibility/accessibility-settings.store';
 import { ToggleSettingsListComponent } from '../../shared/toggle/toggle-settings-list-component/toggle-settings-list-component';
+import { ACCESSIBILITY_SETTINGS_METADATA } from '../../../../../stores/setting-stores/settings/toggle-settings-stores/accessibility/accessibility-constants';
 
 @Component({
   imports: [ToggleSettingsListComponent],
@@ -21,7 +19,7 @@ export class AccessibilitySettingsComponent {
     const motion: ToggleSettingMetaData<AccessibilitySettingName> = {
       ...ACCESSIBILITY_SETTINGS_METADATA.motion,
       checked: this.accessibilityStore.draftedState.motion(),
-      preview: {
+      feedbackData: {
         feedbackType: 'motion',
         payload: this.accessibilityStore.draftedState.motion(),
       },
@@ -30,7 +28,7 @@ export class AccessibilitySettingsComponent {
     const contrast: ToggleSettingMetaData<AccessibilitySettingName> = {
       ...ACCESSIBILITY_SETTINGS_METADATA.contrast,
       checked: this.accessibilityStore.draftedState.contrast(),
-      preview: {
+      feedbackData: {
         feedbackType: 'contrast',
         payload: this.accessibilityStore.draftedState.contrast(),
       },

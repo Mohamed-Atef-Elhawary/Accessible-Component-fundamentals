@@ -28,11 +28,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReadabilitySettingsMetaData } from '../../../../../../interfaces/disclosure/settings-interfaces/readability-disclosure-settings';
 import {
   FeedbackData,
-  PreviewPosition,
+  FeedbackPosition,
 } from '../../../../../../interfaces/disclosure/global-interfaces/global-settings';
 import { SettingsFeedbackResolverComponent } from '../../feedbacks/settings-feedback-resolver-component/settings-feedback-resolver-component';
 import { NgTemplateOutlet } from '@angular/common';
-import { FEEDBACK_PREVIEW_POSITION } from '../../../../../../constants/feedback-preview-position';
+import {} from '../../../../../../constants/feedback-preview-position';
+import { FEEDBACK_POSITION } from '../../constants-feedback-position';
 
 @Component({
   imports: [FontAwesomeModule, SettingsFeedbackResolverComponent, NgTemplateOutlet],
@@ -43,8 +44,8 @@ import { FEEDBACK_PREVIEW_POSITION } from '../../../../../../constants/feedback-
 export class ReadabilitySettingsComponent {
   readabilitySettingData = input.required<ReadabilitySettingsMetaData>();
   readabilityFeedbackData = input.required<FeedbackData>();
-  previewPosition = computed<PreviewPosition>(
-    () => FEEDBACK_PREVIEW_POSITION[this.readabilityFeedbackData().feedbackType],
+  previewPosition = computed<FeedbackPosition>(
+    () => FEEDBACK_POSITION[this.readabilityFeedbackData().feedbackType],
   );
   onSettingRangeValue = output<number>();
 

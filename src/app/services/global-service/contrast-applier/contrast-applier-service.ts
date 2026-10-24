@@ -1,5 +1,5 @@
 import { DOCUMENT, effect, inject, Injectable } from '@angular/core';
-import { AccessibilitySettingsStore } from '../../../stores/setting-stores/settings/toggle-settings-stores/accessibility-settings-store/accessibility-settings.store';
+import { AccessibilitySettingsStore } from '../../../stores/setting-stores/settings/toggle-settings-stores/accessibility/accessibility-settings.store';
 
 @Injectable({
   providedIn: 'root',

@@ -3,11 +3,9 @@ import {
   ToggleSettingMetaData,
   NotificationSettingName,
 } from '../../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
-import {
-  NotificationSettingsStore,
-  NOTIFICATION_SETTINGS_METADATA,
-} from '../../../../../stores/setting-stores/settings/toggle-settings-stores/notification-settings-store/notification-settings-store';
+import { NotificationSettingsStore } from '../../../../../stores/setting-stores/settings/toggle-settings-stores/notification/notification-settings-store';
 import { ToggleSettingsListComponent } from '../../shared/toggle/toggle-settings-list-component/toggle-settings-list-component';
+import { NOTIFICATION_SETTINGS_METADATA } from '../../../../../stores/setting-stores/settings/toggle-settings-stores/notification/notification-constants';
 
 @Component({
   imports: [ToggleSettingsListComponent],
@@ -24,7 +22,7 @@ export class NotificationSettingsComponent {
     const email: ToggleSettingMetaData<NotificationSettingName> = {
       ...NOTIFICATION_SETTINGS_METADATA.email,
       checked: isEmailChecked,
-      preview: {
+      feedbackData: {
         feedbackType: 'status',
         payload: `Email notifications turned ${isEmailChecked ? 'on' : 'off'}`,
       },
@@ -32,7 +30,7 @@ export class NotificationSettingsComponent {
     const push: ToggleSettingMetaData<NotificationSettingName> = {
       ...NOTIFICATION_SETTINGS_METADATA.push,
       checked: isPushChecked,
-      preview: {
+      feedbackData: {
         feedbackType: 'status',
         payload: `Push notifications turned ${isPushChecked ? 'on' : 'off'}`,
       },
@@ -41,15 +39,14 @@ export class NotificationSettingsComponent {
   });
 
   notificationSettingsToggler(settingName: string) {
-    if (this.isSettingName<NotificationSettingName>(settingName, ['email', 'sms'])) {
+    if (this.isSettingKey(settingName, NOTIFICATION_SETTINGS_METADATA)) {
       this.notificationStore.toggleSettingState(settingName);
     }
   }
-
-  isSettingName<TName extends string>(
-    settingName: string,
-    availableNames: string[],
-  ): settingName is TName {
-    return availableNames.includes(settingName);
+  isSettingKey<TRecord extends object>(
+    key: string,
+    record: TRecord,
+  ): key is Extract<keyof TRecord, string> {
+    return record.hasOwnProperty(key);
   }
 }

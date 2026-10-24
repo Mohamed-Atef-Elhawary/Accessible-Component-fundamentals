@@ -1,19 +1,4 @@
-import {
-  FeedbackType,
-  PreviewPosition,
-} from '../interfaces/disclosure/global-interfaces/global-settings';
 import { Theme } from '../interfaces/disclosure/settings-interfaces/display-disclosure-settings';
-
-export const FEEDBACK_PREVIEW_POSITION: Record<FeedbackType, PreviewPosition> = {
-  status: 'bottom',
-  motion: 'bottom',
-  contrast: 'bottom',
-  compact: 'bottom',
-  theme: 'bottom',
-  privacy: 'bottom',
-  textSize: 'top',
-  lineHeight: 'top',
-};
 
 export type MotionLevel = 'full' | 'reduced';
 

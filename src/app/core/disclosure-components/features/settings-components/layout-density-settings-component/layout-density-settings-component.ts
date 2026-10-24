@@ -1,13 +1,11 @@
 import { Component, computed, inject } from '@angular/core';
 import {
+  DensitySettingName,
   ToggleSettingMetaData,
-  CompactSettingName,
 } from '../../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
-import {
-  CompactSettingsStore,
-  COMPACT_SETTINGS_METADATA,
-} from '../../../../../stores/setting-stores/settings/toggle-settings-stores/compact-settings-store/compact-settings-store';
 import { ToggleSettingsListComponent } from '../../shared/toggle/toggle-settings-list-component/toggle-settings-list-component';
+import { COMPACT_SETTINGS_METADATA } from '../../../../../stores/setting-stores/settings/toggle-settings-stores/density/density-constants';
+import { DensitySettingsStore } from '../../../../../stores/setting-stores/settings/toggle-settings-stores/density/density-settings-store';
 
 @Component({
   imports: [ToggleSettingsListComponent],
@@ -16,22 +14,22 @@ import { ToggleSettingsListComponent } from '../../shared/toggle/toggle-settings
   templateUrl: './layout-density-settings-component.html',
 })
 export class LayoutDensitySettingsComponent {
-  compactSettingsStore = inject(CompactSettingsStore);
-  compactSettings = computed<ToggleSettingMetaData<CompactSettingName>[]>(() => {
+  densitySettingsStore = inject(DensitySettingsStore);
+  compactSettings = computed<ToggleSettingMetaData<DensitySettingName>[]>(() => {
     return [
       {
-        checked: this.compactSettingsStore.draftedState.compact(),
+        checked: this.densitySettingsStore.draftedState.compact(),
         ...COMPACT_SETTINGS_METADATA.compact,
-        preview: {
+        feedbackData: {
           feedbackType: 'compact',
-          payload: this.compactSettingsStore.draftedState.compact(),
+          payload: this.densitySettingsStore.draftedState.compact(),
         },
       },
     ];
   });
   compactSettingsToggler(settingName: string) {
-    if (this.isSettingName<CompactSettingName>(settingName, ['compact'])) {
-      this.compactSettingsStore.toggleSettingState(settingName);
+    if (this.isSettingName<DensitySettingName>(settingName, ['compact'])) {
+      this.densitySettingsStore.toggleSettingState(settingName);
     }
   }
   isSettingName<TName extends string>(

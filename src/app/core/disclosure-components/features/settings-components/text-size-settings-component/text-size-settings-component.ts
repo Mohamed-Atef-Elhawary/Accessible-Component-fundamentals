@@ -7,7 +7,7 @@ import {
 import {
   TextSizeSettingsStore,
   TEXT_SIZE_SETTINGS_METADATA,
-} from '../../../../../stores/setting-stores/settings/readability-settings-stores/text-size-settings-store/text-size-settings-store';
+} from '../../../../../stores/setting-stores/settings/readability/text-size-settings-store/text-size-settings-store';
 import { ReadabilitySettingsComponent } from '../../shared/readability/readability-settings-component/readability-settings-component';
 
 @Component({

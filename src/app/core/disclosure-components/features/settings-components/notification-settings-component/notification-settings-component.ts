@@ -1,11 +1,11 @@
 import { Component, computed, inject } from '@angular/core';
 import {
-  ToggleSettingMetaData,
   NotificationSettingName,
+  ToggleSettingData,
 } from '../../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
-import { NotificationSettingsStore } from '../../../../../stores/setting-stores/settings/toggle-settings-stores/notification/notification-settings-store';
+import { NotificationSettingsStore } from '../../../../../stores/setting-stores/settings/toggle/notification/notification-settings-store';
 import { ToggleSettingsListComponent } from '../../shared/toggle/toggle-settings-list-component/toggle-settings-list-component';
-import { NOTIFICATION_SETTINGS_METADATA } from '../../../../../stores/setting-stores/settings/toggle-settings-stores/notification/notification-constants';
+import { NOTIFICATION_SETTINGS_METADATA } from '../../../../../stores/setting-stores/settings/toggle/notification/notification-constants';
 
 @Component({
   imports: [ToggleSettingsListComponent],
@@ -15,11 +15,11 @@ import { NOTIFICATION_SETTINGS_METADATA } from '../../../../../stores/setting-st
 })
 export class NotificationSettingsComponent {
   notificationStore = inject(NotificationSettingsStore);
-  notificationSettings = computed<ToggleSettingMetaData<NotificationSettingName>[]>(() => {
+  notificationSettings = computed<ToggleSettingData<NotificationSettingName>[]>(() => {
     const isEmailChecked = this.notificationStore.draftedState.email();
     const isPushChecked = this.notificationStore.draftedState.push();
 
-    const email: ToggleSettingMetaData<NotificationSettingName> = {
+    const email: ToggleSettingData<NotificationSettingName> = {
       ...NOTIFICATION_SETTINGS_METADATA.email,
       checked: isEmailChecked,
       feedbackData: {
@@ -27,7 +27,7 @@ export class NotificationSettingsComponent {
         payload: `Email notifications turned ${isEmailChecked ? 'on' : 'off'}`,
       },
     };
-    const push: ToggleSettingMetaData<NotificationSettingName> = {
+    const push: ToggleSettingData<NotificationSettingName> = {
       ...NOTIFICATION_SETTINGS_METADATA.push,
       checked: isPushChecked,
       feedbackData: {

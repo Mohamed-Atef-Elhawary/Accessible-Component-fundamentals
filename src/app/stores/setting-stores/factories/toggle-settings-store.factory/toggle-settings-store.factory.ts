@@ -8,9 +8,12 @@ import {
   withState,
 } from '@ngrx/signals';
 import { SettingsService } from '../../../../interfaces/disclosure/global-interfaces/global-settings';
-import { ToggleSettingsState } from '../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
+import {
+  ToggleSettingName,
+  ToggleSettingsState,
+} from '../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 
-export function buildToggleSettingsStore<TName extends string>(
+export function buildToggleSettingsStore<TName extends ToggleSettingName>(
   serviceType: Type<SettingsService<ToggleSettingsState<TName>>>,
   initialState: ToggleSettingsState<TName>,
 ) {

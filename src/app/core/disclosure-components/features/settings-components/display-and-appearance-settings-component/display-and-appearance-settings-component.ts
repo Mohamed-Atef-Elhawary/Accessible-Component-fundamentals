@@ -7,7 +7,7 @@ import { RadioSettingsData } from '../../../../../interfaces/disclosure/settings
 import {
   DisplaySettingsStore,
   DISPLAY_SETTINGS_METADATA,
-} from '../../../../../stores/setting-stores/settings/display-settings-store/display-settings-store';
+} from '../../../../../stores/setting-stores/settings/radio/theme/theme-settings-store';
 import { RadioGroupSettingsComponent } from '../../shared/radio-group/radio-group-settings-component/radio-group-settings-component';
 
 @Component({

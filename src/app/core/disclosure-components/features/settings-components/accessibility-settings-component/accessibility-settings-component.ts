@@ -1,11 +1,11 @@
 import { Component, computed, inject } from '@angular/core';
 import {
-  ToggleSettingMetaData,
+  ToggleSettingData,
   AccessibilitySettingName,
 } from '../../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
-import { AccessibilitySettingsStore } from '../../../../../stores/setting-stores/settings/toggle-settings-stores/accessibility/accessibility-settings.store';
+import { AccessibilitySettingsStore } from '../../../../../stores/setting-stores/settings/toggle/accessibility/accessibility-settings.store';
 import { ToggleSettingsListComponent } from '../../shared/toggle/toggle-settings-list-component/toggle-settings-list-component';
-import { ACCESSIBILITY_SETTINGS_METADATA } from '../../../../../stores/setting-stores/settings/toggle-settings-stores/accessibility/accessibility-constants';
+import { ACCESSIBILITY_SETTINGS_METADATA } from '../../../../../stores/setting-stores/settings/toggle/accessibility/accessibility-constants';
 
 @Component({
   imports: [ToggleSettingsListComponent],
@@ -15,8 +15,8 @@ import { ACCESSIBILITY_SETTINGS_METADATA } from '../../../../../stores/setting-s
 })
 export class AccessibilitySettingsComponent {
   accessibilityStore = inject(AccessibilitySettingsStore);
-  accessibilitySettings = computed<ToggleSettingMetaData<AccessibilitySettingName>[]>(() => {
-    const motion: ToggleSettingMetaData<AccessibilitySettingName> = {
+  accessibilitySettings = computed<ToggleSettingData<AccessibilitySettingName>[]>(() => {
+    const motion: ToggleSettingData<AccessibilitySettingName> = {
       ...ACCESSIBILITY_SETTINGS_METADATA.motion,
       checked: this.accessibilityStore.draftedState.motion(),
       feedbackData: {
@@ -25,7 +25,7 @@ export class AccessibilitySettingsComponent {
       },
     };
 
-    const contrast: ToggleSettingMetaData<AccessibilitySettingName> = {
+    const contrast: ToggleSettingData<AccessibilitySettingName> = {
       ...ACCESSIBILITY_SETTINGS_METADATA.contrast,
       checked: this.accessibilityStore.draftedState.contrast(),
       feedbackData: {

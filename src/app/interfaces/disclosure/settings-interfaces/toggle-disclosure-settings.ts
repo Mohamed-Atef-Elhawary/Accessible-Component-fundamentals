@@ -9,20 +9,25 @@ export type ToggleSettingName =
   | AccessibilitySettingName
   | DensitySettingName;
 
-export type ToggleSettingsState<TName extends string> = {
+export type ToggleSettingsState<TName extends ToggleSettingName> = {
   [K in TName]: boolean;
 };
 
-export interface ToggleSettingMetaData<TName extends string> {
+export type ToggleMetaDataOf<TName extends ToggleSettingName> = {
   settingName: TName;
-  feedbackData: FeedbackData;
   description: string;
-  checked: boolean;
   label: string;
-}
+};
 
-export interface PositionedToggleSettingMetaData<
-  TName extends string,
-> extends ToggleSettingMetaData<TName> {
-  feedbackPosition: FeedbackPosition;
-}
+export type ToggleMetaData<TName extends ToggleSettingName> = {
+  [K in TName]: ToggleMetaDataOf<TName>;
+};
+export type ToggleSettingData<TName extends ToggleSettingName> = ToggleMetaDataOf<TName> & {
+  checked: boolean;
+  feedbackData: FeedbackData;
+};
+
+export type PositionedToggleSettingData<TName extends ToggleSettingName> =
+  ToggleSettingData<TName> & {
+    feedbackPosition: FeedbackPosition;
+  };

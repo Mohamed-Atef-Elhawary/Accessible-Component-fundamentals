@@ -8,7 +8,7 @@ import {
 import {
   LineHeightSettingsStore,
   LINE_HEIGHT_SETTINGS_METADATA,
-} from '../../../../../stores/setting-stores/settings/readability-settings-stores/line-height-settings-store/line-height-settings-store';
+} from '../../../../../stores/setting-stores/settings/readability/line-height-settings-store/line-height-settings-store';
 import { ReadabilitySettingsComponent } from '../../shared/readability/readability-settings-component/readability-settings-component';
 
 @Component({

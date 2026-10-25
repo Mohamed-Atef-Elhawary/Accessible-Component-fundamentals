@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import {
   AccessibilitySettingName,
   ToggleSettingsState,
-} from '../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
-import { SettingsService } from '../../../interfaces/disclosure/global-interfaces/global-settings';
+} from '../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
+import { SettingsService } from '../../../../interfaces/disclosure/global-interfaces/global-settings';
 
 @Injectable({
   providedIn: 'root',

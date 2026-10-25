@@ -1,5 +1,5 @@
 import { DOCUMENT, effect, inject, Injectable } from '@angular/core';
-import { DisplaySettingsStore } from '../../../stores/setting-stores/settings/display-settings-store/display-settings-store';
+import { DisplaySettingsStore } from '../../../stores/setting-stores/settings/radio/theme/theme-settings-store';
 
 @Injectable({
   providedIn: 'root',

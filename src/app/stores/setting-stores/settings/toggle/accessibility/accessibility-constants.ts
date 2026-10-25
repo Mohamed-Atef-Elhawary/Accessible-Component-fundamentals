@@ -1,12 +1,9 @@
 import {
   AccessibilitySettingName,
-  ToggleSettingMetaData,
+  ToggleMetaData,
 } from '../../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 
-export const ACCESSIBILITY_SETTINGS_METADATA: Record<
-  AccessibilitySettingName,
-  Omit<ToggleSettingMetaData<AccessibilitySettingName>, 'checked' | 'feedbackData'>
-> = {
+export const ACCESSIBILITY_SETTINGS_METADATA: ToggleMetaData<AccessibilitySettingName> = {
   motion: {
     settingName: 'motion',
     description: 'Turns off animations and transitions throughout the app.',

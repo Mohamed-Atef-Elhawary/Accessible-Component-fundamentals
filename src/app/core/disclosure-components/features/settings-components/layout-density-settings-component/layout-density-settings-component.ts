@@ -1,11 +1,11 @@
 import { Component, computed, inject } from '@angular/core';
 import {
   DensitySettingName,
-  ToggleSettingMetaData,
+  ToggleSettingData,
 } from '../../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 import { ToggleSettingsListComponent } from '../../shared/toggle/toggle-settings-list-component/toggle-settings-list-component';
-import { COMPACT_SETTINGS_METADATA } from '../../../../../stores/setting-stores/settings/toggle-settings-stores/density/density-constants';
-import { DensitySettingsStore } from '../../../../../stores/setting-stores/settings/toggle-settings-stores/density/density-settings-store';
+import { COMPACT_SETTINGS_METADATA } from '../../../../../stores/setting-stores/settings/toggle/density/density-constants';
+import { DensitySettingsStore } from '../../../../../stores/setting-stores/settings/toggle/density/density-settings-store';
 
 @Component({
   imports: [ToggleSettingsListComponent],
@@ -15,7 +15,7 @@ import { DensitySettingsStore } from '../../../../../stores/setting-stores/setti
 })
 export class LayoutDensitySettingsComponent {
   densitySettingsStore = inject(DensitySettingsStore);
-  compactSettings = computed<ToggleSettingMetaData<DensitySettingName>[]>(() => {
+  compactSettings = computed<ToggleSettingData<DensitySettingName>[]>(() => {
     return [
       {
         checked: this.densitySettingsStore.draftedState.compact(),

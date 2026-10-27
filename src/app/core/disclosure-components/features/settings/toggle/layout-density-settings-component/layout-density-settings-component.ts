@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, Signal } from '@angular/core';
 import {
   DensitySetting,
   ToggleSettingViewData,
@@ -18,21 +18,25 @@ import { FeedbackData } from '../../../../../../interfaces/disclosure/global-int
 export class LayoutDensitySettingsComponent {
   densityStore = inject(DensitySettingsStore);
 
-  densityViewData = computed<ToggleSettingViewData<DensitySetting>[]>(() => {
-    return Object.values(DENSITY_SETTINGS_METADATA).map((option) => {
-      
-      const checked =  this.densityStore.draftedState()[option.settingName];
+  private computedSettings: Signal<ToggleSettingViewData<DensitySetting>>[] = Object.values(
+    DENSITY_SETTINGS_METADATA,
+  ).map((option) => {
+    return computed<ToggleSettingViewData<DensitySetting>>(() => {
+      const checked = this.densityStore.draftedState[option.settingName]();
       const feedbackData: FeedbackData = {
         feedbackType: option.settingName,
         payload: checked,
       };
-
       return {
         ...option,
         checked,
         feedbackData,
       };
     });
+  });
+
+  densityViewData = computed<ToggleSettingViewData<DensitySetting>[]>(() => {
+    return this.computedSettings.map((setting) => setting());
   });
 
   compactSettingsToggler(settingName: DensitySetting) {

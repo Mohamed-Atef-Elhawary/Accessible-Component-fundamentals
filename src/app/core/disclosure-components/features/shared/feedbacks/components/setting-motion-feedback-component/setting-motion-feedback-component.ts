@@ -1,7 +1,7 @@
 import { Component, computed, input } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { map, skip, startWith, switchMap, tap, timer } from 'rxjs';
-import { MOTION_PREVIEW_DESCRIPTION } from '../../../../../../../constants/feedback-preview-position';
+import { MOTION_PREVIEW_DESCRIPTION } from './constant-motion-feedback';
 
 @Component({
   imports: [],
@@ -11,6 +11,7 @@ import { MOTION_PREVIEW_DESCRIPTION } from '../../../../../../../constants/feedb
 })
 export class SettingMotionFeedbackComponent {
   motionPayload = input.required<boolean>();
+
   motionPreviewDescription = computed(() =>
     this.motionPayload() ? MOTION_PREVIEW_DESCRIPTION.reduced : MOTION_PREVIEW_DESCRIPTION.full,
   );
@@ -18,7 +19,6 @@ export class SettingMotionFeedbackComponent {
     toObservable(this.motionPayload).pipe(
       skip(1),
       switchMap(() => {
-        console.log('switchMap');
         return timer(3000).pipe(
           map(() => false),
           startWith(true),
@@ -30,7 +30,4 @@ export class SettingMotionFeedbackComponent {
       initialValue: false,
     },
   );
-  logger() {
-    console.log('this.isVisible()', this.isVisible());
-  }
 }

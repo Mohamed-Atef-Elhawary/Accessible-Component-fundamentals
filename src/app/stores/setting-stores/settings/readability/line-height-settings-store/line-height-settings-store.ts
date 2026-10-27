@@ -2,7 +2,7 @@ import {
   LineHeightSetting,
   ReadabilitySettingsMetaData,
 } from '../../../../../interfaces/disclosure/settings-interfaces/readability-disclosure-settings';
-import { LineHeightSettingsService } from '../../../../../services/setting-services/line-height-settings-service/line-height-settings-service';
+import { LineHeightSettingsService } from '../../../../../services/disclosure-services/setting-services/line-height-settings-service/line-height-settings-service';
 import { buildReadabilitySettingsStore } from '../../../factories/text-size-and-line-height/readability-settings-store.factory';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 

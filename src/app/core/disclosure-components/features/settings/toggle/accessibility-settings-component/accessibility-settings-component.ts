@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import {
   AccessibilitySetting,
   ToggleSettingOptions,
@@ -16,23 +16,28 @@ import { FeedbackData } from '../../../../../../interfaces/disclosure/global-int
   templateUrl: './accessibility-settings-component.html',
 })
 export class AccessibilitySettingsComponent {
-  
   accessibilityStore = inject(AccessibilitySettingsStore);
 
-  accessibilityViewData = computed<ToggleSettingViewData<AccessibilitySetting>[]>(() => {
-    return Object.values(ACCESSIBILITY_SETTINGS_METADATA).map((option) => {
-      const checked = this.accessibilityStore.draftedState()[option.settingName];
-      const feedbackData: FeedbackData = {
-        feedbackType: option.settingName,
-        payload: checked,
-      };
-      return {
-        ...option,
-        checked,
-        feedbackData,
-      };
+  private accessibilitySettings: Signal<ToggleSettingViewData<AccessibilitySetting>>[] =
+    Object.values(ACCESSIBILITY_SETTINGS_METADATA).map((option) => {
+      return computed<ToggleSettingViewData<AccessibilitySetting>>(() => {
+        const checked = this.accessibilityStore.draftedState[option.settingName]();
+        const feedbackData: FeedbackData = {
+          feedbackType: option.settingName,
+          payload: checked,
+        };
+        return {
+          ...option,
+          checked,
+          feedbackData,
+        };
+      });
     });
+
+  accessibilityViewData = computed<ToggleSettingViewData<AccessibilitySetting>[]>(() => {
+    return this.accessibilitySettings.map((setting) => setting());
   });
+
   accessibilitySettingsToggler(settingName: AccessibilitySetting) {
     this.accessibilityStore.toggleSettingState(settingName);
   }

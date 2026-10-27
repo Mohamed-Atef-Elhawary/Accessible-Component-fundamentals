@@ -2,7 +2,7 @@ import {
   ReadabilitySettingsMetaData,
   TextSizeSetting,
 } from '../../../../../interfaces/disclosure/settings-interfaces/readability-disclosure-settings';
-import { TextSizeSettingsService } from '../../../../../services/setting-services/text-size-settings-service/text-size-settings-service';
+import { TextSizeSettingsService } from '../../../../../services/disclosure-services/setting-services/text-size-settings-service/text-size-settings-service';
 import { buildReadabilitySettingsStore } from '../../../factories/text-size-and-line-height/readability-settings-store.factory';
 import { faA } from '@fortawesome/free-solid-svg-icons';
 

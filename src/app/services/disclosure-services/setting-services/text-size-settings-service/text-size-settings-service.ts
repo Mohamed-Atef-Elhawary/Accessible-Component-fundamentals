@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { SettingsService } from '../../../interfaces/disclosure/global-interfaces/global-settings';
-import { TextSizeSetting } from '../../../interfaces/disclosure/settings-interfaces/readability-disclosure-settings';
+import { SettingsService } from '../../../../interfaces/disclosure/global-interfaces/global-settings';
+import { TextSizeSetting } from '../../../../interfaces/disclosure/settings-interfaces/readability-disclosure-settings';
 
 @Injectable({
   providedIn: 'root',

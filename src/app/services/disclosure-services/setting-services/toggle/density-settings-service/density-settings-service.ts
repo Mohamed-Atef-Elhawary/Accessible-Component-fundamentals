@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { SettingsService } from '../../../../interfaces/disclosure/global-interfaces/global-settings';
+import { SettingsService } from '../../../../../interfaces/disclosure/global-interfaces/global-settings';
 import {
-  DensitySetting,
   ToggleSettingsState,
-} from '../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
+  DensitySetting,
+} from '../../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 
 @Injectable({
   providedIn: 'root',

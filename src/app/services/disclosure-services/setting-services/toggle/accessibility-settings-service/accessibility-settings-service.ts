@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
+import { SettingsService } from '../../../../../interfaces/disclosure/global-interfaces/global-settings';
 import {
-  AccessibilitySetting,
   ToggleSettingsState,
-} from '../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
-import { SettingsService } from '../../../../interfaces/disclosure/global-interfaces/global-settings';
+  AccessibilitySetting,
+} from '../../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 
 @Injectable({
   providedIn: 'root',

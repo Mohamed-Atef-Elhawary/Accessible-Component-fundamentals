@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { SettingsService } from '../../../../interfaces/disclosure/global-interfaces/global-settings';
-
+import { SettingsService } from '../../../../../interfaces/disclosure/global-interfaces/global-settings';
 import {
   RadioGroupState,
   ThemeSetting,
-} from '../../../../interfaces/disclosure/settings-interfaces/radio-group-disclosure-settings';
+} from '../../../../../interfaces/disclosure/settings-interfaces/radio-group-disclosure-settings';
 
 @Injectable({
   providedIn: 'root',

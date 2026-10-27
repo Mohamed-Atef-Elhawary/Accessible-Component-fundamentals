@@ -1,21 +1,25 @@
 <ul class="text-dark flex flex-col gap-4">
-  @for (setting of positionedSettingMetaData(); track setting.settingName; let i = $index) {
+  @for (setting of positionedSettingMetaData(); track setting.settingName) {
     <li>
+      <!-- feedback container -->
       @if (setting.feedbackPosition === 'top') {
-        <ng-container [ngTemplateOutlet]="preview" />
+        <div class="py-1">
+          <ng-container [ngTemplateOutlet]="preview" />
+        </div>
       }
+
       <div class="flex items-center justify-between">
         <p class="text-dark" [id]="setting.settingName + 'label'">{{ setting.label }}</p>
 
         <div class="flex gap-1 items-center">
-          <span>{{ setting.checked ? 'on' : 'off' }}</span>
+          <span aria-hidden="true">{{ setting.checked ? 'on' : 'off' }}</span>
           <button
             type="button"
             role="switch"
-            [attr.aria-label]="setting.settingName + 'label'"
-            [attr.aria-describedby]="setting.settingName"
             [attr.aria-checked]="setting.checked"
-            (click)="onToggleCheckState(setting.settingName)"
+            [attr.aria-labelledby]="setting.settingName + 'label'"
+            [attr.aria-describedby]="setting.settingName + 'description'"
+            (click)="onSettingToggled(setting.settingName)"
             [class]="{
               'border-activeColor': setting.checked,
               'bg-activeColor': setting.checked,
@@ -24,27 +28,28 @@
               'border-inactiveColor': !setting.checked,
               'bg-whiteColor': !setting.checked,
             }"
-            class="group w-[40px] h-[20px] border-2 rounded-full flex items-center px-[2px] cursor-pointer transition-all duration-custom focus-visible:outline-none focus-visible:border-focusVisibleColor focus-visible:ring-1 focus-visible:ring-focusVisibleColor"
+            class="group w-[46px] h-[24px] border-2 rounded-full flex items-center px-[2px] cursor-pointer transition-all duration-custom focus-visible:outline-none focus-visible:border-focusVisibleColor focus-visible:ring-1 focus-visible:ring-focusVisibleColor"
           >
             <span
               [class]="{
                 'bg-whiteColor': setting.checked,
-                'translate-x-[18px]': setting.checked,
+                'translate-x-[22px]': setting.checked,
               }"
-              class="w-[14px] h-[14px] bg-light translate-x-[0px] group-hover:w-[16px] group-hover:h-[16px] rounded-full transition-transform duration-custom"
+              class="w-[16px] h-[16px] rounded-full bg-light translate-x-[0px] group-hover:w-[18px] group-hover:h-[18px] transition-transform duration-custom"
             ></span>
           </button>
         </div>
       </div>
-      <p [id]="setting.settingName" class="text-light">{{ setting.description }}</p>
+      <p [id]="setting.settingName + 'description'" class="text-light">{{ setting.description }}</p>
+      <!-- feedback container -->
       @if (setting.feedbackPosition === 'bottom') {
-        <ng-container [ngTemplateOutlet]="preview" />
+        <div class="py-1">
+          <ng-container [ngTemplateOutlet]="preview" />
+        </div>
       }
     </li>
     <ng-template #preview>
-      <div class="py-1">
-        <app-settings-feedback-resolver-component [feedbackData]="setting.feedbackData" />
-      </div>
+      <app-settings-feedback-resolver-component [feedbackData]="setting.feedbackData" />
     </ng-template>
   }
 </ul>

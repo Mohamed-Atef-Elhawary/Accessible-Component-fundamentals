@@ -1,9 +1,9 @@
 import { Component, computed, inject, input, signal } from '@angular/core';
-import { PrivacyOption } from '../../../../../../../interfaces/disclosure/settings-interfaces/privacy-disclosure-settings';
 import { UserService } from '../../../../../../../services/modal-dialog-services/user-service/user-service';
 import { AvatarColorService } from '../../../../../../../services/modal-dialog-services/avatar-color/avatar-color-service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
+import { PrivacySetting } from '../../../../../../../interfaces/disclosure/settings-interfaces/radio-group-disclosure-settings';
 
 @Component({
   imports: [FontAwesomeModule],
@@ -18,7 +18,7 @@ export class SettingPrivacyFeedbackComponent {
   userInit = this.userService.buildInitial(this.userName());
   bgColor = this.avatarColorService.getAvatarColor(this.userName());
 
-  privacyPayload = input.required<PrivacyOption>();
+  privacyPayload = input.required<PrivacySetting>();
   viewer = signal<'visitor' | 'friend'>('friend');
   isAllow = computed(() => {
     const privacyPayload = this.privacyPayload();

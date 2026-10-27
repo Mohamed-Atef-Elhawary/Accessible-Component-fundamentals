@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { LineHeightSettingsComponent } from './core/disclosure-components/features/settings-components/line-height-settings-component/line-height-settings-component';
+import { LineHeightSettingsComponent } from './core/disclosure-components/features/settings/line-height-settings-component/line-height-settings-component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'modal-dialog', pathMatch: 'full' },

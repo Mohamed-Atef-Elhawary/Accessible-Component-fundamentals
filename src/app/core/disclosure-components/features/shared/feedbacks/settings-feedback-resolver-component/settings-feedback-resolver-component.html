@@ -1,7 +1,10 @@
 @let stableFeedBack = feedbackData();
 @switch (stableFeedBack.feedbackType) {
-  @case ('status') {
-    <app-setting-status-feedback-component [statusPayload]="stableFeedBack.payload" />
+  @case ('email') {
+    <app-setting-notification-feedback-component [notificationPayload]="stableFeedBack.payload" />
+  }
+  @case ('push') {
+    <app-setting-notification-feedback-component [notificationPayload]="stableFeedBack.payload" />
   }
   @case ('privacy') {
     <app-setting-privacy-feedback-component [privacyPayload]="stableFeedBack.payload" />

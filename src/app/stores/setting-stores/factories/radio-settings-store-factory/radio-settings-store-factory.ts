@@ -1,7 +1,7 @@
 import { inject, Type } from '@angular/core';
 import { SettingsService } from '../../../../interfaces/disclosure/global-interfaces/global-settings';
 import {
-  RadioGroupName,
+  RadioGroupOptions,
   RadioGroupState,
 } from '../../../../interfaces/disclosure/settings-interfaces/radio-group-disclosure-settings';
 import {
@@ -13,7 +13,7 @@ import {
   withState,
 } from '@ngrx/signals';
 
-export function buildRadioSettingsStore<TGroup extends RadioGroupName>(
+export function buildRadioSettingsStore<TGroup extends RadioGroupOptions>(
   initialState: RadioGroupState<TGroup>,
   serviceType: Type<SettingsService<RadioGroupState<TGroup>>>,
 ) {

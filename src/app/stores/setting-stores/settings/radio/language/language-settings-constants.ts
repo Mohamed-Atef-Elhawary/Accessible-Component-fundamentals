@@ -4,7 +4,7 @@ import {
   RadioSettingsMetaData,
 } from '../../../../../interfaces/disclosure/settings-interfaces/radio-group-disclosure-settings';
 
-export const Language_SETTINGS_METADATA: RadioSettingsMetaData<LanguageSetting> = {
+export const LANGUAGE_SETTINGS_METADATA: RadioSettingsMetaData<LanguageSetting> = {
   arabic: {
     settingName: 'arabic',
     groupName: 'language',
@@ -17,19 +17,18 @@ export const Language_SETTINGS_METADATA: RadioSettingsMetaData<LanguageSetting> 
   },
 };
 
-// export const langFeed={
-//        arabic:{
-//           direction: 'rtl',
-//           langTitle: 'اللغة',
-//           notificationText:
-//             'يتغير اتجاه النص وتخطيط الصفحة في جميع أنحاء التطبيق تبعًا للغة المختارة.',
-//           dateTitle: 'تنسيق التاريخ',
-//         },
+export const LANGUAGE_SETTING_TEXT = {
+  arabic: {
+    direction: 'rtl',
+    langTitle: 'اللغة',
+    notificationText: 'يتغير اتجاه النص وتخطيط الصفحة في جميع أنحاء التطبيق تبعًا للغة المختارة.',
+    dateTitle: 'تنسيق التاريخ',
+  },
 
-//       english: {
-//         direction: 'ltr',
-//         langTitle: 'language',
-//         notificationText: `Text direction and page layout change throughout the application based on the selected language.`,
-//         dateTitle: 'Date format',
-//       }
-// }
+  english: {
+    direction: 'ltr',
+    langTitle: 'language',
+    notificationText: `Text direction and page layout change throughout the application based on the selected language.`,
+    dateTitle: 'Date format',
+  },
+};

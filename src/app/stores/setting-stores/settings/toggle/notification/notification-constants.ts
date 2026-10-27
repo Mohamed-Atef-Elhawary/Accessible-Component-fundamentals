@@ -1,9 +1,9 @@
 import {
-  NotificationSettingName,
+  NotificationSetting,
   ToggleMetaData,
 } from '../../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 
-export const NOTIFICATION_SETTINGS_METADATA: ToggleMetaData<NotificationSettingName> = {
+export const NOTIFICATION_SETTINGS_METADATA: ToggleMetaData<NotificationSetting> = {
   email: {
     settingName: 'email',
     description: 'Receive updates and alerts via email.',

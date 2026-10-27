@@ -9,11 +9,11 @@ import {
 } from '@ngrx/signals';
 import { SettingsService } from '../../../../interfaces/disclosure/global-interfaces/global-settings';
 import {
-  ToggleSettingName,
+  ToggleSettingOptions,
   ToggleSettingsState,
 } from '../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 
-export function buildToggleSettingsStore<TName extends ToggleSettingName>(
+export function buildToggleSettingsStore<TName extends ToggleSettingOptions>(
   serviceType: Type<SettingsService<ToggleSettingsState<TName>>>,
   initialState: ToggleSettingsState<TName>,
 ) {

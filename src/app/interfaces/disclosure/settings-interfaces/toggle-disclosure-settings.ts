@@ -1,33 +1,31 @@
 import { FeedbackData, FeedbackPosition } from '../global-interfaces/global-settings';
 
-export type NotificationSettingName = 'email' | 'push';
-export type AccessibilitySettingName = 'motion' | 'contrast';
-export type DensitySettingName = 'compact';
+export type NotificationSetting = 'email' | 'push';
+export type AccessibilitySetting = 'motion' | 'contrast';
+export type DensitySetting = 'compact';
 
-export type ToggleSettingName =
-  | NotificationSettingName
-  | AccessibilitySettingName
-  | DensitySettingName;
+export type ToggleSettingOptions = NotificationSetting | AccessibilitySetting | DensitySetting;
 
-export type ToggleSettingsState<TName extends ToggleSettingName> = {
-  [K in TName]: boolean;
+export type ToggleSettingsState<TOption extends ToggleSettingOptions> = {
+  [K in TOption]: boolean;
 };
 
-export type ToggleMetaDataOf<TName extends ToggleSettingName> = {
-  settingName: TName;
+export type ToggleMetaDataOf<TOption extends ToggleSettingOptions> = {
+  settingName: TOption;
   description: string;
   label: string;
 };
 
-export type ToggleMetaData<TName extends ToggleSettingName> = {
-  [K in TName]: ToggleMetaDataOf<TName>;
+export type ToggleMetaData<TOption extends ToggleSettingOptions> = {
+  [K in TOption]: ToggleMetaDataOf<TOption>;
 };
-export type ToggleSettingData<TName extends ToggleSettingName> = ToggleMetaDataOf<TName> & {
-  checked: boolean;
-  feedbackData: FeedbackData;
-};
+export type ToggleSettingViewData<TOption extends ToggleSettingOptions> =
+  ToggleMetaDataOf<TOption> & {
+    checked: boolean;
+    feedbackData: FeedbackData;
+  };
 
-export type PositionedToggleSettingData<TName extends ToggleSettingName> =
-  ToggleSettingData<TName> & {
+export type PositionedToggleSettingViewData<TOption extends ToggleSettingOptions> =
+  ToggleSettingViewData<TOption> & {
     feedbackPosition: FeedbackPosition;
   };

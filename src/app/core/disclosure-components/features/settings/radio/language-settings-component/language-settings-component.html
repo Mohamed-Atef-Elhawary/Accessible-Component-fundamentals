@@ -1,35 +1,35 @@
-<div [dir]="languageSettingsText().direction">
+<div [dir]="''">
   <div class="flex flex-col gap-1">
     <div class="flex items-center justify-between">
-      <h3 id="language" class="text-dark">{{ languageSettingsText().langTitle }}</h3>
+      <h3 id="language" class="text-dark">{{ languageSettingsText.english.langTitle }}</h3>
       <div
         role="radiogroup"
         aria-labelledby="language"
         class="flex bg-mainbg rounded overflow-hidden"
       >
-        @for (language of languageDataList(); track language.value) {
+        @for (language of lg; track $index) {
           <div class="p-[2px] relative">
             <input
               type="radio"
-              [name]="language.name"
-              [id]="language.value"
-              [checked]="language.checked"
-              (change)="onChange(language.value)"
+              [name]="language.groupName"
+              [id]="language.settingName"
+              /* [checked]="language." */
+              (change)="onChange(language.settingName)"
               class="sr-only peer"
             />
             <label
-              [for]="language.value"
+              [for]="language.settingName"
               class="p-1 block rounded cursor-pointer text-light peer-checked:text-black bg-whiteColor/50 peer-checked:bg-whiteColor peer-focus-visible:ring-2 peer-focus-visible:ring-focusVisibleColor"
-              >{{ getLang(language.value) }}</label
+              >{{ getLang(language.settingName) }}</label
             >
           </div>
         }
       </div>
     </div>
-    <p class="text-light">{{ languageSettingsText().notificationText }}</p>
+    <p class="text-light">{{ languageSettingsText.english.notificationText }}</p>
   </div>
   <div class="flex items-center justify-between">
-    <p class="text-dark">{{ languageSettingsText().dateTitle }}</p>
+    <p class="text-dark">{{ languageSettingsText.english.dateTitle }}</p>
     <span>{{ dateFormatter() }}</span>
   </div>
 </div>

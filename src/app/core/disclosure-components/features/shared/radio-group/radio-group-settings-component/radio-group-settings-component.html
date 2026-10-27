@@ -4,19 +4,19 @@
     <ng-container [ngTemplateOutlet]="preview"></ng-container>
   }
   <div class="flex gap-2">
-    @for (setting of radioSettingsData().settings; track setting.option) {
+    @for (setting of radioViewData().settings; track setting.settingName) {
       <label
         class="flex-1 flex flex-col justify-center items-center cursor-pointer p-1 border-2 border-inactiveColor has-checked:border-activeColor has-checked:bg-activeColor/50 rounded has-focus-visible:outline-(length:--spacing-focusVisibleLength) has-focus-visible:outline-focusVisibleColor"
       >
         <input
           type="radio"
-          [name]="setting.name"
+          [name]="setting.groupName"
           [checked]="setting.checked"
-          (change)="settingDataChanged(setting.option)"
+          (change)="settingDataChanged(setting.settingName)"
           class="sr-only peer"
         />
         <fa-icon [icon]="setting.icon" aria-hidden="true"></fa-icon>
-        <span class="block">{{ setting.option }}</span>
+        <span class="block">{{ setting.settingName }}</span>
       </label>
     }
   </div>
@@ -26,5 +26,7 @@
 </fieldset>
 
 <ng-template #preview>
-  <div><app-settings-feedback-resolver-component [feedbackData]="radioFeedbackData()" /></div>
+  <div>
+    <app-settings-feedback-resolver-component [feedbackData]="radioViewData().feedbackData" />
+  </div>
 </ng-template>

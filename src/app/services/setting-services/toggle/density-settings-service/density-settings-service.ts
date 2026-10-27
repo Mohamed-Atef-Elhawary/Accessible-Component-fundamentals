@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SettingsService } from '../../../../interfaces/disclosure/global-interfaces/global-settings';
 import {
-  DensitySettingName,
+  DensitySetting,
   ToggleSettingsState,
 } from '../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 
@@ -9,10 +9,10 @@ import {
   providedIn: 'root',
 })
 export class DensitySettingsService implements SettingsService<
-  ToggleSettingsState<DensitySettingName>
+  ToggleSettingsState<DensitySetting>
 > {
-  async loadSettings(): Promise<ToggleSettingsState<DensitySettingName>> {
+  async loadSettings(): Promise<ToggleSettingsState<DensitySetting>> {
     return { compact: false };
   }
-  async saveSettings(settingState: ToggleSettingsState<DensitySettingName>): Promise<void> {}
+  async saveSettings(settingState: ToggleSettingsState<DensitySetting>): Promise<void> {}
 }

@@ -1,5 +1,9 @@
-import { Theme } from '../settings-interfaces/display-disclosure-settings';
-import { PrivacyOption } from '../settings-interfaces/privacy-disclosure-settings';
+import {
+  LanguageSetting,
+  PrivacySetting,
+  ThemeSetting,
+} from '../settings-interfaces/radio-group-disclosure-settings';
+import { NotificationSetting } from '../settings-interfaces/toggle-disclosure-settings';
 
 export interface SettingsService<TState> {
   loadSettings(): Promise<TState>;
@@ -7,13 +11,20 @@ export interface SettingsService<TState> {
 }
 export type FeedbackPosition = 'top' | 'bottom';
 
+export type NotificationPayload = {
+  notificationSetting: NotificationSetting;
+  enabled: boolean;
+};
+
 export type FeedbackPayloadMap = {
-  status: string;
+  email: NotificationPayload;
+  push: NotificationPayload;
   compact: boolean;
   motion: boolean;
   contrast: boolean;
-  theme: Theme;
-  privacy: PrivacyOption;
+  theme: ThemeSetting;
+  privacy: PrivacySetting;
+  language: LanguageSetting;
   textSize: number;
   lineHeight: number;
 };

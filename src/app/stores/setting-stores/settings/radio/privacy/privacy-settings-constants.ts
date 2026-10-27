@@ -21,3 +21,5 @@ export const PRIVACY_SETTINGS_METADATA: RadioSettingsMetaData<PrivacySetting> = 
     icon: faLock,
   },
 };
+
+export const PRIVACY_SETTINGS_TITLE = 'Who can see my profile?';

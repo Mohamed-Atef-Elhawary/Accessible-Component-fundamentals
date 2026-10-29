@@ -26,6 +26,7 @@ import { FEEDBACK_POSITION } from '../../constants-feedback-position';
 })
 export class ToggleSettingsListComponent<TOption extends ToggleSettingOptions> {
   settingViewData = input.required<ToggleSettingViewData<TOption>[]>();
+
   settingToggled = output<TOption>();
 
   positionedSettingMetaData = computed<PositionedToggleSettingViewData<TOption>[]>(() => {

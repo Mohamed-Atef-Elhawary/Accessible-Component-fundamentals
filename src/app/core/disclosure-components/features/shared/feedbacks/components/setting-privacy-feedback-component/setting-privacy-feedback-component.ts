@@ -1,65 +1,61 @@
-import { Component, computed, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { UserService } from '../../../../../../../services/modal-dialog-services/user-service/user-service';
 import { AvatarColorService } from '../../../../../../../services/modal-dialog-services/avatar-color/avatar-color-service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { PrivacySetting } from '../../../../../../../interfaces/disclosure/settings-interfaces/radio-group-disclosure-settings';
+import {
+  LOCK_METADATA,
+  PRIVACY_DESCRIPTIONS,
+  Viewer,
+  ViewerMap,
+} from './constant-privacy-feedback';
 
 @Component({
   imports: [FontAwesomeModule],
   selector: 'app-setting-privacy-feedback-component',
   styleUrl: './setting-privacy-feedback-component.css',
   templateUrl: './setting-privacy-feedback-component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SettingPrivacyFeedbackComponent {
   userService = inject(UserService);
   avatarColorService = inject(AvatarColorService);
+
   userName = signal('Mohamed A.');
   userInit = this.userService.buildInitial(this.userName());
   bgColor = this.avatarColorService.getAvatarColor(this.userName());
 
   privacyPayload = input.required<PrivacySetting>();
-  viewer = signal<'visitor' | 'friend'>('friend');
+
+  viewer = signal<Viewer>('friend');
+
   isAllow = computed(() => {
     const privacyPayload = this.privacyPayload();
 
-    if (privacyPayload === 'public') {
-      return true;
-    } else if (privacyPayload === 'friends' && this.viewer() === 'friend') {
-      return true;
-    }
-    return false;
+    if (privacyPayload === 'private') return false;
+
+    if (privacyPayload === 'public') return true;
+
+    return this.viewer() === 'friend';
   });
+
+  lockMetaData = computed(() => {
+    if (this.privacyPayload() === 'private') return LOCK_METADATA.private;
+    return LOCK_METADATA.friends;
+  });
+
+  viewersMap: ViewerMap[] = [
+    {
+      viewer: 'friend',
+      viewSetter: () => this.viewer.set('friend'),
+    },
+    {
+      viewer: 'visitor',
+      viewSetter: () => this.viewer.set('visitor'),
+    },
+  ];
+
   description = computed(() => {
-    const privacyPayload = this.privacyPayload();
-    switch (privacyPayload) {
-      case 'public':
-        return 'Anyone can see your profile, including your about section and activity.';
-      case 'friends':
-        return 'Only people you’ve added as friends can see your about section and activity.';
-      default:
-        return 'Only you can see your profile. No one else can view it';
-    }
+    return PRIVACY_DESCRIPTIONS[this.privacyPayload()];
   });
-
-  lock = computed(() => {
-    const privacyPayload = this.privacyPayload();
-    if (privacyPayload === 'friends') {
-      return {
-        message: 'Only friends can see this profile',
-        icon: faLock,
-      };
-    }
-    return {
-      message: 'This profile is private',
-      icon: faLock,
-    };
-  });
-
-  setVisitor() {
-    this.viewer.set('visitor');
-  }
-  setFriend() {
-    this.viewer.set('friend');
-  }
 }

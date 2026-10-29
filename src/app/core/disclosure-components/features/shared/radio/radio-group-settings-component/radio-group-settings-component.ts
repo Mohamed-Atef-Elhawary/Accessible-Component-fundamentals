@@ -6,10 +6,7 @@ import { NgTemplateOutlet } from '@angular/common';
 import { FEEDBACK_POSITION } from '../../constants-feedback-position';
 import {
   AnyRadioGroupViewData,
-  PrivacySetting,
   RadioGroupOptions,
-  RadioGroupViewData,
-  ThemeSetting,
 } from '../../../../../../interfaces/disclosure/settings-interfaces/radio-group-disclosure-settings';
 import { FeedbackPosition } from '../../../../../../interfaces/disclosure/global-interfaces/global-settings';
 @Component({
@@ -19,21 +16,14 @@ import { FeedbackPosition } from '../../../../../../interfaces/disclosure/global
   templateUrl: './radio-group-settings-component.html',
 })
 export class RadioGroupSettingsComponent {
-  // radioSettingsData = input.required<RadioGroupViewData<RadioGroupName>>();
   radioViewData = input.required<AnyRadioGroupViewData>();
+  selectedOptionChanged = output<RadioGroupOptions>();
+
   previewPosition = computed<FeedbackPosition>(() => {
     return FEEDBACK_POSITION[this.radioViewData().feedbackData.feedbackType];
   });
 
-  changeSetting = output<RadioGroupOptions>();
-  settingDataChanged(option: RadioGroupOptions) {
-    this.changeSetting.emit(option);
-  }
-  ngOnChanges() {
-    const f: RadioGroupViewData<RadioGroupOptions> = {
-      title: '',
-      settings: [],
-      feedbackData: { feedbackType: 'compact', payload: true },
-    };
+  onSelectedOptionChanged(option: RadioGroupOptions) {
+    this.selectedOptionChanged.emit(option);
   }
 }

@@ -3,7 +3,7 @@ import { Component, computed, inject, Type } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FeedbackData } from '../../../../../../interfaces/disclosure/global-interfaces/global-settings';
 
-import { RadioGroupSettingsComponent } from '../../../shared/radio-group/radio-group-settings-component/radio-group-settings-component';
+import { RadioGroupSettingsComponent } from '../../../shared/radio/radio-group-settings-component/radio-group-settings-component';
 import { ThemeSettingsStore } from '../../../../../../stores/setting-stores/settings/radio/theme/theme-settings-store';
 import { THEME_SETTINGS_METADATA } from '../../../../../../stores/setting-stores/settings/radio/theme/theme-constants';
 import {
@@ -35,7 +35,7 @@ export class DisplayAndAppearanceSettingsComponent {
     };
   });
 
-  updateAppearanceValue(theme: string) {
+  ThemeSettingSwitcher(theme: string) {
     if (this.isSettingKey(theme, THEME_SETTINGS_METADATA)) {
       this.themeStore.updateSelectedOption(theme);
     }

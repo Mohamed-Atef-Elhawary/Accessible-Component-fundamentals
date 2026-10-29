@@ -1,20 +1,17 @@
 <div class="flex flex-col gap-2 mt-1">
   <div class="flex gap-2 items-center">
     <span class="text-light text-[.9rem]">Viewing as</span>
-    <button
-      type="button"
-      (click)="setVisitor()"
-      class="border border-inactiveColor py-1 px-4 rounded-lg text-[1rem] cursor-pointer transition duration-custom active:bg-inactiveColor active:scale-95 focus-visible:outline-none focus-visible:ring-(length:--spacing-focusVisibleLength) focus-visible:ring-focusVisibleColor"
-    >
-      Visitor
-    </button>
-    <button
-      type="button"
-      (click)="setFriend()"
-      class="border border-inactiveColor py-1 px-4 rounded-lg text-[1rem] cursor-pointer transition duration-custom active:bg-inactiveColor active:scale-95 focus-visible:outline-none focus-visible:ring-(length:--spacing-focusVisibleLength) focus-visible:ring-focusVisibleColor"
-    >
-      Friend
-    </button>
+    @for (viewerButton of viewersMap; track viewerButton.viewer) {
+      <button
+        type="button"
+        [attr.aria-pressed]="viewerButton.viewer === viewer()"
+        (click)="viewerButton.viewSetter()"
+        [class.bg-activeColor/50]="viewerButton.viewer === viewer()"
+        class="border border-inactiveColor py-1 px-4 rounded text-[1rem] cursor-pointer active:scale-95 focus-visible:outline-none transition duration-custom focus-visible:ring-(length:--spacing-focusVisibleLength) focus-visible:ring-focusVisibleColor capitalize"
+      >
+        {{ viewerButton.viewer }}
+      </button>
+    }
   </div>
 
   <article class="border border-inactiveColor p-4 rounded-lg flex flex-col h-[14.5rem] gap-2">
@@ -30,23 +27,31 @@
       </div>
     </header>
 
-    <div [hidden]="!isAllow()" class="flex flex-col justify-between grow">
-      <div class="flex flex-col gap-2">
-        <h5 class="text-[1rem]">About</h5>
-        <span class="block h-[.4rem] w-[80%] bg-inactiveColor rounded"></span>
-        <span class="block h-[.4rem] w-[50%] bg-inactiveColor rounded"></span>
+    @if (isAllow()) {
+      <div class="flex flex-col justify-between grow">
+        <div class="flex flex-col gap-2">
+          <h5 class="text-[1rem]">About</h5>
+          <span class="block h-[.4rem] w-[80%] bg-inactiveColor rounded"></span>
+          <span class="block h-[.4rem] w-[50%] bg-inactiveColor rounded"></span>
+        </div>
+        <div class="flex flex-col gap-2">
+          <h5 class="text-[.9rem]">Recent activity</h5>
+          <span class="block h-[.4rem] w-[70%] bg-inactiveColor rounded"></span>
+          <span class="block h-[.4rem] w-[40%] bg-inactiveColor rounded"></span
+          ><span class="block h-[.4rem] w-[60%] bg-inactiveColor rounded"></span>
+        </div>
       </div>
-      <div class="flex flex-col gap-2">
-        <h5 class="text-[.9rem]">Recent activity</h5>
-        <span class="block h-[.4rem] w-[70%] bg-inactiveColor rounded"></span>
-        <span class="block h-[.4rem] w-[40%] bg-inactiveColor rounded"></span
-        ><span class="block h-[.4rem] w-[60%] bg-inactiveColor rounded"></span>
+    } @else {
+      <div class="flex flex-col justify-center items-center grow gap-1">
+        <fa-icon
+          [icon]="lockMetaData().icon"
+          aria-hidden="true"
+          class="text-[2rem] text-light"
+        ></fa-icon>
+        <p class="text-light">{{ lockMetaData().message }}</p>
       </div>
-    </div>
-    <div [hidden]="isAllow()" class="flex flex-col justify-center items-center grow gap-1">
-      <fa-icon [icon]="lock().icon" class="text-[2rem] text-light"></fa-icon>
-      <p class="text-light">{{ lock().message }}</p>
-    </div>
+    }
   </article>
-  <p>{{ description() }}</p>
+
+  <p aria-live="polite">{{ description() }}</p>
 </div>

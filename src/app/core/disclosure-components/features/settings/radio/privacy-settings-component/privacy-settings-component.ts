@@ -7,7 +7,7 @@ import {
   RadioSettingEntryData,
 } from '../../../../../../interfaces/disclosure/settings-interfaces/radio-group-disclosure-settings';
 
-import { RadioGroupSettingsComponent } from '../../../shared/radio-group/radio-group-settings-component/radio-group-settings-component';
+import { RadioGroupSettingsComponent } from '../../../shared/radio/radio-group-settings-component/radio-group-settings-component';
 import { PrivacySettingsStore } from '../../../../../../stores/setting-stores/settings/radio/privacy/privacy-settings-store';
 import {
   PRIVACY_SETTINGS_METADATA,

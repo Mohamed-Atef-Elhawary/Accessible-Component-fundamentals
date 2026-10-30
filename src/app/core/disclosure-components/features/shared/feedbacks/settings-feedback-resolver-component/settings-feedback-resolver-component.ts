@@ -1,22 +1,24 @@
 import { Component, input } from '@angular/core';
-import { SettingCompactFeedbackComponent } from '../components/setting-compact-feedback-component/setting-compact-feedback-component';
-import { SettingMotionFeedbackComponent } from '../components/setting-motion-feedback-component/setting-motion-feedback-component';
-import { SettingContrastFeedbackComponent } from '../components/setting-contrast-feedback-component/setting-contrast-feedback-component';
+import { SettingCompactFeedbackComponent } from '../components/toggle/setting-compact-feedback-component/setting-compact-feedback-component';
+import { SettingMotionFeedbackComponent } from '../components/toggle/setting-motion-feedback-component/setting-motion-feedback-component';
+import { SettingContrastFeedbackComponent } from '../components/toggle/setting-contrast-feedback-component/setting-contrast-feedback-component';
 import { FeedbackData } from '../../../../../../interfaces/disclosure/global-interfaces/global-settings';
-import { SettingThemeFeedbackComponent } from '../components/setting-theme-feedback-component/setting-theme-feedback-component';
-import { SettingPrivacyFeedbackComponent } from '../components/setting-privacy-feedback-component/setting-privacy-feedback-component';
+import { SettingThemeFeedbackComponent } from '../components/radio/setting-theme-feedback-component/setting-theme-feedback-component';
+import { SettingPrivacyFeedbackComponent } from '../components/radio/setting-privacy-feedback-component/setting-privacy-feedback-component';
 import { SettingTextSizeFeedbackComponent } from '../components/setting-text-size-feedback-component/setting-text-size-feedback-component';
 import { SettingLineHeightFeedbackComponent } from '../components/setting-line-height-feedback-component/setting-line-height-feedback-component';
-import { SettingNotificationFeedbackComponent } from '../components/setting-notification-feedback-component/setting-notification-feedback-component';
+import { SettingNotificationFeedbackComponent } from '../components/toggle/setting-notification-feedback-component/setting-notification-feedback-component';
+import { SettingLanguageFeedbackComponent } from '../components/radio/setting-language-feedback-component/setting-language-feedback-component';
 
 @Component({
   imports: [
     SettingNotificationFeedbackComponent,
-    SettingPrivacyFeedbackComponent,
-    SettingThemeFeedbackComponent,
     SettingMotionFeedbackComponent,
     SettingCompactFeedbackComponent,
     SettingContrastFeedbackComponent,
+    SettingPrivacyFeedbackComponent,
+    SettingThemeFeedbackComponent,
+    SettingLanguageFeedbackComponent,
     SettingTextSizeFeedbackComponent,
     SettingLineHeightFeedbackComponent,
   ],

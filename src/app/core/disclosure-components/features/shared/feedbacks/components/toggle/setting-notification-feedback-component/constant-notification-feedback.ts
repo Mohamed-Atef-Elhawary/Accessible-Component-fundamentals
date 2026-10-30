@@ -1,4 +1,4 @@
-import { NotificationSetting } from '../../../../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
+import { NotificationSetting } from '../../../../../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 type OnOffMessages = {
   on: string;
   off: string;

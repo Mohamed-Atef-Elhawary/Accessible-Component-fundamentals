@@ -22,4 +22,4 @@ export const PRIVACY_SETTINGS_METADATA: RadioSettingsMetaData<PrivacySetting> = 
   },
 };
 
-export const PRIVACY_SETTINGS_TITLE = 'Who can see my profile?';
+export const PRIVACY_SETTINGS_TITLE = 'Choose your privacy level';

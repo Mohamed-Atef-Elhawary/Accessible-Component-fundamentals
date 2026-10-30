@@ -1,11 +1,13 @@
-import { Component, computed, inject, Type } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, Type } from '@angular/core';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FeedbackData } from '../../../../../../interfaces/disclosure/global-interfaces/global-settings';
 
 import { RadioGroupSettingsComponent } from '../../../shared/radio/radio-group-settings-component/radio-group-settings-component';
 import { ThemeSettingsStore } from '../../../../../../stores/setting-stores/settings/radio/theme/theme-settings-store';
-import { THEME_SETTINGS_METADATA } from '../../../../../../stores/setting-stores/settings/radio/theme/theme-constants';
+import {
+  DISPLAY_SETTINGS_TITLE,
+  THEME_SETTINGS_METADATA,
+} from '../../../../../../stores/setting-stores/settings/radio/theme/theme-constants';
 import {
   RadioGroupViewData,
   ThemeSetting,
@@ -16,6 +18,7 @@ import {
   selector: 'app-display-and-appearance-settings-component',
   styleUrl: './display-and-appearance-settings-component.css',
   templateUrl: './display-and-appearance-settings-component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DisplayAndAppearanceSettingsComponent {
   themeStore = inject(ThemeSettingsStore);
@@ -29,7 +32,7 @@ export class DisplayAndAppearanceSettingsComponent {
     }));
 
     return {
-      title: 'Appearance',
+      title: DISPLAY_SETTINGS_TITLE,
       settings,
       feedbackData: { feedbackType: 'theme', payload: selectedOption },
     };

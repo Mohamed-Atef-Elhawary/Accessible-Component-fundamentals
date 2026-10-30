@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {
@@ -19,6 +19,7 @@ import {
   selector: 'app-privacy-settings-component',
   styleUrl: './privacy-settings-component.css',
   templateUrl: './privacy-settings-component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PrivacySettingsComponent {
   privacyStore = inject(PrivacySettingsStore);

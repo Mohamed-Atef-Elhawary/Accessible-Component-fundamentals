@@ -24,9 +24,11 @@
   --color-dark: #000;
   --color-light: #64748b;
   --color-primary: #9198e8;
-  --color-primaryHover: #4f46e5;
+  --color-primaryLight: #4f46e5;
   --color-danger: #dc2626;
-  --color-dangerHover: #e11d48;
+  --color-dangerLight: #e11d48;
+  --color-success: #27500a;
+  --color-successLight: #c0dd97;
   --color-gray: #eee;
   --color-scrollBg: #9ca3af;
 

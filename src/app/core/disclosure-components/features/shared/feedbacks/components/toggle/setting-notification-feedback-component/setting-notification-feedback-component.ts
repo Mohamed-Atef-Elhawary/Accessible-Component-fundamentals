@@ -1,7 +1,7 @@
 import { Component, computed, input, signal, SimpleChanges } from '@angular/core';
 import { toSignal, toObservable } from '@angular/core/rxjs-interop';
 import { skip, switchMap, timer, map, startWith, tap } from 'rxjs';
-import { NotificationPayload } from '../../../../../../../interfaces/disclosure/global-interfaces/global-settings';
+import { NotificationPayload } from '../../../../../../../../interfaces/disclosure/global-interfaces/global-settings';
 import { FEEDBACK_MESSAGE } from './constant-notification-feedback';
 
 @Component({

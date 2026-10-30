@@ -9,8 +9,8 @@ export type LanguageSetting = 'arabic' | 'english';
 
 export type RadioGroupOptions = ThemeSetting | PrivacySetting | LanguageSetting;
 
-export type RadioGroupState<TName extends RadioGroupOptions> = {
-  selectedOption: TName;
+export type RadioGroupState<TGroup extends RadioGroupOptions> = {
+  selectedOption: TGroup;
 };
 
 export type RadioGroupMap = {
@@ -58,6 +58,7 @@ export type RadioGroupViewData<TGroupOptions extends RadioGroupOptions> = {
   settings: RadioSettingEntryData<TGroupOptions>[];
   feedbackData: FeedbackData;
 };
+
 export type AnyRadioGroupViewData = {
   [K in RadioGroupKeys]: RadioGroupViewData<RadioGroupMap[K]>;
 }[RadioGroupKeys];

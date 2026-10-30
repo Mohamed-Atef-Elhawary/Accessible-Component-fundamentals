@@ -1,6 +1,6 @@
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
-import { PrivacySetting } from '../../../../../../../interfaces/disclosure/settings-interfaces/radio-group-disclosure-settings';
+import { PrivacySetting } from '../../../../../../../../interfaces/disclosure/settings-interfaces/radio-group-disclosure-settings';
 
 export type Viewer = 'friend' | 'visitor';
 export type Locker = 'friends' | 'private';

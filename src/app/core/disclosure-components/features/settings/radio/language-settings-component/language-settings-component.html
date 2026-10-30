@@ -1,4 +1,9 @@
-<div [dir]="''">
+<app-radio-group-settings-component
+  [radioViewData]="languageViewData()"
+  (selectedOptionChanged)="languageSettingSwitcher($event)"
+></app-radio-group-settings-component>
+
+<!-- <div [dir]="''">
   <div class="flex flex-col gap-1">
     <div class="flex items-center justify-between">
       <h3 id="language" class="text-dark">{{ languageSettingsText.english.langTitle }}</h3>
@@ -32,4 +37,4 @@
     <p class="text-dark">{{ languageSettingsText.english.dateTitle }}</p>
     <span>{{ dateFormatter() }}</span>
   </div>
-</div>
+</div> -->

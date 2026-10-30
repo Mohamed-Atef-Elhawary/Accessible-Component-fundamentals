@@ -7,6 +7,7 @@ import { FEEDBACK_POSITION } from '../../constants-feedback-position';
 import {
   AnyRadioGroupViewData,
   RadioGroupOptions,
+  RadioGroupViewData,
 } from '../../../../../../interfaces/disclosure/settings-interfaces/radio-group-disclosure-settings';
 import { FeedbackPosition } from '../../../../../../interfaces/disclosure/global-interfaces/global-settings';
 @Component({
@@ -17,6 +18,7 @@ import { FeedbackPosition } from '../../../../../../interfaces/disclosure/global
 })
 export class RadioGroupSettingsComponent {
   radioViewData = input.required<AnyRadioGroupViewData>();
+
   selectedOptionChanged = output<RadioGroupOptions>();
 
   previewPosition = computed<FeedbackPosition>(() => {

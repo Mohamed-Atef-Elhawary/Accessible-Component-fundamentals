@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
-import { UserService } from '../../../../../../../services/modal-dialog-services/user-service/user-service';
-import { AvatarColorService } from '../../../../../../../services/modal-dialog-services/avatar-color/avatar-color-service';
+import { UserService } from '../../../../../../../../services/modal-dialog-services/user-service/user-service';
+import { AvatarColorService } from '../../../../../../../../services/modal-dialog-services/avatar-color/avatar-color-service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { PrivacySetting } from '../../../../../../../interfaces/disclosure/settings-interfaces/radio-group-disclosure-settings';
+import { PrivacySetting } from '../../../../../../../../interfaces/disclosure/settings-interfaces/radio-group-disclosure-settings';
 import {
   LOCK_METADATA,
   PRIVACY_DESCRIPTIONS,

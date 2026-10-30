@@ -17,7 +17,7 @@ export const LANGUAGE_SETTINGS_METADATA: RadioSettingsMetaData<LanguageSetting> 
   },
 };
 
-export const LANGUAGE_SETTING_TEXT = {
+export const LANGUAGE_TRANSLATIONS = {
   arabic: {
     direction: 'rtl',
     langTitle: 'اللغة',
@@ -32,3 +32,5 @@ export const LANGUAGE_SETTING_TEXT = {
     dateTitle: 'Date format',
   },
 };
+
+export const LANGUAGE_SETTINGS_TITLE = 'Choose your language';

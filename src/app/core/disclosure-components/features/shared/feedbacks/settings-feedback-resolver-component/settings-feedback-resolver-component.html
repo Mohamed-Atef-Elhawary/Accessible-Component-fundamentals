@@ -6,12 +6,6 @@
   @case ('push') {
     <app-setting-notification-feedback-component [notificationPayload]="stableFeedBack.payload" />
   }
-  @case ('privacy') {
-    <app-setting-privacy-feedback-component [privacyPayload]="stableFeedBack.payload" />
-  }
-  @case ('theme') {
-    <app-setting-theme-feedback-component [appearancePayload]="stableFeedBack.payload" />
-  }
   @case ('compact') {
     <app-setting-compact-feedback-component [compactPayload]="stableFeedBack.payload" />
   }
@@ -20,6 +14,15 @@
   }
   @case ('contrast') {
     <app-setting-contrast-feedback-component [contrastPayload]="stableFeedBack.payload" />
+  }
+  @case ('privacy') {
+    <app-setting-privacy-feedback-component [privacyPayload]="stableFeedBack.payload" />
+  }
+  @case ('theme') {
+    <app-setting-theme-feedback-component [appearancePayload]="stableFeedBack.payload" />
+  }
+  @case ('language') {
+    <app-setting-language-feedback-component [languagePayload]="stableFeedBack.payload" />
   }
   @case ('textSize') {
     <app-setting-text-size-feedback-component [textSizePayload]="stableFeedBack.payload" />

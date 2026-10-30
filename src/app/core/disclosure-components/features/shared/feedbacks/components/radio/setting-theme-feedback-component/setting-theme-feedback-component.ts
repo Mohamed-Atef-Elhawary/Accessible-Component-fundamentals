@@ -1,6 +1,5 @@
 import { Component, input } from '@angular/core';
-import { THEME_LABELS } from '../../../../../../../constants/feedback-preview-position';
-import { ThemeSetting } from '../../../../../../../interfaces/disclosure/settings-interfaces/radio-group-disclosure-settings';
+import { ThemeSetting } from '../../../../../../../../interfaces/disclosure/settings-interfaces/radio-group-disclosure-settings';
 
 @Component({
   imports: [],
@@ -10,5 +9,4 @@ import { ThemeSetting } from '../../../../../../../interfaces/disclosure/setting
 })
 export class SettingThemeFeedbackComponent {
   appearancePayload = input.required<ThemeSetting>();
-  themeLabels = THEME_LABELS;
 }

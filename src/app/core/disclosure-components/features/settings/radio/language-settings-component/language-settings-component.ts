@@ -1,16 +1,18 @@
 import { Component, inject, computed, signal, DestroyRef, afterNextRender } from '@angular/core';
 import { LanguageSettingsStore } from '../../../../../../stores/setting-stores/settings/radio/language/language-settings-store';
 import {
-  LANGUAGE_SETTING_TEXT,
   LANGUAGE_SETTINGS_METADATA,
+  LANGUAGE_SETTINGS_TITLE,
+  LANGUAGE_TRANSLATIONS,
 } from '../../../../../../stores/setting-stores/settings/radio/language/language-settings-constants';
 import {
   LanguageSetting,
   RadioGroupViewData,
 } from '../../../../../../interfaces/disclosure/settings-interfaces/radio-group-disclosure-settings';
+import { RadioGroupSettingsComponent } from '../../../shared/radio/radio-group-settings-component/radio-group-settings-component';
 
 @Component({
-  imports: [],
+  imports: [RadioGroupSettingsComponent],
   selector: 'app-language-settings-component',
   styleUrl: './language-settings-component.css',
   templateUrl: './language-settings-component.html',
@@ -28,46 +30,53 @@ export class LanguageSettingsComponent {
     }));
 
     return {
-      title: 'lang title',
+      title: LANGUAGE_SETTINGS_TITLE,
       settings,
       feedbackData: { feedbackType: 'language', payload: selectedOption },
     };
   });
 
-  lg = Object.values(this.languageViewData().settings);
+  languageTranslations = LANGUAGE_TRANSLATIONS;
 
-  languageSettingsText = LANGUAGE_SETTING_TEXT;
-
-  currentTime = signal<Date>(new Date());
-
-  dateFormatter = computed<string>(() => {
-    const locale = this.selectedLanguage() === 'arabic' ? 'ar-EG-u-nu-latn' : 'en-GB-u-nu-latn';
-    return new Intl.DateTimeFormat(locale, {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-    }).format(this.currentTime());
-  });
-
-  constructor(private destroyRef: DestroyRef) {
-    afterNextRender(() => {
-      const intervalHandler = setInterval(() => {
-        this.currentTime.set(new Date());
-      }, 3_600_000);
-      this.destroyRef.onDestroy(() => {
-        clearInterval(intervalHandler);
-      });
-    });
+  languageSettingSwitcher(option: string) {
+    if (this.isSettingKey(option, LANGUAGE_SETTINGS_METADATA))
+      this.languageStore.updateSelectedOption(option);
   }
 
-  getLang(lang: string): string {
-    if (lang === 'arabic') {
-      return 'العربية';
-    }
-    return `${lang[0].toUpperCase()}${lang.slice(1)}`;
+  isSettingKey<TRecord extends object>(
+    key: string,
+    record: TRecord,
+  ): key is Extract<keyof TRecord, string> {
+    return Object.hasOwn(record, key);
   }
 
-  onChange(language: LanguageSetting) {
-    this.languageStore.updateSelectedOption(language);
-  }
+  // don't deleted before revision
+  // currentTime = signal<Date>(new Date());
+
+  // dateFormatter = computed<string>(() => {
+  //   const locale = this.selectedLanguage() === 'arabic' ? 'ar-EG-u-nu-latn' : 'en-GB-u-nu-latn';
+  //   return new Intl.DateTimeFormat(locale, {
+  //     year: 'numeric',
+  //     month: 'numeric',
+  //     day: 'numeric',
+  //   }).format(this.currentTime());
+  // });
+
+  // constructor(private destroyRef: DestroyRef) {
+  //   afterNextRender(() => {
+  //     const intervalHandler = setInterval(() => {
+  //       this.currentTime.set(new Date());
+  //     }, 3_600_000);
+  //     this.destroyRef.onDestroy(() => {
+  //       clearInterval(intervalHandler);
+  //     });
+  //   });
+  // }
+
+  // getLang(lang: string): string {
+  //   if (lang === 'arabic') {
+  //     return 'العربية';
+  //   }
+  //   return `${lang[0].toUpperCase()}${lang.slice(1)}`;
+  // }
 }

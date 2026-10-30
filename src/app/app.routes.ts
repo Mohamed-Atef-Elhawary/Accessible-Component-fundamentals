@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { LineHeightSettingsComponent } from './core/disclosure-components/features/settings/line-height-settings-component/line-height-settings-component';
+import { SettingLanguageFeedbackComponent } from './core/disclosure-components/features/shared/feedbacks/components/radio/setting-language-feedback-component/setting-language-feedback-component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'modal-dialog', pathMatch: 'full' },
@@ -35,5 +36,5 @@ export const routes: Routes = [
       import('./playground/ai-integration/ai-integration').then((c) => c.AiIntegration),
   },
   ///////////////////////////////////////////components
-  { path: 'textSize', component: LineHeightSettingsComponent },
+  { path: 'langF', component: SettingLanguageFeedbackComponent },
 ];

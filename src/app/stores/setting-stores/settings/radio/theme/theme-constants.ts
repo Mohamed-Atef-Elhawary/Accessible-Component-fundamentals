@@ -11,13 +11,14 @@ export const THEME_SETTINGS_METADATA: RadioSettingsMetaData<ThemeSetting> = {
     icon: faDisplay,
   },
   light: {
-    settingName: 'system',
+    settingName: 'light',
     groupName: 'theme',
     icon: faSun,
   },
   dark: {
-    settingName: 'system',
+    settingName: 'dark',
     groupName: 'theme',
     icon: faMoon,
   },
 };
+export const DISPLAY_SETTINGS_TITLE = 'Choose your theme';

@@ -1,4 +1,14 @@
-import { Component, inject, computed, signal, DestroyRef, afterNextRender } from '@angular/core';
+import {
+  Component,
+  inject,
+  computed,
+  signal,
+  DestroyRef,
+  afterNextRender,
+  viewChild,
+  ElementRef,
+  afterEveryRender,
+} from '@angular/core';
 import { LanguageSettingsStore } from '../../../../../../stores/setting-stores/settings/radio/language/language-settings-store';
 import {
   LANGUAGE_SETTINGS_METADATA,
@@ -49,34 +59,25 @@ export class LanguageSettingsComponent {
   ): key is Extract<keyof TRecord, string> {
     return Object.hasOwn(record, key);
   }
+  constructor() {
+    afterNextRender(() => {
+      const root: HTMLElement = document.documentElement;
+      const culprits: HTMLElement[] = [];
 
-  // don't deleted before revision
-  // currentTime = signal<Date>(new Date());
+      document.querySelectorAll<HTMLElement>('body *').forEach((el: HTMLElement) => {
+        const oldDisplay: string = el.style.display;
+        el.style.display = 'none';
+        if (root.scrollHeight <= root.clientHeight) {
+          culprits.push(el);
+        }
+        el.style.display = oldDisplay;
+      });
 
-  // dateFormatter = computed<string>(() => {
-  //   const locale = this.selectedLanguage() === 'arabic' ? 'ar-EG-u-nu-latn' : 'en-GB-u-nu-latn';
-  //   return new Intl.DateTimeFormat(locale, {
-  //     year: 'numeric',
-  //     month: 'numeric',
-  //     day: 'numeric',
-  //   }).format(this.currentTime());
-  // });
+      const deepest: string[] = culprits
+        .filter((a: HTMLElement) => !culprits.some((b: HTMLElement) => b !== a && a.contains(b)))
+        .map((e: HTMLElement) => `${e.tagName}.${String(e.className).slice(0, 50)}`);
 
-  // constructor(private destroyRef: DestroyRef) {
-  //   afterNextRender(() => {
-  //     const intervalHandler = setInterval(() => {
-  //       this.currentTime.set(new Date());
-  //     }, 3_600_000);
-  //     this.destroyRef.onDestroy(() => {
-  //       clearInterval(intervalHandler);
-  //     });
-  //   });
-  // }
-
-  // getLang(lang: string): string {
-  //   if (lang === 'arabic') {
-  //     return 'العربية';
-  //   }
-  //   return `${lang[0].toUpperCase()}${lang.slice(1)}`;
-  // }
+      // console.log(deepest);
+    });
+  }
 }

@@ -1,4 +1,4 @@
-<fieldset class="flex flex-col gap-2">
+<fieldset class="flex flex-col gap-2 min-h-0 overflow-hidden">
   <legend class="mb-1">{{ radioViewData().title }}</legend>
   @if (previewPosition() === 'top') {
     <ng-container [ngTemplateOutlet]="preview"></ng-container>

@@ -3,7 +3,7 @@ import {
   ToggleSettingsState,
 } from '../../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 import { DensitySettingsService } from '../../../../../services/disclosure-services/setting-services/toggle/density-settings-service/density-settings-service';
-import { buildToggleSettingsStore } from '../../../factories/toggle-settings-store.factory/toggle-settings-store.factory';
+import { buildToggleSettingsStore } from '../../../factories/toggle/toggle-settings-store.factory';
 
 const initialState: ToggleSettingsState<DensitySetting> = { compact: false };
 

@@ -6,7 +6,7 @@ import {
 } from '../../../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 import { AccessibilitySettingsStore } from '../../../../../../stores/setting-stores/settings/toggle/accessibility/accessibility-settings.store';
 import { ToggleSettingsListComponent } from '../../../shared/toggle/toggle-settings-list-component/toggle-settings-list-component';
-import { ACCESSIBILITY_SETTINGS_METADATA } from '../../../../../../stores/setting-stores/settings/toggle/accessibility/accessibility-constants';
+import { ACCESSIBILITY_SETTINGS_METADATA } from '../../../../../../stores/setting-stores/settings/toggle/accessibility/accessibility-constant';
 import { FeedbackData } from '../../../../../../interfaces/disclosure/global-interfaces/global-settings';
 
 @Component({

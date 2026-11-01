@@ -13,5 +13,5 @@ export const FEEDBACK_POSITION: Record<FeedbackType, FeedbackPosition> = {
   privacy: 'bottom',
   language: 'top',
   textSize: 'top',
-  lineHeight: 'top',
+  lineHeight: 'bottom',
 };

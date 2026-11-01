@@ -1,5 +1,6 @@
 import {
   afterNextRender,
+  ChangeDetectionStrategy,
   Component,
   computed,
   DestroyRef,
@@ -9,46 +10,43 @@ import {
   Renderer2,
   viewChild,
 } from '@angular/core';
+import { RangeViewData } from '../../../../../../interfaces/disclosure/settings-interfaces/range-disclosure-settings';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
-  combineLatest,
-  distinctUntilChanged,
   fromEvent,
   map,
   merge,
-  of,
-  repeat,
-  startWith,
+  distinctUntilChanged,
   switchMap,
-  takeUntil,
   timer,
+  of,
+  combineLatest,
+  startWith,
+  takeUntil,
+  repeat,
+  tap,
 } from 'rxjs';
-
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ReadabilitySettingsMetaData } from '../../../../../../interfaces/disclosure/settings-interfaces/readability-disclosure-settings';
-import {
-  FeedbackData,
-  FeedbackPosition,
-} from '../../../../../../interfaces/disclosure/global-interfaces/global-settings';
-import { SettingsFeedbackResolverComponent } from '../../feedbacks/settings-feedback-resolver-component/settings-feedback-resolver-component';
-import { NgTemplateOutlet } from '@angular/common';
+import { FeedbackPosition } from '../../../../../../interfaces/disclosure/global-interfaces/global-settings';
 import { FEEDBACK_POSITION } from '../../constants-feedback-position';
+import { NgTemplateOutlet } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SettingsFeedbackResolverComponent } from '../../feedbacks/settings-feedback-resolver-component/settings-feedback-resolver-component';
 
 @Component({
-  imports: [FontAwesomeModule, SettingsFeedbackResolverComponent, NgTemplateOutlet],
-  selector: 'app-readability-settings-component',
-  styleUrl: './readability-settings-component.css',
-  templateUrl: './readability-settings-component.html',
+  imports: [NgTemplateOutlet, FontAwesomeModule, SettingsFeedbackResolverComponent],
+  selector: 'app-range-settings-component',
+  styleUrl: './range-settings-component.css',
+  templateUrl: './range-settings-component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ReadabilitySettingsComponent {
-  readabilitySettingData = input.required<ReadabilitySettingsMetaData>();
-  readabilityFeedbackData = input.required<FeedbackData>();
+export class RangeSettingsComponent {
+  rangeViewData = input.required<RangeViewData>();
   previewPosition = computed<FeedbackPosition>(
-    () => FEEDBACK_POSITION[this.readabilityFeedbackData().feedbackType],
+    () => FEEDBACK_POSITION[this.rangeViewData().feedbackData.feedbackType],
   );
   onSettingRangeValue = output<number>();
 
-  left = computed(() => `${this.readabilitySettingData().settingRangeValue - 100}%`);
+  left = computed(() => `${this.rangeViewData().draftedPercent - 100}%`);
 
   rangeInputRef = viewChild<ElementRef>('rangeInputRef');
   spanToolTip = viewChild<ElementRef>('spanToolTip');
@@ -117,7 +115,7 @@ export class ReadabilitySettingsComponent {
     const trackLeftPosition = this.rangeInputRef()?.nativeElement.getBoundingClientRect()['left'];
     const thumbWidth = 24 as const;
     const thumbHalfWidth = 12 as const;
-    const rangePercent = (this.readabilitySettingData().settingRangeValue - 100) / 100;
+    const rangePercent = (this.rangeViewData().draftedPercent - 100) / 100;
     const thumbXPositionOnRangeInput = thumbHalfWidth + rangePercent * (trackWidth - thumbWidth);
     const exactMouseXPosition = clientX - trackLeftPosition;
     return Math.abs(exactMouseXPosition - thumbXPositionOnRangeInput) <= thumbHalfWidth;

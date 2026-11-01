@@ -1,14 +1,14 @@
 <header
-  class="w-full h-full flex flex-col lg:flex-row gap-y-4 lg:justify-between lg:items-end bg-headerBg p-1"
+  class="w-full h-full flex flex-col lg:flex-row gap-y-4 lg:justify-between lg:items-end bg-lavender-1 p-1"
 >
   <section>
-    <h1 class="text-xl sm:text-3xl text-dark text-bold" tabindex="-1">{{ headerData().title }}</h1>
-    <p class="text-xl text-primaryHover">{{ headerData().description }}</p>
+    <h1 class="text-xl sm:text-3xl text-bold" tabindex="-1">{{ headerData().title }}</h1>
+    <p class="text-xl text-indigo-6">{{ headerData().description }}</p>
   </section>
   <button
     #btn
     (click)="actionClicked.emit()"
-    class="bg-primary hover:bg-primaryHover transition duration-custom text-dark text-xl font-medium w-fit px-2 py-1 lg:py-0 rounded h-[40px] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-200"
+    class="bg-indigo-3 hover:bg-indigo-6 transition duration-custom text-xl font-medium w-fit px-2 py-1 lg:py-0 rounded h-[40px] cursor-pointer focus-visible:outline-none focus-visible:ring-(length:--spacing-focus-visible-length) focus-visible:ring-indigo-7"
   >
     {{ headerData().buttonTitle }}
   </button>

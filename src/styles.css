@@ -10,33 +10,28 @@
 @custom-variant compact (&:where(.compact, .compact *));
 
 @theme {
-  --color-mainBg: #d2d3d8;
-  --color-sidebarBg: #eaeaea;
+  --color-green-1: #eefef4;
+  --color-green-2: #c0dd97;
+  --color-green-8: #27500a;
 
-  --color-headerBg: #eeeefa;
+  --color-gray-1: #eee;
+  --color-gray-2: #eaeaea;
+  --color-gray-3: #d2d3d8;
+  --color-gray-4: #9ca3af;
 
-  --color-subHeading: #7d8aa1;
-  --color-headerSectionBg: #f1f5f9;
-  --color-borderColor: #9ca3af;
+  --color-slate-1: #f1f5f9;
+  --color-slate-5: #7d8aa1;
+  --color-slate-6: #64748b;
 
-  --color-whiteColor: #fff;
-  --color-blackColor: #000;
-  --color-dark: #000;
-  --color-light: #64748b;
-  --color-primary: #9198e8;
-  --color-primaryLight: #4f46e5;
-  --color-danger: #dc2626;
-  --color-dangerLight: #e11d48;
-  --color-success: #27500a;
-  --color-successLight: #c0dd97;
-  --color-gray: #eee;
-  --color-scrollBg: #9ca3af;
+  --color-lavender-1: #eeeefa;
 
-  --color-activeColor: #4f46e5;
-  --color-inactiveColor: #d1d5db;
-  --color-focusVisibleColor: #4338ca;
+  --color-indigo-3: #9198e8;
+  --color-indigo-6: #4f46e5;
+  --color-red-6: #dc2626;
+  --color-indigo-7: #4338ca;
+  --color-rose-6: #e11d48;
 
-  --spacing-focusVisibleLength: 4px;
+  --spacing-focus-visible-length: 4px;
 
   --duration-custom: 500ms;
 }
@@ -45,15 +40,15 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background-color: var(--color-mainBg);
+  background-color: var(--color-gray-3);
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-scrollBg);
+  background-color: var(--color-gray-4);
   border-radius: 0.3rem;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-dark);
+  background-color: var(--color-black);
 }
 
 body {

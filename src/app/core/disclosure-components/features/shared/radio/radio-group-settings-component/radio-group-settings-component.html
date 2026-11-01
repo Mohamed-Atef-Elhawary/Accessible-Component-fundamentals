@@ -6,7 +6,7 @@
   <div class="flex gap-2">
     @for (setting of radioViewData().settings; track setting.settingName) {
       <label
-        class="flex-1 flex flex-col justify-center items-center cursor-pointer p-1 border-2 border-inactiveColor has-checked:border-activeColor has-checked:bg-activeColor/50 rounded has-focus-visible:outline-(length:--spacing-focusVisibleLength) has-focus-visible:outline-focusVisibleColor"
+        class="relative flex-1 flex flex-col justify-center items-center cursor-pointer p-1 border-2 border-gray-3 has-checked:border-indigo-6 has-checked:bg-indigo-6/50 rounded has-focus-visible:outline-(length:--spacing-focus-visible-length) has-focus-visible:outline-indigo-7"
       >
         <input
           type="radio"

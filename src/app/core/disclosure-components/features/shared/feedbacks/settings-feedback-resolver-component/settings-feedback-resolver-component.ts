@@ -5,8 +5,8 @@ import { SettingContrastFeedbackComponent } from '../components/toggle/setting-c
 import { FeedbackData } from '../../../../../../interfaces/disclosure/global-interfaces/global-settings';
 import { SettingThemeFeedbackComponent } from '../components/radio/setting-theme-feedback-component/setting-theme-feedback-component';
 import { SettingPrivacyFeedbackComponent } from '../components/radio/setting-privacy-feedback-component/setting-privacy-feedback-component';
-import { SettingTextSizeFeedbackComponent } from '../components/setting-text-size-feedback-component/setting-text-size-feedback-component';
-import { SettingLineHeightFeedbackComponent } from '../components/setting-line-height-feedback-component/setting-line-height-feedback-component';
+import { SettingTextSizeFeedbackComponent } from '../components/range/setting-text-size-feedback-component/setting-text-size-feedback-component';
+import { SettingLineHeightFeedbackComponent } from '../components/range/setting-line-height-feedback-component/setting-line-height-feedback-component';
 import { SettingNotificationFeedbackComponent } from '../components/toggle/setting-notification-feedback-component/setting-notification-feedback-component';
 import { SettingLanguageFeedbackComponent } from '../components/radio/setting-language-feedback-component/setting-language-feedback-component';
 

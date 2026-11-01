@@ -21,26 +21,28 @@
             [attr.aria-describedby]="setting.settingName + 'description'"
             (click)="onSettingToggled(setting.settingName)"
             [class]="{
-              'border-activeColor': setting.checked,
-              'bg-activeColor': setting.checked,
-              'hover:border-secondaryBg': setting.checked,
-              'hover:bg-secondaryBg': setting.checked,
-              'border-inactiveColor': !setting.checked,
-              'bg-whiteColor': !setting.checked,
+              'border-indigo-6': setting.checked,
+              'bg-indigo-6': setting.checked,
+              'hover:border-indigo-7': setting.checked,
+              'hover:bg-indigo-7': setting.checked,
+              'border-gray-4': !setting.checked,
+              'bg-white': !setting.checked,
             }"
-            class="group w-[46px] h-[24px] border-2 rounded-full flex items-center px-[2px] cursor-pointer transition-all duration-custom focus-visible:outline-none focus-visible:border-focusVisibleColor focus-visible:ring-1 focus-visible:ring-focusVisibleColor"
+            class="group w-[46px] h-[24px] border-2 rounded-full flex items-center px-[2px] cursor-pointer transition-all duration-custom focus-visible:outline-none focus-visible:border-indigo-7 focus-visible:ring-1 focus-visible:ring-indigo-7"
           >
             <span
               [class]="{
-                'bg-whiteColor': setting.checked,
+                'bg-white': setting.checked,
                 'translate-x-[22px]': setting.checked,
               }"
-              class="w-[16px] h-[16px] rounded-full bg-light translate-x-[0px] group-hover:w-[18px] group-hover:h-[18px] transition-transform duration-custom"
+              class="w-[16px] h-[16px] rounded-full bg-slate-6 translate-x-[0px] group-hover:w-[18px] group-hover:h-[18px] transition-transform duration-custom"
             ></span>
           </button>
         </div>
       </div>
-      <p [id]="setting.settingName + 'description'" class="text-light">{{ setting.description }}</p>
+      <p [id]="setting.settingName + 'description'" class="text-slate-6">
+        {{ setting.description }}
+      </p>
       <!-- feedback container -->
       @if (setting.feedbackPosition === 'bottom') {
         <div class="py-1">

@@ -1,0 +1,61 @@
+<div class="flex flex-col gap-3 lg:flex-row lg:items-center bg-white pt-1">
+  @if (previewPosition() === 'top') {
+    <ng-container [ngTemplateOutlet]="preview" />
+  }
+
+  <div class="flex-1 lg:-order-1 flex flex-col gap-6">
+    <div class="">
+      <div class="flex items-center justify-between">
+        <h4>{{ rangeViewData().title }}</h4>
+        <div class="flex gap-.5 items-center">
+          <span
+            class="block w-[60px] h-[30px] rounded-[5px] px-[2px] text-center leading-[30px] line border-2 border-gray-3 bg-whit"
+            >{{ this.rangeViewData().draftedPercent }}
+          </span>
+          <span> % </span>
+        </div>
+      </div>
+      <p class="text-light text-sm">{{ rangeViewData().description }}</p>
+    </div>
+
+    <div class="flex items-center">
+      <fa-icon aria-hidden="true" [icon]="rangeViewData().icon" class=""></fa-icon>
+      <label [for]="rangeViewData().title" class="relative grow px-3">
+        <input
+          type="range"
+          [id]="rangeViewData().title"
+          [min]="rangeViewData().min"
+          [max]="rangeViewData().max"
+          [value]="rangeViewData().draftedPercent"
+          (input)="onRangeValue($event)"
+          #rangeInputRef
+          aria-label="text size"
+          [attr.aria-valuetext]="'Medium'"
+          [style.--range-percent.%]="rangeViewData().draftedPercent - 100"
+          class="text-end focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-indigo-7"
+        />
+        <span
+          #spanToolTip
+          [style.left]="left()"
+          [style.transform]="`translate(-${left()},-150%)`"
+          class="absolute top-[50%] text-[1rem] w-[60px] h-[30px] rounded-[5px] px-[2px] text-center leading-[30px] line border-2 border-gray-3 bg-white hidden"
+          >{{ this.rangeViewData().draftedPercent }}%</span
+        >
+      </label>
+      <fa-icon
+        aria-hidden="true"
+        [icon]="rangeViewData().icon"
+        class="relative right-[5px] text-[30px]"
+      ></fa-icon>
+    </div>
+  </div>
+
+  @if (previewPosition() === 'bottom') {
+    <ng-container [ngTemplateOutlet]="preview" />
+  }
+</div>
+<ng-template #preview>
+  <div class="flex-1">
+    <app-settings-feedback-resolver-component [feedbackData]="rangeViewData().feedbackData" />
+  </div>
+</ng-template>

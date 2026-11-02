@@ -14,7 +14,7 @@ import {
 } from '../../../../../../interfaces/disclosure/settings-interfaces/toggle-disclosure-settings';
 import { NotificationSettingsStore } from '../../../../../../stores/setting-stores/settings/toggle/notification/notification-settings-store';
 import { ToggleSettingsListComponent } from '../../../shared/toggle/toggle-settings-list-component/toggle-settings-list-component';
-import { NOTIFICATION_SETTINGS_METADATA } from '../../../../../../stores/setting-stores/settings/toggle/notification/notification-constants';
+import { NOTIFICATION_SETTINGS_METADATA } from '../../../../../../stores/setting-stores/settings/toggle/notification/notification-constant';
 import { FeedbackData } from '../../../../../../interfaces/disclosure/global-interfaces/global-settings';
 
 @Component({

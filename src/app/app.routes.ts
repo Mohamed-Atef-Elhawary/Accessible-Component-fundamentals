@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { LineHeightSettingsComponent } from './core/disclosure-components/features/settings/line-height-settings-component/line-height-settings-component';
+import { LineHeightSettingsComponent } from './core/disclosure-components/features/settings/range/line-height-settings-component/line-height-settings-component';
 import { SettingLanguageFeedbackComponent } from './core/disclosure-components/features/shared/feedbacks/components/radio/setting-language-feedback-component/setting-language-feedback-component';
 
 export const routes: Routes = [

@@ -15,11 +15,11 @@
             type="button"
             (click)="onCancel('(X)')"
             aria-label="close dialog"
-            class="cursor-pointer hover:scale-102 transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+            class="cursor-pointer hover:scale-102 transition-all duration-custom focus-visible:outline-none focus-visible:ring-(length:--spacing-focus-visible-length) focus-visible:ring-indigo-7"
           >
             <fa-icon
               aria-hidden="true"
-              class="text-danger2 hover:text-danger"
+              class="text-rose-6 hover:text-red-6"
               [icon]="xIcon"
             ></fa-icon>
           </button>
@@ -29,7 +29,7 @@
 
       <fa-icon
         aria-hidden="true"
-        class="text-[50px] sm:text-[80px] text-red-500 text-center"
+        class="text-[50px] sm:text-[80px] text-red-6 text-center"
         [icon]="trash"
       ></fa-icon>
       <p class="text-lg sm:text-2xl font-semibold sm:px-6 text-center">
@@ -39,13 +39,13 @@
         <button
           #firstFocusedButttonElement
           (click)="onCancel('Cancel')"
-          class="text-lg sm:text-xl font-semibold py-1 w-[45%] rounded cursor-pointer border hover:border-activeColor border-inactiveColor transition duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+          class="text-lg sm:text-xl font-semibold py-1 w-[45%] rounded cursor-pointer border hover:border-indigo-7 border-gray-3 transition duration-custom focus-visible:outline-none focus-visible:ring-(length:--spacing-focus-visible-length) focus-visible:ring-indigo-7"
         >
           Cancel
         </button>
         <button
           (click)="deleteUser()"
-          class="bg-danger2 hover:bg-danger text-lg sm:text-xl font-semibold text-white py-1 w-[45%] rounded cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+          class="bg-rose-6 hover:bg-red-6 text-lg sm:text-xl font-semibold text-white py-1 w-[45%] rounded cursor-pointer focus-visible:outline-none focus-visible:ring-(length:--spacing-focus-visible-length) focus-visible:ring-indigo-7"
         >
           Delete
         </button>
@@ -64,11 +64,11 @@
               type="button"
               (click)="onCancel('(X)')"
               aria-label="close dialog"
-              class="cursor-pointer hover:scale-102 transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+              class="cursor-pointer hover:scale-102 transition-all duration-custom focus-visible:outline-none focus-visible:ring-(length:--spacing-focus-visible-length) focus-visible:ring-indigo-7"
             >
               <fa-icon
                 aria-hidden="true"
-                class="text-danger2 hover:text-danger"
+                class="text-rose-6 hover:text-red-6"
                 [icon]="xIcon"
               ></fa-icon>
             </button>
@@ -83,9 +83,9 @@
             type="text "
             #firstFocusedInputElement
             formControlName="name"
-            class="bg-gray-100 outline-2 outline-inactiveColor rounded w-full hover:scale-104 hover:pl-2 transition-all duration-custom p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+            class="bg-gray-1 outline-2 outline-gray-3 rounded w-full hover:scale-104 hover:pl-2 transition-all duration-custom p-1 focus-visible:outline-none focus-visible:ring-(length:--spacing-focus-visible-length) focus-visible:ring-indigo-7"
           />
-          <span class="text-danger">{{ errorMessage.name() }}</span>
+          <span class="text-red-6">{{ errorMessage.name() }}</span>
         </label>
         <label for="userEmail" class="w-full flex flex-col gap-1 cursor-pointer">
           <span class="font-semibold">{{ inputsLabel().emailLabel }}</span>
@@ -93,9 +93,9 @@
             formControlName="email"
             id="userEmail"
             type="text "
-            class="bg-gray-100 outline-2 outline-inactiveColor rounded w-full hover:scale-104 hover:pl-2 transition-all duration-custom p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+            class="bg-gray-1 outline-2 outline-gray-3 rounded w-full hover:scale-104 hover:pl-2 transition-all duration-custom p-1 focus-visible:outline-none focus-visible:ring-(length:--spacing-focus-visible-length) focus-visible:ring-indigo-7"
           />
-          <span class="text-danger">{{ errorMessage.email() }}</span>
+          <span class="text-red-6">{{ errorMessage.email() }}</span>
         </label>
         <label for="userRole" class="w-full flex flex-col gap-1 cursor-pointer">
           <span class="font-semibold">{{ inputsLabel().roleLabel }}</span>
@@ -103,15 +103,15 @@
             formControlName="role"
             id="userRole"
             type="text "
-            class="bg-gray-100 outline-2 outline-inactiveColor rounded w-full hover:scale-104 hover:pl-2 transition-all duration-custom p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+            class="bg-gray-1 outline-2 outline-gray-3 rounded w-full hover:scale-104 hover:pl-2 transition-all duration-custom p-1 focus-visible:outline-none focus-visible:ring-(length:--spacing-focus-visible-length) focus-visible:ring-indigo-7"
           />
-          <span class="text-danger">{{ errorMessage.role() }}</span>
+          <span class="text-red-6">{{ errorMessage.role() }}</span>
         </label>
         <div class="w-full flex justify-between sm:justify-center sm:gap-5">
           <button
             type="button"
             (click)="onCancel('Cancel')"
-            class="border-2 text-lg sm:text-xl font-semibold py-1 w-[45%] rounded cursor-pointer border-activeColor hover:scale-102 transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+            class="border-2 text-lg sm:text-xl font-semibold py-1 w-[45%] rounded cursor-pointer border-indigo-6 hover:scale-102 transition-all duration-custom focus-visible:outline-none focus-visible:ring-(length:--spacing-focus-visible-length) focus-visible:ring-indigo-7"
           >
             Cancel
           </button>
@@ -119,12 +119,12 @@
             [disabled]="userForm.invalid || userForm.pristine || !isUserDataChanged()"
             [class]="{
               'cursor-not-allowed': userForm.invalid || userForm.pristine || !isUserDataChanged(),
-              'bg-subHeading': userForm.invalid || userForm.pristine || !isUserDataChanged(),
+              'bg-slate-1': userForm.invalid || userForm.pristine || !isUserDataChanged(),
               'cursor-pointer': userForm.valid && userForm.dirty,
-              'bg-secondarybg': userForm.valid && userForm.dirty,
+              'bg-slate-5': userForm.valid && userForm.dirty,
               'hover:scale-102': userForm.valid && userForm.dirty,
             }"
-            class="text-lg sm:text-xl font-semibold text-dark py-1 w-[45%] rounded transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+            class="text-lg sm:text-xl font-semibold py-1 w-[45%] rounded transition-all duration-custom focus-visible:outline-none focus-visible:ring-(--spacing-focus-visible-length) focus-visible:ring-indigo-7"
           >
             {{ true ? 'Save' : 'Add' }}
           </button>

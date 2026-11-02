@@ -1,6 +1,6 @@
 @if (users().length) {
-  <table class="border-2 border-gray-200 bg-whiteColor w-full table-fixed">
-    <thead class="sticky top-0 bg-headerSectionbg">
+  <table class="border-2 border-gray-2 bg-white w-full table-fixed">
+    <thead class="sticky top-0 bg-green-1">
       <tr>
         <th scope="col" class="p-2 text-left">Person</th>
         <th scope="col" class="p-2 text-left hidden lg:table-cell">Email</th>
@@ -10,11 +10,11 @@
     </thead>
     <tbody>
       @for (user of users(); track user.id) {
-        <tr class="border border-gray-200">
+        <tr class="border border-gray-2">
           <td class="p-2">
             <div class="flex items-center gap-1">
               <button
-                class="lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+                class="lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-7"
                 type="button"
                 [aria-expanded]="getUsersExpandState(user).isExpanded()"
                 [aria-label]="'Show details for ' + user.name"
@@ -43,23 +43,23 @@
               <span class="text-dark font-semibold"> {{ user.name }}</span>
             </div>
           </td>
-          <td class="p-2 hidden lg:table-cell text-dark font-semibold">
+          <td class="p-2 hidden lg:table-cell font-semibold">
             {{ user.email }}
           </td>
-          <td class="p-2 hidden lg:table-cell text-dark font-semibold">{{ user.role }}</td>
+          <td class="p-2 hidden lg:table-cell font-semibold">{{ user.role }}</td>
           <td class="p-2">
             <div class="flex gap-2 flex-col md:flex-row justify-end">
               <button
                 (click)="openEditModal(user)"
                 [aria-label]="'Edit ' + user.name"
-                class="border border-inactiveColor hover:border-activeColor cursor-pointer py-1 px-4 rounded font-semibold transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+                class="border border-gray-3 hover:border-indigo-6 cursor-pointer py-1 px-4 rounded font-semibold transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-7"
               >
                 Edit
               </button>
               <button
                 (click)="openDeleteModal(user.id, user.name)"
                 [aria-label]="'Delete ' + user.name"
-                class="bg-danger2 hover:bg-danger cursor-pointer py-1 px-4 rounded font-semibold text-white transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+                class="bg-rose-6 hover:bg-red-6 cursor-pointer py-1 px-4 rounded font-semibold text-white transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-7"
               >
                 Delete
               </button>
@@ -78,12 +78,12 @@
             >
               <div class="flex gap-5 flex-col md:flex-row">
                 <div class="mt-2 p-2 flex flex-col gap-y-[2px]">
-                  <span class="text-gray-700 font-medium text-sm">Email</span>
-                  <span class="text-dark font-semibold">{{ user.email }}</span>
+                  <span class="text-slate-6 font-medium text-sm">Email</span>
+                  <span class="font-semibold">{{ user.email }}</span>
                 </div>
                 <div class="mt-2 p-2 flex flex-col gap-y-[2px]">
-                  <span class="text-gray-700 font-medium text-sm">Role</span>
-                  <span class="text-dark font-semibold">{{ user.role }}</span>
+                  <span class="text-slate-6 font-medium text-sm">Role</span>
+                  <span class="font-semibold">{{ user.role }}</span>
                 </div>
               </div>
             </div>
@@ -96,11 +96,11 @@
   <section class="bg-whiteColor flex flex-col gap-1 items-center justify-center h-full w-full py-1">
     <fa-icon [icon]="userGroup" class="text-[100px]"></fa-icon>
     <h2 class="text-2xl font-semibold">No users yet</h2>
-    <p class="text-lg text-dark">Add your first user to get started.</p>
+    <p class="text-lg">Add your first user to get started.</p>
     <button
       aria-label="add user"
       (click)="openAddModal()"
-      class="border-2 border-inactiveColor hover:border-secondarybg px-2 py-1 rounded-lg cursor-pointer transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusVisibleColor"
+      class="border-2 border-gray-3 hover:border-gray-4 px-2 py-1 rounded-lg cursor-pointer transition-all duration-custom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-7"
     >
       <fa-icon [icon]="plus" aria-hidden="true"></fa-icon>
       <span class="font-semibold ml-1">Add user</span>

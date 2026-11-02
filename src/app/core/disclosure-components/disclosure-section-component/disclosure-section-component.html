@@ -3,7 +3,7 @@
     'grid-rows-[auto_1fr]': hasOpenState(),
     'grid-rows-[auto_0fr]': !hasOpenState(),
   }"
-  class="grid transition-all duration-custom border-2 border-transparent bg-whiteColor"
+  class="grid transition-all duration-custom border-2 border-transparent bg-white"
 >
   <h2 [id]="sectionId">
     <button
@@ -12,7 +12,7 @@
       [attr.aria-controls]="contentId"
       #headerButton
       (click)="toggleState()"
-      class="flex gap-2 w-full h-full bg-headerSectionbg p-2 cursor-pointer focus-visible:outline-(length:--focus-focusVisibleSpace) focus-visible:outline-focusVisibleColor"
+      class="flex gap-2 w-full h-full bg-slate-1 p-2 cursor-pointer focus-visible:outline-(length:--spacing-focus-visible-length) focus-visible:outline-indigo-7"
     >
       <fa-icon [class]="hasOpenState() ? 'block' : 'hidden'" [icon]="chevronDown"></fa-icon>
       <fa-icon [class]="!hasOpenState() ? 'block' : 'hidden'" [icon]="chevronRight"></fa-icon>

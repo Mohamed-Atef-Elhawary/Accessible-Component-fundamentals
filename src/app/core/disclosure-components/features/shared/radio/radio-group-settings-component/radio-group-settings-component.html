@@ -1,4 +1,4 @@
-<fieldset class="flex flex-col gap-2 min-h-0 overflow-hidden">
+<fieldset class="flex flex-col gap-2">
   <legend class="mb-1">{{ radioViewData().title }}</legend>
   @if (previewPosition() === 'top') {
     <ng-container [ngTemplateOutlet]="preview"></ng-container>
@@ -6,7 +6,7 @@
   <div class="flex gap-2">
     @for (setting of radioViewData().settings; track setting.settingName) {
       <label
-        class="flex-1 flex flex-col justify-center items-center cursor-pointer p-1 border-2 border-inactiveColor has-checked:border-activeColor has-checked:bg-activeColor/50 rounded has-focus-visible:outline-(length:--spacing-focusVisibleLength) has-focus-visible:outline-focusVisibleColor"
+        class="relative flex-1 flex flex-col justify-center items-center cursor-pointer p-1 border-2 border-gray-3 has-checked:border-indigo-6 has-checked:bg-indigo-6/50 rounded has-focus-visible:outline-(length:--spacing-focus-visible-length) has-focus-visible:outline-indigo-7"
       >
         <input
           type="radio"
@@ -26,5 +26,6 @@
 </fieldset>
 
 <ng-template #preview>
-  <app-settings-feedback-resolver-component [feedbackData]="radioViewData().feedbackData" />
-</ng-template>
+  <div>
+    <app-settings-feedback-resolver-component [feedbackData]="radioViewData().feedbackData" /></div
+></ng-template>

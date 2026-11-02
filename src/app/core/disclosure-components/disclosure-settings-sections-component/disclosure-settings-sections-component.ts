@@ -4,9 +4,9 @@ import { MultipleOpenSectionsDirective } from '../../../directives/disclosure-di
 import { DisclosureSectionComponent } from '../disclosure-section-component/disclosure-section-component';
 import { DisplayAndAppearanceSettingsComponent } from '../features/settings/radio/display-and-appearance-settings-component/display-and-appearance-settings-component';
 import { LanguageSettingsComponent } from '../features/settings/radio/language-settings-component/language-settings-component';
-import { LineHeightSettingsComponent } from '../features/settings/line-height-settings-component/line-height-settings-component';
+import { LineHeightSettingsComponent } from '../features/settings/range/line-height-settings-component/line-height-settings-component';
 import { PrivacySettingsComponent } from '../features/settings/radio/privacy-settings-component/privacy-settings-component';
-import { TextSizeSettingsComponent } from '../features/settings/text-size-settings-component/text-size-settings-component';
+import { TextSizeSettingsComponent } from '../features/settings/range/text-size-settings-component/text-size-settings-component';
 import { NotificationSettingsComponent } from '../features/settings/toggle/notification-settings-component/notification-settings-component';
 import { LayoutDensitySettingsComponent } from '../features/settings/toggle/layout-density-settings-component/layout-density-settings-component';
 import { AccessibilitySettingsComponent } from '../features/settings/toggle/accessibility-settings-component/accessibility-settings-component';

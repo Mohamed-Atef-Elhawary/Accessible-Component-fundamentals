@@ -9,9 +9,9 @@ export const FEEDBACK_POSITION: Record<FeedbackType, FeedbackPosition> = {
   motion: 'bottom',
   contrast: 'bottom',
   compact: 'bottom',
-  theme: 'bottom',
+  theme: 'top',
   privacy: 'bottom',
   language: 'top',
   textSize: 'top',
-  lineHeight: 'bottom',
+  lineHeight: 'top',
 };

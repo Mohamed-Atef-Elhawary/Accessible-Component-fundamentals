@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { FEEDBACK_MATE_DATA } from './constant-line-height-feedback';
 
 @Component({
   imports: [],
@@ -8,4 +9,5 @@ import { Component, input } from '@angular/core';
 })
 export class SettingLineHeightFeedbackComponent {
   lineHeightPayload = input.required<number>();
+  feedbackMetaDate = FEEDBACK_MATE_DATA;
 }

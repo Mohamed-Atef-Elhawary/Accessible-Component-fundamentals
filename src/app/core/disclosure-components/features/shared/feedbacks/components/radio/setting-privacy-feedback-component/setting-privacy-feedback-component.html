@@ -6,7 +6,7 @@
         type="button"
         [attr.aria-pressed]="viewerButton.viewer === viewer()"
         (click)="viewerButton.viewSetter()"
-        [class.bg-activeColor/50]="viewerButton.viewer === viewer()"
+        [class.bg-indigo-6/50]="viewerButton.viewer === viewer()"
         class="border border-gray-3 py-1 px-4 rounded text-[1rem] cursor-pointer active:scale-95 focus-visible:outline-none transition duration-custom focus-visible:ring-(length:--spacing-focus-visible-length) focus-visible:ring-indigo-7 capitalize"
       >
         {{ viewerButton.viewer }}
@@ -14,11 +14,13 @@
     }
   </div>
 
-  <article class="border border-gray-4 p-4 rounded-lg flex flex-col gap-2">
+  <article class="border border-gray-4 p-4 rounded-lg flex flex-col gap-2 h-[14rem] bg-green-1">
     <header class="flex gap-2 items-center">
-      <span [style.backgroundColor]="bgColor" class="p-1.5 rounded-full text-white font-semibold">{{
-        userInit
-      }}</span>
+      <span
+        [style.background-color]="bgColor"
+        class="p-1.5 rounded-full text-white font-semibold"
+        >{{ userInit }}</span
+      >
       <div>
         <h4 class="font-semibold text-[1rem]">{{ userName() }}</h4>
         <p class="text-light text-[.9rem]">Member since 2026</p>
@@ -46,10 +48,10 @@
           aria-hidden="true"
           class="text-[3rem] text-light"
         ></fa-icon>
-        <p class="text-light">{{ lockMetaData().message }}</p>
+        <p class="">{{ lockMetaData().message }}</p>
       </div>
     }
   </article>
 
-  <p aria-live="polite">{{ description() }}</p>
+  <p aria-live="polite" class="text-slate-6">{{ description() }}</p>
 </div>

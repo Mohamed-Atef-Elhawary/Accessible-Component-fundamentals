@@ -1,36 +1,38 @@
-<div [dir]="translations().dir" [lang]="translations().lang">
-  <article class="border border-indigo-6 p-2 flex flex-col gap-4 mt-1 w-full">
+<div [dir]="translations().dir" [lang]="translations().lang" class="h-[20rem]">
+  <article class="border border-gray-4 p-2 flex flex-col gap-4 mt-1 w-full bg-green-1">
     <header class="flex justify-between items-center">
       <div class="flex gap-2 items-center">
         <span
-          class="bg-primary w-8 h-8 rounded-full overflow-hidden grid place-items-center uppercase"
+          class="bg-indigo-6 w-8 h-8 rounded-full overflow-hidden grid place-items-center uppercase"
           >{{ translations().lang }}</span
         >
         <div class="flex flex-col gap-0">
           <p class="font-semibold">{{ translations().title }}</p>
-          <p class="text-slate-1">{{ translations().subTitle }}</p>
+          <p class="text-slate-6">
+            {{ translations().subTitle }}
+          </p>
         </div>
       </div>
       <span class="bg-green-2 text-success px-2 rounded uppercase">{{ translations().dir }} </span>
     </header>
     <p class="font-semibold">{{ translations().greeting }}, {{ userName() }}</p>
     <div aria-hidden="true" class="flex flex-col gap-2">
-      <span class="w-[90%] h-[.4rem] rounded bg-indigo-6"></span>
-      <span class="w-[60%] h-[.4rem] rounded bg-indigo-6"></span>
-      <span class="w-[75%] h-[.4rem] rounded bg-indigo-6"></span>
+      <span class="w-[90%] h-[.4rem] rounded bg-gray-3"></span>
+      <span class="w-[60%] h-[.4rem] rounded bg-gray-3"></span>
+      <span class="w-[75%] h-[.4rem] rounded bg-gray-3"></span>
     </div>
     <hr />
     <footer class="flex justify-between">
       <div class="flex flex-col gap-0">
-        <span class="text-slate-1">{{ translations().dateFormat }}</span
+        <span class="text-slate-6">{{ translations().dateFormat }}</span
         ><span class="font-semibold">{{ formattedDateTime().formattedDate }}</span>
       </div>
       <div class="flex flex-col gap-0">
-        <span class="text-slate-1">{{ translations().timeFormat }}</span
+        <span class="text-slate-6">{{ translations().timeFormat }}</span
         ><span class="font-semibold">{{ formattedDateTime().formattedTime }}</span>
       </div>
     </footer>
   </article>
 
-  <p aria-live="polite" class="mt-1">{{ translations().description }}</p>
+  <p aria-live="polite" class="mt-1 text-slate-6">{{ translations().description }}</p>
 </div>

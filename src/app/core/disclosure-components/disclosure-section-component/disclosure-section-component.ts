@@ -1,9 +1,9 @@
 import { Component, computed, ElementRef, inject, input, viewChild } from '@angular/core';
 import { faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FocusTrapInExpandedSectionDirective } from '../../../directives/disclosure-directives/focus-trap-directive/focus-trap-in-expanded-section-directive';
+import { FocusTrapInExpandedSectionDirective } from '../../../directives/disclosure/focus-trap-directive/focus-trap-in-expanded-section-directive';
+import { MultipleOpenSectionsDirective } from '../../../directives/disclosure/multiple-open-sections-directive/multiple-open-sections-directive';
 import { DisclosureAccessibilityStateService } from '../../../services/disclosure-services/accessibility-services/disclosure-accessibility-state/disclosure-accessibility-state-service';
-import { MultipleOpenSectionsDirective } from '../../../directives/disclosure-directives/multiple-open-sections-directive/multiple-open-sections-directive';
 
 let counter = 1;
 @Component({

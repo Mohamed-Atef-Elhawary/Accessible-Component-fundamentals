@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MultipleOpenSectionsDirective } from '../../../directives/disclosure-directives/multiple-open-sections-directive/multiple-open-sections-directive';
 
 import { DisclosureSectionComponent } from '../disclosure-section-component/disclosure-section-component';
 import { DisplayAndAppearanceSettingsComponent } from '../features/settings/radio/display-and-appearance-settings-component/display-and-appearance-settings-component';
@@ -10,6 +9,7 @@ import { TextSizeSettingsComponent } from '../features/settings/range/text-size-
 import { NotificationSettingsComponent } from '../features/settings/toggle/notification-settings-component/notification-settings-component';
 import { LayoutDensitySettingsComponent } from '../features/settings/toggle/layout-density-settings-component/layout-density-settings-component';
 import { AccessibilitySettingsComponent } from '../features/settings/toggle/accessibility-settings-component/accessibility-settings-component';
+import { MultipleOpenSectionsDirective } from '../../../directives/disclosure/multiple-open-sections-directive/multiple-open-sections-directive';
 
 @Component({
   imports: [

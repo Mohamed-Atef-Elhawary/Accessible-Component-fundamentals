@@ -28,9 +28,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faTrashCan, faPencil, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { UserModalStateService } from '../../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
 import { ModalAccessibilityStateService } from '../../../services/modal-dialog-services/modal-accessibility-state/modal-accessibility-state-service';
-import { CloseOnBackdropDirective } from '../../../directives/mogal-dialog-directives/close-onbackdrop-click-directive/close-on-backdrop-directive';
-import { FocusTrapDirective } from '../../../directives/mogal-dialog-directives/focus-trap-directive/focus-trap-directive';
+
 import { ActivityLogService } from '../../../services/activity-log/activity-log-service';
+import { CloseOnBackdropDirective } from '../../../directives/modal/back-drop/close-on-backdrop-directive';
+import { FocusTrapDirective } from '../../../directives/modal/focus-trap/focus-trap-directive';
 @Component({
   selector: 'app-user-modal-component',
   imports: [
@@ -56,7 +57,7 @@ export class UserModalComponent implements OnInit {
   modalInteraction = computed(() => this.userModalStateService.modalInteraction());
 
   firstFocusedElement = signal<FocusableElement | null>(null);
-  firstFocusedButttonElement = viewChild<ElementRef>('firstFocusedButttonElement');
+  firstFocusedButtonElement = viewChild<ElementRef>('firstFocusedButtonElement');
   firstFocusedInputElement = viewChild<ElementRef>('firstFocusedInputElement');
 
   userForm!: FormGroup<{
@@ -122,7 +123,7 @@ export class UserModalComponent implements OnInit {
   ) {
     afterNextRender(() => {
       if (this.modalInteraction() === 'delete') {
-        this.firstFocusedElement.set(this.firstFocusedButttonElement()?.nativeElement);
+        this.firstFocusedElement.set(this.firstFocusedButtonElement()?.nativeElement);
       } else {
         this.firstFocusedElement.set(this.firstFocusedInputElement()?.nativeElement);
       }

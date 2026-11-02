@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Host, input } from '@angular/core';
+import { Directive, ElementRef } from '@angular/core';
 import { UserModalStateService } from '../../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
 import { ActivityLogService } from '../../../services/activity-log/activity-log-service';
 import { ModalAccessibilityStateService } from '../../../services/modal-dialog-services/modal-accessibility-state/modal-accessibility-state-service';

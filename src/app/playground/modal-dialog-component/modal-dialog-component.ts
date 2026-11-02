@@ -17,11 +17,11 @@ import { UserModalComponent } from '../../core/modal-components/user-modal-compo
 import { AccessibilityPlaygroundComponent } from '../../core/accessibility-playground-component/accessibility-playground-component';
 import { ActivityLogComponent } from '../../core/activity-log-component/activity-log-component';
 import { UserModalStateService } from '../../services/modal-dialog-services/user-modal-state/user-modal-state-service';
-import { CloseOnEscapeDirective } from '../../directives/mogal-dialog-directives/close-onscape-directive/close-on-escape-directive';
 import { HeaderData } from '../../interfaces/header-data';
 import { ActivityLogService } from '../../services/activity-log/activity-log-service';
 import { AccessibilityOption } from '../../interfaces/accessibility-options';
 import { ModalAccessibilityStateService } from '../../services/modal-dialog-services/modal-accessibility-state/modal-accessibility-state-service';
+import { CloseOnEscapeDirective } from '../../directives/modal/escape/close-on-escape-directive';
 @Component({
   selector: 'app-modal-dialog-component',
   imports: [
@@ -48,7 +48,7 @@ export class ModalDialogComponent {
   userModalNativeElement!: HTMLElement;
   isModalOpen = computed<boolean>(() => this.userModalStateService.isModalOpen());
 
-  lockScrollOnopendModal = computed<boolean>(
+  lockScrollOnOpenedModal = computed<boolean>(
     () => this.modalAccessibilityStateService.lockScroll() && this.isModalOpen(),
   );
   accessibilityOptions = computed<AccessibilityOption[]>(() =>
@@ -71,7 +71,7 @@ export class ModalDialogComponent {
         });
       }
 
-      if (this.lockScrollOnopendModal()) {
+      if (this.lockScrollOnOpenedModal()) {
         this.hideScrollbar();
       } else {
         this.showScrollbar();
@@ -88,9 +88,9 @@ export class ModalDialogComponent {
     this.userModalContainerRef()?.createComponent(userModalComponent);
   }
   hideScrollbar() {
-    const widthDefference = window.innerWidth - this.document.documentElement.clientWidth;
+    const widthDifference = window.innerWidth - this.document.documentElement.clientWidth;
     this.renderer.setStyle(this.document.documentElement, 'overflow', 'hidden');
-    this.renderer.setStyle(this.document.documentElement, 'padding-right', `${widthDefference}px`);
+    this.renderer.setStyle(this.document.documentElement, 'padding-right', `${widthDifference}px`);
     this.renderer.setStyle(this.document.documentElement, 'background-color', '#d2d3d8');
   }
   showScrollbar() {

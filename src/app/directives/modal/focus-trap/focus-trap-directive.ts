@@ -27,7 +27,7 @@ export class FocusTrapDirective implements OnChanges {
     const focusedElementIndex = focusableElements.indexOf(focusedElement);
     let nextFocusedElementIndex: number = 0;
 
-    for (let [index, elemant] of focusableElements.entries()) {
+    for (let [index, element] of focusableElements.entries()) {
       nextFocusedElementIndex = (focusedElementIndex + 1 + index) % focusableElements.length;
       if (!focusableElements[nextFocusedElementIndex].disabled) {
         break;
